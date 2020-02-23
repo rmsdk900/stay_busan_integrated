@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.koreate.staybusan.room.dao.RoomDetailDAO">
+	<insert id="regist" parameterType="net.koreate.staybusan.room.vo.RoomVO">
+		INSERT INTO rooms(u_no, r_name, r_desc, r_date_from, r_date_to, r_price, r_addr_main, r_addr_detail, r_guests, r_bath, r_bedroom, r_bed, r_checkin, r_checkout, r_gu) VALUES(#{u_no}, #{r_name}, #{r_desc}, #{r_date_from}, #{r_date_to}, #{r_price}, #{r_addr_main}, #{r_addr_detail}, #{r_guests}, #{r_bath}, #{r_bedroom}, #{r_bed}, #{r_checkin}, #{r_checkout}, #{r_gu})
+	</insert>
+</mapper>
