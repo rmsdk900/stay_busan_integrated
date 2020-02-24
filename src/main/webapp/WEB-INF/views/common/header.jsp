@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<c:set var="path" value="${pageContext.request.contextPath}" scope="session" />
 <script type="text/javascript">
 	var contextPath = '${pageContext.request.contextPath}';
 </script>
+<!-- Bootstrap core JavaScript -->
+  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <link
@@ -17,10 +20,14 @@
 	rel="stylesheet" id="bootstrap-css">
 <script
 	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="${path}/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- datepicker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript"
-	src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
+	src="${path}/resources/jquery-ui/jquery-ui.min.js"></script>
+<!-- <script src="//code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script> -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css">
+	href="${path}/resources/jquery-ui/jquery-ui.css">	
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
@@ -53,6 +60,13 @@
 	margin: auto;
 	border-spacing: 10px;
 }
+/* 쪽지 쪽 */
+
+
+
+
+
+
 </style>
 </head>
 <body style="height: 100%; margin: 0;">
@@ -78,12 +92,17 @@
 
 					<c:choose>
 						<c:when test="${!empty userInfo}">
+							<!-- 쪽지 추가 -->
+							<li class="nav-item">
+							
+							</li>
+							<!-- 나머지 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}">${userInfo.u_name}</a></li>
 							<c:if test="${userInfo.u_type eq 1}">
 								<!-- 호스트  -->
 								<li class="nav-item"><a class="nav-link"
-									href="Rooms/resisterRoom1">등록</a></li>
+									href="Rooms/resisterRoom1">호스팅</a></li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
 								<!-- 게스트 -->
@@ -95,13 +114,13 @@
 								<li class="nav-item"><a class="nav-link"
 									href="user/adminMyPage">관리</a></li>
 							</c:if>
-							<li class="nav-item"><a class="nav-link" href="user/logOut">로그아웃</a>
+							<li class="nav-item"><a class="nav-link" href="${path}/user/logOut">로그아웃</a>
 							</li>
 						</c:when>
 						<c:otherwise>
-							<li class="nav-item"><a class="nav-link" href="user/join">회원가입</a>
+							<li class="nav-item"><a class="nav-link" href="${path}/user/join">회원가입</a>
 							</li>
-							<li class="nav-item"><a class="nav-link" href="user/login">로그인</a>
+							<li class="nav-item"><a class="nav-link" href="${path}/user/login">로그인</a>
 							</li>
 						</c:otherwise>
 					</c:choose>
@@ -128,6 +147,10 @@
 		</div>
 	</div>
 	<script>
+		// 쪽지 추가
+		
+		
+		// 기존
 		$("#transform").click(function(event) {
 			event.preventDefault();
 			$("#transformModal").css("display", "flex");

@@ -25,6 +25,7 @@ public class RoomDateController {
 	@GetMapping("/getAvailableDate/{r_no}")
 	public ResponseEntity<Map<String, Object>> getAvailableDate(
 			@PathVariable("r_no") int r_no)throws Exception{
+		System.out.println("디테일 날짜 가져오기!");
 		ResponseEntity<Map<String, Object>> entity = null;
 		
 		Map<String, Object> map = new HashMap<>();
@@ -34,6 +35,8 @@ public class RoomDateController {
 			List<String> list = rbds.getTestDate(r_no);
 			map.put("availableDate", dto);
 			map.put("closedDate", list);
+			
+			
 			
 //		System.out.println(dto);
 			entity = new ResponseEntity<>(map, HttpStatus.OK);

@@ -1,10 +1,9 @@
-<!-- user 정보 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jsp" %>
-<c:set var="login" value="1" scope="session"/>
+
 
 <style>
 	.show_my_img {
@@ -20,15 +19,220 @@
 	.roundingProfileImg{
 		border-radius: 100px;
 	}
-	
-	.show_wrapper{
-		margin-left:100px;
-		margin-right:100px;	
-	}
 </style>
+<!-- 별점 관련 -->
+<style>
+/* 평균 별점관련 */
+	.avgStarL1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL1.on{background-position:0 0;}
+	.avgStarR1.on{background-position:-15px 0;}
+	
+	.avgStarL2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL2.on{background-position:0 0;}
+	.avgStarR2.on{background-position:-15px 0;}
+	.avgStarL3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL3.on{background-position:0 0;}
+	.avgStarR3.on{background-position:-15px 0;}
+	.avgStarL4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL4.on{background-position:0 0;}
+	.avgStarR4.on{background-position:-15px 0;}
+	.avgStarL5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL5.on{background-position:0 0;}
+	.avgStarR5.on{background-position:-15px 0;}
+	/* 별점 처리 */
+	.starL1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL1.on{background-position:0 0;}
+	.starR1.on{background-position:-15px 0;}
+	
+	.starL2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL2.on{background-position:0 0;}
+	.starR2.on{background-position:-15px 0;}
+	.starL3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL3.on{background-position:0 0;}
+	.starR3.on{background-position:-15px 0;}
+	.starL4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL4.on{background-position:0 0;}
+	.starR4.on{background-position:-15px 0;}
+	.starL5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL5.on{background-position:0 0;}
+	.starR5.on{background-position:-15px 0;}
+	
+</style>
+
 <script>
 	var u_no = '${myAllInfo.userVO.u_no}';
-	var login = '${login}';
+	var login_u_no = ${!empty userInfo ? userInfo.u_no : 0};
+	var login_u_name = "${!empty userInfo ? userInfo.u_name : ''}";
 </script>
 <!-- 소개 페이지 전체 -->
 <div class="show_wrapper">
@@ -68,7 +272,7 @@
 					<button class="show_my_introduce_mod_cancel">취소</button>
 				</div>
 			</div>
-			<c:if test="${myAllInfo.userVO.u_no == login}">
+			<c:if test="${myAllInfo.userVO.u_no == userInfo.u_no}">
 				<div>
 					<input type="button" class="show_my_introduce_mod_open" value="편집" />
 				</div>
@@ -92,7 +296,7 @@
 		<c:otherwise>
 			<%@ include file="./showHostRooms.jsp" %>
 			<!-- 후기들 -->
-			<%@ include file="../comment/comment_host.jsp" %>
+			<%@ include file="../comment/comment.jsp" %>
 			<script src="${pageContext.request.contextPath}/resources/js/show_host.js"></script>
 		</c:otherwise>
 	</c:choose>

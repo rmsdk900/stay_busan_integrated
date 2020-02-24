@@ -1,17 +1,18 @@
 /**
  * 
  */
-// 최소 날짜
-var minDate;
-
-// 최대 날짜
-var maxDate;
-
-// 불가 날짜 보관 배열
-var banDates = new Array();
 
 // 추가로 안되는 날짜 불러오기
 $(function(){
+	// 최소 날짜
+	var minDate;
+
+	// 최대 날짜
+	var maxDate;
+
+	// 불가 날짜 보관 배열
+	var banDates = new Array();
+	
 	
 	$.getJSON(contextPath+"/getAvailableDate/"+r_no, function(data){
 		// data.closedDate : 금지 날짜
@@ -22,6 +23,8 @@ $(function(){
 		maxDate = new Date(data.availableDate.r_date_to);
 		
 		banDates = data.closedDate;
+		
+		console.log(banDates);
 
 		$("#startDate").datepicker({
 		    dateFormat : "yy-mm-dd",

@@ -31,7 +31,8 @@ public class RoomDetailController {
 	
 	@GetMapping("detail")
 	public String roomDetail(int r_no, Model model)throws Exception{
-//		System.out.println("가져올 방 번호 : "+r_no);
+		System.out.println("방 상세 페이지 호출");
+		System.out.println("가져올 방 번호 : "+r_no);
 		
 		Map<String, Object> roomInfo = rds.readRoom(r_no);
 		

@@ -3,10 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jsp" %>
-<script type="text/javascript">
-	var r_no = ${roomInfo.roomVO.r_no};	
-	var u_no = ${roomInfo.roomVO.u_no};
-</script>
+	
 <style>
 	.room_imgs {
 		display: grid;
@@ -73,10 +70,220 @@
 		color:green;
 	}
 	
+	
+	
+</style>
+<!-- 별점 관련 -->
+<style>
+/* 평균 별점관련 */
+	.avgStarL1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL1.on{background-position:0 0;}
+	.avgStarR1.on{background-position:-15px 0;}
+	
+	.avgStarL2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL2.on{background-position:0 0;}
+	.avgStarR2.on{background-position:-15px 0;}
+	.avgStarL3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL3.on{background-position:0 0;}
+	.avgStarR3.on{background-position:-15px 0;}
+	.avgStarL4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL4.on{background-position:0 0;}
+	.avgStarR4.on{background-position:-15px 0;}
+	.avgStarL5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarR5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.avgStarL5.on{background-position:0 0;}
+	.avgStarR5.on{background-position:-15px 0;}
+	/* 별점 처리 */
+	.starL1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR1{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL1.on{background-position:0 0;}
+	.starR1.on{background-position:-15px 0;}
+	
+	.starL2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR2{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL2.on{background-position:0 0;}
+	.starR2.on{background-position:-15px 0;}
+	.starL3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR3{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL3.on{background-position:0 0;}
+	.starR3.on{background-position:-15px 0;}
+	.starL4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR4{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL4.on{background-position:0 0;}
+	.starR4.on{background-position:-15px 0;}
+	.starL5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starR5{
+	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
+	    background-size: auto 100%;
+	    width: 15px;
+	    height: 30px;
+	    float:left;
+	    text-indent: -9999px;
+	    cursor: pointer;
+	}
+	.starL5.on{background-position:0 0;}
+	.starR5.on{background-position:-15px 0;}
+	
 </style>
 <!-- roomInfo -->
 <c:if test="${!empty roomInfo}">
-	<div class="room" style="margin-left:100px; margin-ringht:100px;">
+	<div class="room">
 		<div >
 			<div class="room_imgs">
 				<div class='room_img_primary' onclick="openSlide"></div>
@@ -89,7 +296,7 @@
 				id="roomPicturesModalBtn">
 					사진 보기
 				</button>
-				<c:if test="${roomInfo.roomVO.u_no == login}">
+				<c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modPicture"
 					id="modPictureBtn">
 						사진 변경
@@ -161,7 +368,7 @@
 				</div>
 				
 			</div>
-			<c:if test="${roomInfo.roomVO.u_no == login}">
+			<c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
 					<div class="room_reservation_per_price_modify">
 						1박당 1인 가격 : <input type= "number" name="r_price" value="${roomInfo.roomVO.r_price}" 
 						class="r_price" step="100" min="0"/> 원
@@ -319,7 +526,7 @@
 						</select>
 					</li>
 				</ul>
-				<c:if test="${roomInfo.roomVO.u_no == login}">
+				<c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
 					<div>
 						<button type="button" class="room_amenity_modify_btn" >
 							방 편의 정보 수정
@@ -368,13 +575,27 @@
 					<form id="bookingForm" action="bookingRoom" method="post">
 						<input type="hidden" name="r_no" value="${roomInfo.roomVO.r_no}" />
 						<!-- 로그인 한 사람의 번호를 임의로 넣어놓음. -->
-						<input type="hidden" name="u_no" value="${login}" />
+						<input type="hidden" name="u_no" value="${userInfo.u_no}" />
 						<div>
 							<div>
 								<span class="room_reservation_per_price">${roomInfo.roomVO.r_price}</span>
 								<span class="room_reservation_days">/ [0] 박</span>
 							</div>
-							<div class="room_reservation_star">[평균 평점]</div>
+							<div class="room_reservation_star">
+								<div class="starRev">
+									<span class="avgStarL1"></span>
+									<span class="avgStarR1"></span>
+									<span class="avgStarL2"></span>
+									<span class="avgStarR2"></span>
+									<span class="avgStarL3"></span>
+									<span class="avgStarR3"></span>
+									<span class="avgStarL4"></span>
+									<span class="avgStarR4"></span>
+									<span class="avgStarL5"></span>
+									<span class="avgStarR5"></span>
+								</div>
+								<span class="star_float">[평균 별점]</span>
+							</div>
 							<div class="room_reservation_total">(후기 [후기 갯수]개)</div>
 							<hr/>
 						</div>
@@ -402,6 +623,7 @@
 							<div class="room_reservation_price_real">[총 가격]</div>
 						</div>
 						<input type="hidden" name="b_total_price" id="b_total_price" />
+						
 						<div>
 							<input type="button" class="room_reservation_choose_date"value="날짜선택"/>
 							<input type="button" class="room_reservation_submit"value="예약하기" style="display:none;"/>
@@ -410,11 +632,14 @@
 				</div>
 				<br/>
 				<div class="room_message">
+				<c:if test="${!empty userInfo}">
 					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal" data-whatever="${roomInfo.hostVO.u_name}">
 						호스트에게 쪽지 보내기
 					</button>
 					
 					<%@ include file="./messageModal.jsp" %>
+				</c:if>
+					
 					
 					
 				</div>
@@ -426,10 +651,18 @@
 		
 	</div>
 	
-	<script src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
+	
 	<script>
+		// 필요 변수들 설정
+		var r_no = ${roomInfo.roomVO.r_no};	
+		var u_no = ${roomInfo.roomVO.u_no};
+		var login_u_no = ${!empty userInfo ? userInfo.u_no : 0};
+		var login_u_name = "${!empty userInfo ? userInfo.u_name : ''}";
+	
 		$(function(){
+			
+			
+			
 			// 가리기 부터
 			$(".room_primary_title_modify").hide();
 			$(".room_primary_facility_modify").hide();
@@ -840,6 +1073,8 @@
 	        } 
 		});
 	</script>
+	<script src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/pictureModal.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/messageModal.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/detailDate.js"></script>
