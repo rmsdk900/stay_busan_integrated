@@ -125,6 +125,7 @@
 				<c:out value="${myAllInfo.userVO.u_name}"/>의 숙소
 			</h3>
 		</div>
+		
 		<div class="show_host_rooms_list">
 			<c:forEach var="room" items="${myAllInfo.hosting}">
 					<c:if test="${room.r_deleted == 0}">
@@ -183,12 +184,10 @@
 						<c:if test="${myAllInfo.userVO.u_no eq userInfo.u_no}">
 							<div>
 								<input type="button" value="댓글 관리" data-r_no="${room.r_no}" class="btnReview" />
+								<!-- 방 삭제 모달 -->
 								<button type="button" data-r_no="${room.r_no}" data-toggle="modal"
 								data-target="#delRoom"  class="modalBtnDelRoom">${room.r_no}번 방 삭제</button>
 							</div>
-							
-							
-							
 						</c:if>
 					</c:if>
 			</c:forEach>
@@ -245,10 +244,10 @@
 		html += "	<div class='modal-dialog modal-sm' role='document'>";
 		html += "		<div class='modal-content'>";
 		html += "			<div class='modal-header'>";
-		html += "				<button type='button' class='close' data-dismiss='modal' aria-label='close' >";
+		html += "				<h5 class='modal-title' id='myModalLabel' >"+r_no+"번 방 삭제 확인</h5>";
+		html += "				<button type='button' class='close' data-dismiss='modal' aria-label='Close' >";
 		html += "					<span aria-hidden='true'>&times;</span>";
-		html += "				<button>";
-		html += "				<h4 class='modal-title' id='myModalLabel' >"+r_no+"번 방 삭제 확인</h4>";
+		html += "				</button>";
 		html += "			</div>";
 		html += "			<div class='modal-body'>";
 		html += "				<p>"+r_no+"번 방을 정말 삭제하시겠습니까?</p>";

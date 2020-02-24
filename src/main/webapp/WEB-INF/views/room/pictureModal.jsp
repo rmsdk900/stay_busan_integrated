@@ -1,24 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <style>
-	.carousel-inner {
-		display:flex;
-		justify-content: center;
-		align-items: center;
+	.carousel-item {
+		text-align: center;
 	}
 </style>
 <!-- 사진 더 보기 모달 -->
 <div class="modal fade" id="roomPicturesModal" 
 tabindex="-1" role="dialog" 
 aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">사진 더 보기</h4>
 				<button type="button" class="close" 
 				data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" >&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">사진 더 보기</h4>
+				
 			</div>
 			<div class="modal-body">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -30,8 +29,8 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 				  </ol>
 				
 				  <!-- Wrapper for slides -->
-				  <div class="carousel-inner" role="listbox">
-				    <!-- <div class="item active">
+				  <div class="carousel-inner">
+				    <!-- <div class="carousel-item active">
 				      <img src="..." alt="...">
 				      <div class="carousel-caption">
 				        ...
@@ -47,12 +46,12 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 				  </div>
 				
 				  <!-- Controls -->
-				  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-				    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+				  <a class="carousel-control-prev" href="#carousel-example-generic" role="button" data-slide="prev">
+				    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 				    <span class="sr-only">Previous</span>
 				  </a>
-				  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				  <a class="carousel-control-next" href="#carousel-example-generic" role="button" data-slide="next">
+				    <span class="carousel-control-next-icon" aria-hidden="true"></span>
 				    <span class="sr-only">Next</span>
 				  </a>
 				</div>				

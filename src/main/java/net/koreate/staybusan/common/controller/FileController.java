@@ -35,7 +35,7 @@ public class FileController {
 		ResponseEntity<Object> entity = null;
 		List<String> list;
 		
-//		System.out.println("넣을 파일들 : "+files);
+		System.out.println("넣을 파일들 : "+files);
 		
 		try {
 			list = FileUtils.getInstance(context).uploadFileMod(files, u_no, r_no);

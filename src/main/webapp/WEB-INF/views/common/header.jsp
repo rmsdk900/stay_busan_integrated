@@ -5,22 +5,48 @@
 <html style="height: 100%; margin: 0;">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Insert title here</title>
+<!-- path 설정 -->
 <c:set var="path" value="${pageContext.request.contextPath}" scope="session" />
 <script type="text/javascript">
 	var contextPath = '${pageContext.request.contextPath}';
 </script>
-<!-- Bootstrap core JavaScript -->
-  <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  
-<script
-	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!-- jquery 최신 js -->
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<!-- bootstrap css -->
 <link
 	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
 	rel="stylesheet" id="bootstrap-css">
-<script
-	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- bootstrap js -->
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 <script src="${path}/resources/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+  
+<!-- <script
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+<!-- Bootstrap CSS -->
+
+<!-- <link
+	href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet" id="bootstrap-css"> -->
+<!-- <link rel="stylesheet" 
+href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+crossorigin="anonymous">	
+ -->
+
+	
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> -->
+<!-- <script
+	src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
+<%-- <script src="${path}/resources/bootstrap/js/bootstrap.bundle.min.js"></script> --%>
+
 <!-- datepicker -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script type="text/javascript"
@@ -31,11 +57,12 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <style>
-#exampleModal {
-	display: none;
+
+#transformModal {
+ 	display: none;
 }
 
-.modal {
+.modal-g {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -47,7 +74,7 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+.modal-content-g {
 	position: relative;
 	background-color: #fefefe;
 	margin: auto;
@@ -56,11 +83,7 @@
 	border-radius: 10px;
 }
 
-.modal table {
-	margin: auto;
-	border-spacing: 10px;
-}
-/* 쪽지 쪽 */
+ 
 
 
 
@@ -129,8 +152,8 @@
 		</nav>
 	</header>
 	<!-- 전환 버튼 클릭시 띄울 modal -->
-	<div id="transformModal" class="modal">
-		<div class="modal-content">
+	<div id="transformModal" class="modal-g">
+		<div class="modal-content-g">
 			<h3>게스트 호스트 전환</h3>
 			<div style="text-align: center; margin: 20px;">
 				<div>

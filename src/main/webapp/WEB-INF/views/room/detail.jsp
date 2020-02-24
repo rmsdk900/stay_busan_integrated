@@ -886,13 +886,12 @@
 				}
 				olli +=	"></li>";
 				
-				var html = "<div class='item ";
+				var html = "<div class='carousel-item ";
 				if (i==0){
 					html += "active"; 
 				}
 				html += "' >";
-				html += "<img src='"+fileInfo.imgSrc+"' alt='"+(i+1)+"번째 사진' >";
-				html += "<div class='carousel-caption'>...</div>";
+				html += "<img src='"+fileInfo.imgSrc+"' alt='"+(i+1)+"번째 사진' class='w-50'>";
 				html += "</div>";
 				$(".carousel-indicators").append(olli);
 				$(".carousel-inner").append(html);

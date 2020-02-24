@@ -311,8 +311,8 @@ h1{
 
 			<!-- Login Form -->
 			<form id="signInForm" action="loginPost" method="POST">
-				<input type="text" class="fadeIn second" name="u_id" placeholder="아이디(email)" required /> 
-				<input type="password" class="fadeIn third" name="u_pw" placeholder="비밀번호" required />
+				<input type="text" class="fadeIn second" name="u_id" placeholder="아이디(email)" value="admin@sb.com" required /> 
+				<input type="password" class="fadeIn third" name="u_pw" placeholder="비밀번호" value="admin" required />
 				<br/>
 				<label>
 					<input type="checkbox" name="u_cookie" />로그인 정보 저장

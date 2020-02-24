@@ -71,6 +71,7 @@
 			<div class="page-header">
 				<h1>신고</h1>
 			</div>
+			<hr/>
 			<div class="row">
 				<div class="col-sm-12">
 					<div class="row">

@@ -15,7 +15,7 @@
 	</table>
 	<input type="checkbox" name="hostapply" value="1">동의합니다.
 	<br/><br/>
-	<button vlaue="cancel"> 취소</button>
+	<button> 취소</button>
 	<button type="button" vlaue="apply" >호스트 신청</button>
 	
 </body>

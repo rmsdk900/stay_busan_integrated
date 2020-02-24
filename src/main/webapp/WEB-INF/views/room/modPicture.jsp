@@ -31,14 +31,15 @@
 <div class="modal fade" id="modPicture" 
 tabindex="-1" role="dialog" 
 aria-labelledby="myModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
+	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
+				<h4 class="modal-title" id="myModalLabel">사진 편집</h4>
 				<button type="button" class="close" 
 				data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true" >&times;</span>
 				</button>
-				<h4 class="modal-title" id="myModalLabel">사진 편집</h4>
+				
 			</div>
 			<div class="modal-body">
 				<div class="pictures_add">
