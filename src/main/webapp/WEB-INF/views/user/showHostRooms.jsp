@@ -14,7 +14,7 @@
 </style>
 <style>
 /* 리스트의 룸 하나 당 별점관련 */
-	.onestarL1{
+	.onestarL1, .onestarL2, .onestarL3, .onestarL4, .onestarL5{
 	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
 	    background-size: auto 100%;
 	    width: 15px;
@@ -23,7 +23,7 @@
 	    text-indent: -9999px;
 	    cursor: pointer;
 	}
-	.onestarR1{
+	.onestarR1, .onestarR2, .onestarR3, .onestarR4, .onestarR5{
 	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
 	    background-size: auto 100%;
 	    width: 15px;
@@ -32,89 +32,9 @@
 	    text-indent: -9999px;
 	    cursor: pointer;
 	}
-	.onestarL1.on{background-position:0 0;}
-	.onestarR1.on{background-position:-15px 0;}
+	.onestarL1.on, .onestarL2.on, .onestarL3.on, .onestarL4.on, .onestarL5.on{background-position:0 0;}
+	.onestarR1.on, .onestarR2.on, .onestarR3.on, .onestarR4.on, .onestarR5.on{background-position:-15px 0;}
 	
-	.onestarL2{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarR2{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarL2.on{background-position:0 0;}
-	.onestarR2.on{background-position:-15px 0;}
-	.onestarL3{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarR3{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarL3.on{background-position:0 0;}
-	.onestarR3.on{background-position:-15px 0;}
-	.onestarL4{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarR4{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarL4.on{background-position:0 0;}
-	.onestarR4.on{background-position:-15px 0;}
-	.onestarL5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarR5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarL5.on{background-position:0 0;}
-	.onestarR5.on{background-position:-15px 0;}
 	
 </style>
 
