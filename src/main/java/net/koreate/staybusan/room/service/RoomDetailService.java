@@ -27,5 +27,14 @@ public interface RoomDetailService {
 	
 	// 방 임시 삭제 기능
 	RoomVO hideRoom(int r_no) throws Exception;
+	
+	// 방 찜하기
+	BuyVO likeRoom(int u_no, int r_no)throws Exception;
+	
+	// 찜 취소하기
+	String dislikeRoom(int u_no, int r_no)throws Exception;
+	
+	// 찜 상태 받기
+	String isLike(int u_no, int r_no)throws Exception;
 
 }

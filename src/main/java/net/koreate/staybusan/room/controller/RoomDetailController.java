@@ -99,7 +99,7 @@ public class RoomDetailController {
 		
 		return "redirect:/room/detail?r_no="+dto.getR_no();
 	}
-	
+	// 방 임시 삭제
 	@PostMapping("/hide")
 	@ResponseBody
 	public RoomVO hideRoom(int r_no) throws Exception{
@@ -109,11 +109,42 @@ public class RoomDetailController {
 		
 		return vo;
 	}
+	// 찜하기
+	@PostMapping("/like")
+	@ResponseBody
+	public BuyVO likeRoom(int u_no, int r_no)throws Exception{
+//		System.out.println("받은 유저 : "+u_no+" 받은 방 번호 : "+r_no);
+		
+		BuyVO vo = rds.likeRoom(u_no, r_no);
+		System.out.println("찜 정보 : "+vo);
+		return vo;
+	}
 	
+	// 찜 취소하기
+	@PostMapping("/dislike")
+	@ResponseBody
+	public String dislikeRoom(int u_no, int r_no)throws Exception{
+//		System.out.println("받은 유저 : "+u_no+" 받은 방 번호 : "+r_no);
+		
+		String message = rds.dislikeRoom(u_no, r_no);
+		
+		return message;
+	}
+	// 찜 상태 받기
+	@PostMapping("/isLike")
+	@ResponseBody
+	public String isLike(int u_no, int r_no)throws Exception{
+		
+		String message = rds.isLike(u_no, r_no);
+		
+		return message;
+	}
 	
 	//테스트
 	@GetMapping("transfer")
 	public String transfer() {
 		return "user/transfer";
 	}
+	
+	
 }

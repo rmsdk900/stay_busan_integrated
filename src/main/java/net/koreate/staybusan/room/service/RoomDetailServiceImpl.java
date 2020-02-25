@@ -119,7 +119,50 @@ public class RoomDetailServiceImpl implements RoomDetailService{
 			rid.insertFileName(fullName, dto.getU_no(), dto.getR_no());
 		}
 	}
-
+	
+	@Transactional
+	@Override
+	public BuyVO likeRoom(int u_no, int r_no) throws Exception {
+		BuyVO vo = null;
+		// 찜 목록 등록
+		if(rdd.likeRoom(u_no, r_no)) {
+			// 마지막 등록한 녀석의 b_no 들고 오기
+			Integer b_no = rdd.getLastB_no();
+			vo = rdd.getBuyByNo(b_no);
+		};
+		
+		return vo;
+	}
+	
+	@Override
+	public String dislikeRoom(int u_no, int r_no) throws Exception {
+		String message = null;
+		
+		if(rdd.dislikeRoom(u_no, r_no)) {
+			message = "JJIM SAKJE SEONGONG";
+		}else {
+			message = "JJIM SAKJE SILPAE";
+		}
+		
+		return message;
+	}
+	
+	
+	@Override
+	public String isLike(int u_no, int r_no) throws Exception {
+		String message = null;
+		BuyVO vo = rdd.isLike(u_no, r_no);
+		if( vo != null) {
+			message ="YES";
+		}else {
+			message ="NO";
+		}
+		
+		return message;
+	}
+	
+	
+	
 	
 	
 	

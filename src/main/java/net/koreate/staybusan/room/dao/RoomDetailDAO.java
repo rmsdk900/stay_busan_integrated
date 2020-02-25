@@ -79,6 +79,24 @@ public interface RoomDetailDAO {
 	// 예약 건수 추가 
 	@Update("UPDATE rooms SET r_bookedcnt=r_bookedcnt+1 WHERE r_no=#{r_no}")
 	void updateBookedCnt(int r_no)throws Exception;
+
+	// 찜 추가
+	@Insert("INSERT INTO buy(u_no, r_no, b_status) VALUES(#{u_no}, #{r_no}, 0)")
+	boolean likeRoom(@Param("u_no") int u_no, @Param("r_no") int r_no)throws Exception;
+	
+	// b_no로 buy 정보 가져오기 
+	@Select("SELECT * FROM buy WHERE b_no=#{b_no}")
+	BuyVO getBuyByNo(Integer b_no)throws Exception;
+
+	// 찜 취소하기
+	@Delete("DELETE FROM buy WHERE u_no=#{u_no} AND r_no=#{r_no} AND b_status=0")
+	boolean dislikeRoom(@Param("u_no") int u_no, @Param("r_no") int r_no)throws Exception;
+	
+	// 찜 있는지 확인
+	@Select("SELECT * FROM buy WHERE u_no=#{u_no} AND r_no=#{r_no} AND b_status=0")
+	BuyVO isLike(@Param("u_no") int u_no, @Param("r_no") int r_no)throws Exception;
+
+	
 	
 	
 	

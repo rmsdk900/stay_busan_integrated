@@ -70,8 +70,6 @@
 		color:green;
 	}
 	
-	
-	
 </style>
 <!-- 별점 관련 -->
 <style>
@@ -124,7 +122,16 @@
 	.room_like {
 		width: 50px;
 		height: 50px;
-		background-color: red;
+		background-image: url("/staybusan/resources/img/jjim.png");
+		background-position: center;
+		background-size: 50px 50px;
+	}
+	.room_like.on {
+		width: 50px;
+		height: 50px;
+		background-image: url("/staybusan/resources/img/jjim-on.png");
+		background-position: center;
+		background-size: 50px 50px;
 	}
 </style>
 <!-- roomInfo -->
@@ -161,7 +168,7 @@
 				<div>
 					<h2 class="room_primary_title" >${roomInfo.roomVO.r_name}</h2>
 					<!-- 좋아요 버튼 -->
-					<div class="room_like"></div>
+					<div id="btn_room_like" class="room_like"></div>
 					<input type="text" name="r_name" value="${roomInfo.roomVO.r_name}" 
 					class="room_primary_title_modify" />
 				</div>
@@ -506,10 +513,8 @@
 		var u_no = ${roomInfo.roomVO.u_no};
 		var login_u_no = ${!empty userInfo ? userInfo.u_no : 0};
 		var login_u_name = "${!empty userInfo ? userInfo.u_name : ''}";
-	
+		// Onload 되었을 때
 		$(function(){
-			
-			
 			
 			// 가리기 부터
 			$(".room_primary_title_modify").hide();
@@ -524,6 +529,17 @@
 			$(".room_amenity_modify_cancel").hide();
 			
 			$(".room_date_modify_wrapper").hide();
+			
+			// 좋아요 버튼 상태 받기
+			$.post(contextPath+"/room/isLike", {
+				u_no: u_no,
+				r_no: r_no
+			}, function(data){
+				console.log(data);
+				if(data=='YES'){
+					$("#btn_room_like").addClass("on");
+				}
+			});
 			
 		});
 		// 수정에 필요한 것들 보이기
@@ -919,6 +935,32 @@
 	            return false;              
 	        } 
 		});
+		
+		// 좋아요 버튼 클릭
+		$("#btn_room_like").on("click",function(){
+			// 이미 클릭!
+			if($(this).hasClass("on")){
+				
+				$.post(contextPath+"/room/dislike",{
+					u_no: u_no,
+					r_no: r_no,
+				},function(data){
+					console.log(data);
+					
+					$("#btn_room_like").removeClass("on");
+				});
+			}else {
+				
+				$.post(contextPath+"/room/like", {
+					u_no: u_no,
+					r_no: r_no,
+				}, function(data){
+					console.log(data);
+					$("#btn_room_like").addClass("on");
+				});
+			}
+		});
+		
 	</script>
 	<script src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
