@@ -143,7 +143,18 @@
 	
 	
 </div>
-
+<!-- 예약 결과 표시 -->
+<script>
+	var msg = "${msg}";
+	console.log(msg);
+	if(msg != null){
+		if(msg == "P"){
+			alert("예약에 성공하셨습니다!");
+		}else if(msg == "F"){
+			alert("예약에 실패하셨습니다.");
+		}
+	}
+</script>
 
 
 <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>

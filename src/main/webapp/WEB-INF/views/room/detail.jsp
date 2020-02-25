@@ -427,7 +427,7 @@
 			<c:if test="${roomInfo.roomVO.r_deleted eq 0}">
 				<!-- 예약 폼 -->
 				<div class="room_reservation">
-					<form id="bookingForm" action="bookingRoom" method="post">
+					<form id="bookingForm" action="${pageContext.request.contextPath}/book/bookingRoom" method="post">
 						<input type="hidden" name="r_no" value="${roomInfo.roomVO.r_no}" />
 						<!-- 로그인 한 사람의 번호를 임의로 넣어놓음. -->
 						<input type="hidden" name="u_no" value="${userInfo.u_no}" />

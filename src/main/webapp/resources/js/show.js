@@ -12,7 +12,6 @@ $(function(){
 		var html = "<img src='"+fileInfo.imgSrc+"' alt='프로필 사진' class='FilledImg roundingProfileImg' />";
 		$(".show_my_img").html(html);
 	});
-	 
 });
 
 

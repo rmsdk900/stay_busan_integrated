@@ -48,34 +48,7 @@ public class RoomDetailServiceImpl implements RoomDetailService{
 		return roomInfo;
 	}
 
-	@Transactional
-	@Override
-	public boolean bookingRoom(BuyVO vo) throws Exception {
-		boolean isBooked = false;
-		
-		System.out.println("구매 정보 : "+vo);
-		
-		if(rdd.bookingRoom(vo)) {
-			Integer b_no = rdd.getLastB_no();
-			System.out.println("마지막 구매 번호 : "+b_no);
-			 Integer host = rdd.getRoomOwner(vo.getR_no()).getU_no();
-			 System.out.println("그 방의 호스트 번호 : "+host);
-			 if(host != null && b_no != null) {
-				 // 돈 예치하기
-				 rdd.deposit(b_no, vo.getU_no(), host, vo.getB_total_price());
-				 // 방 산 사람 돈 빼기
-				 rdd.pay(vo.getU_no(), vo.getB_total_price());
-				 // 방 예약 건수 올리기
-				 rdd.updateBookedCnt(vo.getR_no());
-				 
-			 }
-			
-			
-			isBooked = true;
-		}
-		
-		return isBooked;
-	}
+	
 
 	@Transactional
 	@Override
@@ -111,7 +84,7 @@ public class RoomDetailServiceImpl implements RoomDetailService{
 		rdd.deleteAllImgs(dto.getR_no());
 		
 		List<String> fileList = dto.getFiles();
-		if(fileList == null && fileList.isEmpty()) {
+		if(fileList == null || fileList.isEmpty()) {
 			return;
 		}
 		// 다시 파일 넣어주기 

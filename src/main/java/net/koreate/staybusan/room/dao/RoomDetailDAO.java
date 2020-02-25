@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import net.koreate.staybusan.room.vo.AmenityVO;
+import net.koreate.staybusan.room.vo.BookRoomDTO;
 import net.koreate.staybusan.room.vo.BuyVO;
 import net.koreate.staybusan.room.vo.ModifyRoomPrimaryDTO;
 import net.koreate.staybusan.room.vo.RoomClosedVO;
@@ -38,10 +39,7 @@ public interface RoomDetailDAO {
 	@Select("SELECT * FROM user WHERE u_type!=0 AND u_no=(SELECT u_no FROM rooms WHERE r_no=#{r_no})")
 	UserVO getRoomOwner(int r_no)throws Exception;
 	
-	// 예약하기
-	@Insert("INSERT INTO buy (r_no, u_no, b_date_from, b_date_to, b_guest, b_total_price, b_status) "
-			+ " VALUES(#{r_no}, #{u_no}, #{b_date_from}, #{b_date_to}, #{b_guest}, #{b_total_price}, 1)")
-	boolean bookingRoom(BuyVO vo)throws Exception;
+	
 	
 	// 방 기본 정보 수정
 	@Update("UPDATE rooms SET r_name=#{r_name}, r_guests=#{r_guests}, r_bedroom=#{r_bedroom}, r_bed=#{r_bed}, r_bath=#{r_bath}, r_desc=#{r_desc}, r_price=#{r_price} WHERE r_no=#{r_no}")
@@ -61,24 +59,13 @@ public interface RoomDetailDAO {
 	// 가장 최근의 구매 번호 가져오기
 	@Select("SELECT LAST_INSERT_ID()")
 	Integer getLastB_no()throws Exception;
-	// 예치하기
-	@Insert("INSERT INTO money (b_no, m_u_g_no, m_u_h_no, m_price) VALUES(#{b_no}, #{u_no}, #{host}, #{b_total_price})")
-	void deposit(@Param("b_no") Integer b_no,@Param("u_no") int u_no,@Param("host") Integer host, @Param("b_total_price") int b_total_price)throws Exception;
 	
-	
-	// 2020 02 22
-	
-	// 게스트한테서 돈이 빠져나가야 함. 
-	@Update("UPDATE user SET u_balance=u_balance-#{b_total_price} WHERE u_no=#{u_no}")
-	void pay(@Param("u_no") int u_no,@Param("b_total_price") int b_total_price)throws Exception;
 	
 	// 방 임시 삭제
 	@Update("UPDATE rooms SET r_deleted=1 WHERE r_no=#{r_no}")
 	void hideRoom(int r_no) throws Exception;
 	
-	// 예약 건수 추가 
-	@Update("UPDATE rooms SET r_bookedcnt=r_bookedcnt+1 WHERE r_no=#{r_no}")
-	void updateBookedCnt(int r_no)throws Exception;
+	
 
 	// 찜 추가
 	@Insert("INSERT INTO buy(u_no, r_no, b_status) VALUES(#{u_no}, #{r_no}, 0)")
@@ -95,6 +82,8 @@ public interface RoomDetailDAO {
 	// 찜 있는지 확인
 	@Select("SELECT * FROM buy WHERE u_no=#{u_no} AND r_no=#{r_no} AND b_status=0")
 	BuyVO isLike(@Param("u_no") int u_no, @Param("r_no") int r_no)throws Exception;
+	
+	
 
 	
 	

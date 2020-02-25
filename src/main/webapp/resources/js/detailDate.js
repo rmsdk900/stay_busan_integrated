@@ -14,7 +14,7 @@ $(function(){
 	var banDates = new Array();
 	
 	
-	$.getJSON(contextPath+"/getAvailableDate/"+r_no, function(data){
+	$.getJSON(contextPath+"/book/getAvailableDate/"+r_no, function(data){
 		// data.closedDate : 금지 날짜
 		// data.availableDate : 되는 날짜.
 		console.log(data);

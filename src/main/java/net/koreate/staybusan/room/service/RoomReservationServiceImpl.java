@@ -9,9 +9,13 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import net.koreate.staybusan.room.dao.RoomDetailDAO;
 import net.koreate.staybusan.room.dao.RoomReservationDAO;
+import net.koreate.staybusan.room.vo.BookRoomDTO;
 import net.koreate.staybusan.room.vo.BuyVO;
+import net.koreate.staybusan.room.vo.RoomImgVO;
 import net.koreate.staybusan.room.vo.RoomVO;
 
 @Service
@@ -19,6 +23,9 @@ public class RoomReservationServiceImpl implements RoomReservationService {
 	
 	@Inject
 	RoomReservationDAO dao;
+	
+	@Inject
+	RoomDetailDAO rdd;
 	
 	@Override
 	public List<String> howMany(BuyVO vo) throws Exception {
@@ -69,9 +76,47 @@ public class RoomReservationServiceImpl implements RoomReservationService {
 		System.out.println("해당 기간 중 최대 예약자 수 : "+people);
 		return people;
 	}
+	
+	@Transactional
+	@Override
+	public boolean bookingRoom(BuyVO vo) throws Exception {
+		boolean isBooked = false;
+		
+		System.out.println("구매 정보 : "+vo);
+		
+		if(dao.bookingRoom(vo)) {
+			Integer b_no = rdd.getLastB_no();
+			System.out.println("마지막 구매 번호 : "+b_no);
+			 Integer host = rdd.getRoomOwner(vo.getR_no()).getU_no();
+			 System.out.println("그 방의 호스트 번호 : "+host);
+			 if(host != null && b_no != null) {
+				 // 돈 예치하기
+				 dao.deposit(b_no, vo.getU_no(), host, vo.getB_total_price());
+				 // 방 산 사람 돈 빼기
+				 dao.pay(vo.getU_no(), vo.getB_total_price());
+				 // 방 예약 건수 올리기
+				 dao.updateBookedCnt(vo.getR_no());
+			 }
+			isBooked = true;
+		}
+		
+		return isBooked;
+	}
 
+	@Override
+	public String whoIsBooker(int u_no) throws Exception {
+		return dao.whoIsBooker(u_no);
+	}
 
+	@Override
+	public BookRoomDTO bookingRoomInfo(int r_no) throws Exception {
+		return dao.bookingRoomInfo(r_no);
+	}
 
+	@Override
+	public RoomImgVO bookingRoomImg(int r_no) throws Exception {
+		return dao.bookingRoomImg(r_no);
+	}
 
 	// 달력 리스트 만드는 아주 유용한 놈.
 	private void makeDateList(List<String> list, Date date_from, Date date_to) {
