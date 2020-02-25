@@ -75,32 +75,42 @@ crossorigin="anonymous">
 					<li class="nav-item active"><a class="nav-link"
 						href="/staybusan">Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="common/about">About
-							Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="common/about">About Us</a></li>
 
 					<c:choose>
 						<c:when test="${!empty userInfo}">
-							<!-- 쪽지 추가 -->
-							<li class="nav-item">
-							
-							</li>
-							<!-- 나머지 -->
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}">${userInfo.u_name}</a></li>
 							<c:if test="${userInfo.u_type eq 1}">
 								<!-- 호스트  -->
-								<li class="nav-item"><a class="nav-link"
-									href="Rooms/resisterRoom1">호스팅</a></li>
+								<!-- 쪽지 추가 -->
+								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a></li>
+								<li class="nav-item"><a class="nav-link" href="${path}/Rooms/resisterRoom1">등록</a>
+									<ul class="messageWrap">
+										
+									</ul>
+								</li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
 								<!-- 게스트 -->
-								<li class="nav-item"><a class="nav-link" id="transform"
-									href="user/transformUser">전환</a></li>
+								<!-- 쪽지 추가 -->
+								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a></li>
+								<li class="nav-item"><a class="nav-link" id="transform"	href="${path}/user/transformUser">전환</a>
+									<ul class="messageWrap">
+										
+									</ul>
+								</li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 3}">
-								<!-- 게스트 -->
+								<!-- 관리자 -->
+								<!-- 쪽지 추가 -->
+								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a>
+									<ul class="messageWrap">
+										
+									</ul>
+								</li>
 								<li class="nav-item"><a class="nav-link"
-									href="user/adminMyPage">관리</a></li>
+									href="${path}/user/adminMyPage">관리</a></li>
 							</c:if>
 							<li class="nav-item"><a class="nav-link" href="${path}/user/logOut">로그아웃</a>
 							</li>
@@ -116,4 +126,6 @@ crossorigin="anonymous">
 			</div>
 		</nav>
 	</header>
+<!-- 모달을 옮겨놓았다! -->
+
 <%@ include file="./transformModal.jsp" %>

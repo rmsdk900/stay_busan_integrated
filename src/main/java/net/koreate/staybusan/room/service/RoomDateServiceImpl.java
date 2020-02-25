@@ -50,8 +50,12 @@ public class RoomDateServiceImpl implements RoomDateService{
 		// 일단 예약된 날짜 리스트
 		List<String> dummyDisabledList = new ArrayList<>();
 		TotalBookedDateDTO totalBookedDateDTO = dao.getTotalBookedDates(r_no);
-//		System.out.println(totalBookedDateDTO);
-		makeDateList(dummyDisabledList, totalBookedDateDTO.getMin_date_from(), totalBookedDateDTO.getMax_date_to());
+		System.out.println(totalBookedDateDTO);
+		if(totalBookedDateDTO != null) {
+			makeDateList(dummyDisabledList, totalBookedDateDTO.getMin_date_from(), totalBookedDateDTO.getMax_date_to());
+		}
+
+		
 //		System.out.println(dummyDisabledList);
 		for (String date : dummyDisabledList) {
 //			System.out.println(date);

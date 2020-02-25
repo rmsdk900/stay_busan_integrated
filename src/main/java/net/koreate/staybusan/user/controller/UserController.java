@@ -28,6 +28,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.koreate.staybusan.common.util.FileUtils;
+import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.service.UserService;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
@@ -126,106 +127,155 @@ public class UserController {
 		return entity;
 	}
 	
-	@GetMapping("/transform/{page}")
-	public ResponseEntity<Map<String, Object>> transformList(@PathVariable("page") int page){
-		ResponseEntity<Map<String, Object>> entity = null;
-		
-		try {
-			Map<String, Object> map = us.getTransformUser(page);
-			entity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-		} catch (Exception e) {
-			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
-			e.printStackTrace();
-		}
-		return entity;
-	}
-	
-	@GetMapping("/banPage/{page}")
-	public ResponseEntity<Map<String, Object>> banPageList(@PathVariable("page") int page){
-		ResponseEntity<Map<String, Object>> entity = null;
-		
-		try {
-			Map<String, Object> map = us.getBanComments(page);
-			entity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
-		} catch (Exception e) {
-			entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
-			e.printStackTrace();
-		}
-		return entity;
-	}
-	
-	@GetMapping("/adminMyPage")
-	public String adminMyPage() throws Exception{
-		return "user/adminMyPage";
-	}
-	
-	@PostMapping("/transformUser")
-	public ResponseEntity<String> transformUser(int u_no) throws Exception{
-		ResponseEntity<String> entity = null;
-		try {
-			us.transformAsk(u_no);
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", "text/plain;charset=utf-8");
-			entity = new ResponseEntity<String>("전환 신청 성공! 관리자가 확인 후 전환해 줍니다.",header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
-	@PostMapping("/transform")
-	@ResponseBody
-	public ResponseEntity<String> transformPost(int u_no) throws Exception{
-		ResponseEntity<String> entity = null;
-		try {
-			us.transformType(u_no);
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", "text/plain;charset=utf-8");
-			entity = new ResponseEntity<String>("전환 성공",header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
-	@PostMapping("/banCommentCancel")
-	@ResponseBody
-	public ResponseEntity<String> banCommentCancel(int c_no){
-		
-		System.out.println(c_no);
-		ResponseEntity<String> entity = null;
-		
-		try {
-			us.banCommentCancel(c_no);
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", "text/plain;charset=utf-8");
-			entity = new ResponseEntity<String>("취소 성공",header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
-		}
-		return entity;
-	}
-	
-	@PostMapping("/banCommentDelete")
-	@ResponseBody
-	public ResponseEntity<String> banCommentDelete(int c_no){
-		
-		ResponseEntity<String> entity = null;
-		
-		try {
-			us.banCommentDelete(c_no);
-			HttpHeaders header = new HttpHeaders();
-			header.add("Content-Type", "text/plain;charset=utf-8");
-			entity = new ResponseEntity<String>("삭제 성공",header,HttpStatus.OK);
-		} catch (Exception e) {
-			e.printStackTrace();
-			entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+	// 이하 추가
+		@GetMapping("/transform/{page}")
+		public ResponseEntity<Map<String, Object>> transformList(@PathVariable("page") int page){
+			ResponseEntity<Map<String, Object>> entity = null;
 			
+			try {
+				Map<String, Object> map = us.getTransformUser(page);
+				entity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+				e.printStackTrace();
+			}
+			return entity;
 		}
-		return entity;
-	}
+		
+		@GetMapping("/banPage/{page}")
+		public ResponseEntity<Map<String, Object>> banPageList(@PathVariable("page") int page){
+			ResponseEntity<Map<String, Object>> entity = null;
+			
+			try {
+				Map<String, Object> map = us.getBanComments(page);
+				entity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+				e.printStackTrace();
+			}
+			return entity;
+		}
+		
+		@GetMapping("/adminMyPage")
+		public String adminMyPage() throws Exception{
+			return "user/adminMyPage";
+		}
+		
+		@GetMapping("/messageBox")
+		public String messageBox() throws Exception{
+			return "user/messageBox";
+		}
+		
+		@PostMapping("/transformUser")
+		public ResponseEntity<String> transformUser(int u_no) throws Exception{
+			ResponseEntity<String> entity = null;
+			try {
+				us.transformAsk(u_no);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("전환 신청 성공! 관리자가 확인 후 전환해 줍니다.",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/transform")
+		@ResponseBody
+		public ResponseEntity<String> transformPost(int u_no) throws Exception{
+			ResponseEntity<String> entity = null;
+			try {
+				us.transformType(u_no);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("전환 성공",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/banCommentCancel")
+		@ResponseBody
+		public ResponseEntity<String> banCommentCancel(int c_no){
+			
+			System.out.println(c_no);
+			ResponseEntity<String> entity = null;
+			
+			try {
+				us.banCommentCancel(c_no);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("취소 성공",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/banCommentDelete")
+		@ResponseBody
+		public ResponseEntity<String> banCommentDelete(int c_no){
+			
+			ResponseEntity<String> entity = null;
+			
+			try {
+				us.banCommentDelete(c_no);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("삭제 성공",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+				
+			}
+			return entity;
+		}
+		
+		@PostMapping("/getMessageMain")
+		@ResponseBody
+		public ResponseEntity<List<MessageVO>> getMessage(int u_no){
+			ResponseEntity<List<MessageVO>> entity = null;
+			try {
+				List<MessageVO> list = us.getMessageMain(u_no);
+				System.out.println(list);
+				entity = new ResponseEntity<List<MessageVO>>(list,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<List<MessageVO>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/getMessageDetail")
+		@ResponseBody
+		public ResponseEntity<MessageVO> getMessageDetail(int m_no){
+			ResponseEntity<MessageVO> entity = null;
+			try {
+				MessageVO msg = us.getMessageDetail(m_no);
+				entity = new ResponseEntity<MessageVO>(msg,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<MessageVO>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@GetMapping("/messageBox/{page}/{u_no}")
+		public ResponseEntity<Map<String,Object>> getMessageBox(@PathVariable("u_no") int u_no, @PathVariable("page")int page){
+			ResponseEntity<Map<String, Object>> entity = null;
+			
+			try {
+				Map<String,Object> map = us.getMessageBox(u_no, page);
+				entity = new ResponseEntity<Map<String,Object>>(map,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
+				e.printStackTrace();
+			}
+			return entity;
+		}
 }

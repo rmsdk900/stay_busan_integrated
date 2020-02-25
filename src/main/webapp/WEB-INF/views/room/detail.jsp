@@ -217,7 +217,7 @@
 					<textarea class="room_description_modify" name="r_desc">${roomInfo.roomVO.r_desc}</textarea>
 				</div>
 				<div>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal" data-whatever="${roomInfo.hostVO.u_name}">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomMessageModal" data-whatever="${roomInfo.hostVO.u_name}">
 						호스트에게 쪽지 보내기
 					</button>
 				</div>
@@ -488,7 +488,7 @@
 				<br/>
 				<div class="room_message">
 				<c:if test="${!empty userInfo}">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#messageModal" data-whatever="${roomInfo.hostVO.u_name}">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomMessageModal" data-whatever="${roomInfo.hostVO.u_name}">
 						호스트에게 쪽지 보내기
 					</button>
 					

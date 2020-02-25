@@ -289,7 +289,7 @@ public class FileUtils {
 			in = new FileInputStream(path);
 			bytes = IOUtils.toByteArray(in);
 		} catch (Exception e) {
-			e.printStackTrace();
+//			e.printStackTrace();
 			System.out.println("File이 없음 : "+e.getMessage());
 		} finally {
 			in.close();

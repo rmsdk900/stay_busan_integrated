@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import net.koreate.mvc.common.util.Criteria;
 import net.koreate.mvc.common.util.PageMaker;
 import net.koreate.staybusan.common.util.FileUtils;
+import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.dao.UserDAO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
@@ -66,6 +67,7 @@ public class UserServiceImpl implements UserService{
 		return dao.getUserById(u_id);
 	}
 	
+	// 이하 추가
 	@Override
 	public void transformType(int u_no) throws Exception {
 		dao.transformType(u_no);
@@ -125,6 +127,38 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public void transformAsk(int u_no) throws Exception {
 		dao.transformAsk(u_no);
-		
 	}
+
+	@Override
+	public List<MessageVO> getMessageMain(int u_no) throws Exception {
+		return dao.getMessageMain(u_no);
+	}
+
+	@Transactional
+	@Override
+	public MessageVO getMessageDetail(int m_no) throws Exception {
+		dao.updateReadStatus(m_no);
+		return dao.getMessageDetail(m_no);
+	}
+
+	@Override
+	public Map<String, Object> getMessageBox(int u_no, int page) throws Exception {
+		Criteria cri = new Criteria(page, 10);
+		cri.setPage(page);
+		
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(dao.getMessageBoxTotalCount(u_no));
+		
+		List<MessageVO> list = dao.getMessageBox(u_no, cri);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("list",list);
+		map.put("pageMaker", pageMaker);
+		
+		return map;
+	}
+	
 }
+

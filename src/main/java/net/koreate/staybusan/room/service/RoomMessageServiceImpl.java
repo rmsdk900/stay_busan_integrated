@@ -15,11 +15,13 @@ public class RoomMessageServiceImpl implements RoomMessageService{
 	
 	@Override
 	public void sendMessage(MessageVO vo) throws Exception {
-		
 		dao.sendMessage(vo);
 		
 	}
 	
-	
+	@Override
+	public void deleteMessage(int m_no) throws Exception {
+		dao.deleteMessage(m_no);
+	}
 	
 }

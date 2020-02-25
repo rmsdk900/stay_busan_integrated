@@ -5,6 +5,7 @@ import javax.inject.Inject;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,7 +19,7 @@ import net.koreate.staybusan.room.vo.MessageVO;
 public class RoomMessageController {
 	@Inject
 	RoomMessageService ms;
-	
+	// 메시지 보내기
 	@PostMapping("/send")
 	public ResponseEntity<String> sendMessage(@RequestBody MessageVO vo) throws Exception{
 		ResponseEntity<String> entity = null;
@@ -37,6 +38,23 @@ public class RoomMessageController {
 			entity = new ResponseEntity<>("메시지 보내기 실패", header, HttpStatus.BAD_REQUEST);
 		}
 		
+		return entity;
+	}
+	// 메시지 삭제	
+	@DeleteMapping("/delete")
+	public ResponseEntity<String> deleteMessage(@RequestBody MessageVO vo) {
+		ResponseEntity<String> entity = null;
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "text/html;charset=UTF-8");
+		
+		try {
+			ms.deleteMessage(vo.getM_no());
+			entity = new ResponseEntity<>("메시지 삭제 성공!", header, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>("메시지 삭제 실패!", header, HttpStatus.OK);
+		}
 		return entity;
 	}
 }

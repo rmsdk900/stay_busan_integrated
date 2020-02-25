@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import net.koreate.mvc.common.util.Criteria;
+import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
 import net.koreate.staybusan.user.vo.banCommentVO;
@@ -33,7 +34,8 @@ public interface UserDAO {
 
 	@Update("UPDATE user SET u_profile = #{u_profile} WHERE u_no=#{u_no}")
 	void updateProfile(@Param("u_no") int u_no,@Param("u_profile") String u_profile) throws Exception;
-	
+
+	// 이하 추가.
 	@Update("UPDATE user SET u_type = 1 WHERE u_no=#{u_no}")
 	void transformType(int u_no);
 
@@ -63,5 +65,22 @@ public interface UserDAO {
 
 	@Update("UPDATE user SET u_type=9 WHERE u_no=#{u_no}")
 	void transformAsk(int u_no);
+
+	@Select("SELECT M.m_no, M.m_content, M.m_regdate, SU.u_name as m_sender_name, SU.u_profile as m_sender_profile, RO.r_name FROM message M INNER JOIN user RU ON M.m_receiver = RU.u_no INNER JOIN user SU ON M.m_sender = SU.u_no INNER JOIN rooms RO ON M.r_no = RO.r_no WHERE M.m_receiver = #{u_no} AND M.m_read=0 ORDER BY M.m_no DESC limit 0,5")
+	List<MessageVO> getMessageMain(int u_no);
+
+	@Select("SELECT M.m_content, M.m_sender, SU.u_name as m_sender_name, RO.r_name, RO.r_no FROM message M INNER JOIN user SU ON M.m_sender = SU.u_no INNER JOIN rooms RO ON M.r_no = RO.r_no WHERE m_no=#{m_no}")
+	MessageVO getMessageDetail(int m_no);
+	
+	@Update("UPDATE message SET m_read=1 WHERE m_no=#{m_no}")
+	void updateReadStatus(int m_no);
+
+	@Select("SELECT count(*) FROM message WHERE m_receiver = #{u_no}")
+	int getMessageBoxTotalCount(int u_no);
+
+	@Select("SELECT M.m_no, M.m_content, M.m_read, SU.u_name as m_sender_name, SU.u_profile as m_sender_profile FROM message M INNER JOIN user SU ON M.m_sender=SU.u_no WHERE M.m_receiver = #{u_no} ORDER BY M.m_read ASC, M.m_no DESC limit #{cri.pageStart}, #{cri.perPageNum}")
+	List<MessageVO> getMessageBox(@Param("u_no") int u_no,@Param("cri")  Criteria cri);
+
+
 	
 }
