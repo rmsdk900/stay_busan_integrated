@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" scope="session"/>
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +9,22 @@
 <title>Insert title here</title>
 <script> var contextPath = '${pageContext.request.contextPath}'; </script>
 <style>
+.fileDrop {
+	display: inline-block;
+}
+
+.fileDrop input[type="file"] {
+	position: relative;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	diplay: none;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
 .addImageWrap {
 	display: inline-block;
 }
@@ -94,15 +111,15 @@ body {
     <div class="stepwizard">
         <div class="stepwizard-row setup-panel">
             <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom1" type="button" class="btn btn-default btn-circle" disabled="disabled">1</a>
+               1
                 <p class="mr-5"><small>Room Information</small></p>
             </div>
             <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+                2
                 <p class="mr-5"><small>Check In & Out</small></p>
             </div>
             <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom3" type="button" class="btn btn-success btn-circle" >3</a>
+               3
                 <p class="mr-5"><small>Room Image</small></p>
             </div>
         </div>
@@ -112,8 +129,10 @@ body {
 	<form method="post" id="submitForm">
 		<div class="fileBig"
 			style="border: 1px solid black; width: 500px; height: 300px">
-			<div class="fileDrop" style="width: 100%; height: 100%"></div>
-			<div class="addFileDrop" style="display: none"></div>
+			<div class="fileDrop" style="width: 100%; height: 100%">
+				<img id='addImageBtn' width=100% height=100% src='${path}/resources/images/addImage.PNG'/>
+				<input type='file' accept='image/*' id='addImage'/>
+			</div>
 		</div>
 		<div class="addImage">
 			<div class="fileSmall"></div>
@@ -136,7 +155,7 @@ body {
 			<input type="hidden" name="r_checkin_minute" value="${room.r_checkin_minute}"/>
 			<input type="hidden" name="r_checkout_our" value="${room.r_checkout_our}"/>
 			<input type="hidden" name="r_checkout_minute" value="${room.r_checkout_minute}"/>
-			<input type="hidden" name="u_no" value="1"/>
+			<input type="hidden" name="u_no" value="${userInfo.u_no}"/>
 			<c:if test="${!empty room.amenities}">
 				<c:forEach var="amenity" items="${room.amenities}">
 					<input type="hidden" name="amenity" value="${amenity}"/>
@@ -163,6 +182,8 @@ body {
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
 <script>
+	
+	var u_no = ${userInfo.u_no};
 	
 	// 파일 미리보기 뿌리기용 파일 배열
 	var allFiles = [];
@@ -219,7 +240,7 @@ body {
 		formData.append("file",file[0]);
 		
 		// u_no 임의 값 1
-		formData.append("u_no",1);
+		formData.append("u_no",u_no);
 		
 		// 이미지 업로드(fake)
 		$.ajax({
@@ -259,8 +280,6 @@ body {
 		console.log(file);
 		
 		var maxSize = 20971520;
-		
-		
 
 		if (file[1] != null) {
 			alert('하나의 파일만 등록 가능합니다.');
@@ -320,8 +339,12 @@ body {
 		$("#addImage").click();
 	});
 	
+	$(".fileBig").on("click","#addImageBtn",function(){
+		$("#addImage").click();
+	});
+	
 	// input file 값 입력 시
-	$(".addImageWrap").on("change", "#addImage", function() {
+	$(".addImageWrap").on("change","#addImage",function() {
 		
 		// 파일 확장자 확인
 		var file_kind = this.value.lastIndexOf('.');
@@ -342,8 +365,53 @@ body {
 		// 이미지 업로드 용
 		var formData = new FormData();
 		formData.append("file",this.files[0]);
-		// u_no 임의 값 1
-		formData.append("u_no",1);
+		formData.append("u_no",${userInfo.u_no});
+		
+		$.ajax({
+			type : "POST",
+			data : formData,
+			dataType : "json",
+			url : contextPath+"/Rooms/fakeUploadFile",
+			processData : false,
+			contentType : false,
+			success : function(data){
+				console.log("data : "+data);
+				
+				var fileInfo = getFileInfo(data[0]);
+				
+				console.log(fileInfo.fullName);
+				
+				fileNames.push(fileInfo.fullName);			
+			},
+			error : function(res){
+				alert(res.responseText);
+			}
+		});
+	});
+	
+ 	// input file 값 입력 시
+	$(".fileBig").on("change","#addImage",function() {
+		
+		// 파일 확장자 확인
+		var file_kind = this.value.lastIndexOf('.');
+		var file_name = this.value.substring(file_kind + 1, this.length);
+		var file_type = file_name.toLowerCase();
+		var check_file_type = [ 'jpg', 'png', 'jpeg', 'gif' ];
+
+		if (check_file_type.indexOf(file_type) == -1) {
+			alert('이미지 파일만 등록 가능합니다.');
+			$(this).val("");
+			return;
+		}
+
+		// 이미지 미리보기 뿌리기
+		allFiles.push(this.files[0]);
+		showImage(allFiles);
+		
+		// 이미지 업로드 용
+		var formData = new FormData();
+		formData.append("file",this.files[0]);
+		formData.append("u_no",${userInfo.u_no});
 		
 		$.ajax({
 			type : "POST",
@@ -414,6 +482,11 @@ body {
 		
 		if(allFiles[0] == null){
 			$(".addImageWrap").html("");
+			
+			var html = "";
+				html += "<img id='addImageBtn' width=100% height=100% src='"+contextPath+"/resources/images/addImage.PNG'/>";
+				html += "<input type='file' accept='image/*' id='addImage'/>";
+			$(".fileDrop").html(html);
 		}
 		
 		if (allFiles != null && allFiles[0] != null) {
