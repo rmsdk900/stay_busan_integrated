@@ -18,7 +18,7 @@ public interface RoomDAO {
 			"			ORDER BY r_no DESC limit 5")
 	List<HomeListDTO> getHomeList();
 
-	@Select("select r_no, count(*) as num from buy group by r_no order by num DESC limit 3")
+	@Select("select r_no, count(*) as num from buy WHERE b_status=1 || b_status=2 group by r_no order by num DESC limit 3")
 	List<BestRoomDTO> getBestList();
 	
 	

@@ -7,7 +7,7 @@
  	display: none;
 }
 
-.modal {
+.modal-trans {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -19,7 +19,7 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal-content {
+.modal-content-trans {
 	position: relative;
 	background-color: #fefefe;
 	margin: auto;
@@ -30,8 +30,8 @@
 
 </style>
 <!-- 전환 버튼 클릭시 띄울 modal -->
-	<div id="transformModal" class="modal">
-		<div class="modal-content">
+	<div id="transformModal" class="modal-trans">
+		<div class="modal-content-trans">
 			<h3>게스트 호스트 전환</h3>
 			<div style="text-align: center; margin: 20px;">
 				<div>

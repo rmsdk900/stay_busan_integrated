@@ -119,6 +119,14 @@
 	.starL1.on, .starL2.on, .starL3.on, .starL4.on, .starL5.on{background-position:0 0;}
 	.starR1.on, .starR2.on, .starR3.on, .starR4.on, .starR5.on{background-position:-15px 0;}
 </style>
+<!-- 좋아요 버튼 -->
+<style>
+	.room_like {
+		width: 50px;
+		height: 50px;
+		background-color: red;
+	}
+</style>
 <!-- roomInfo -->
 <c:if test="${!empty roomInfo}">
 	<div class="room">
@@ -152,6 +160,8 @@
 			<div class="room_primary">
 				<div>
 					<h2 class="room_primary_title" >${roomInfo.roomVO.r_name}</h2>
+					<!-- 좋아요 버튼 -->
+					<div class="room_like"></div>
 					<input type="text" name="r_name" value="${roomInfo.roomVO.r_name}" 
 					class="room_primary_title_modify" />
 				</div>
