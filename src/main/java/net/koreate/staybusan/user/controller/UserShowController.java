@@ -12,9 +12,12 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.koreate.staybusan.common.util.FileUtils;
 import net.koreate.staybusan.room.vo.CommentVO;
@@ -39,6 +42,7 @@ public class UserShowController {
 	@Inject
 	ServletContext context;
 	
+	// 마이페이지
 	@GetMapping("show")
 	public void showMyPage(int u_no, Model model) throws Exception{
 		// 유저 공통 정보
@@ -57,6 +61,17 @@ public class UserShowController {
 		List<CommentDTO> comment = gs.getComment(u_no);
 		model.addAttribute("comment", comment);
 	}
+	// 호스팅
+	@GetMapping("hosting")
+	public void showHosting(int u_no, Model model) throws Exception{
+		System.out.println("방 관리 불러올 유저 번호 : "+u_no);
+		
+		Map<String, Object> myAllInfo = uss.getMyInfo(u_no);
+		
+		model.addAttribute("myAllInfo", myAllInfo);
+	}
+	
+	
 	// 유저 소개 수정
 	@PostMapping("mod")
 	@ResponseBody
@@ -80,6 +95,30 @@ public class UserShowController {
 		}
 		
 		return entity;
+	}
+	// 유저 프로필 수정
+	@PostMapping("updateProfile/{u_no}")
+	@ResponseBody
+	public List<String> updateProfile(@PathVariable("u_no")int u_no,
+			@RequestParam("file") MultipartFile[] files)throws Exception{
+//		System.out.println("프로필 수정할 유저 : "+u_no);
+//		System.out.println("업데이트할 파일 : "+files);
+		
+		// 파일 수정하기 - 원래 파일 삭제 후 업로드!
+		// 원래 파일 삭제
+		String originProfile = uss.getOriginProfile(u_no);
+		System.out.println(originProfile);
+		FileUtils.getInstance(context).removeProfile(originProfile);
+
+		// 이제 새 파일 올리자.  
+		String newProfile = null;
+		newProfile = FileUtils.getInstance(context).updateProfile(u_no, files[0]);
+		System.out.println("등록한 프로필 확인");
+		System.out.println(newProfile);
+//		
+		// db 수정하기
+		return uss.updateProfile(u_no, newProfile);
+	
 	}
 	
 	// 예약 목록 페이지 호출

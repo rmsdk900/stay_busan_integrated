@@ -82,19 +82,6 @@
 			<div class="show_my_img" >
 				[프로필 사진]
 			</div>
-			<!-- 프로필 사진 변경 -->
-			<div class="mod_my_img">
-				<input type='file' name="updateMyProfile" id="updateMyProfile" />
-				<div>
-					<button class="mod_my_img_submit">편집 완료</button>
-					<button class="mod_my_img_cancel">취소</button>
-				</div>
-			</div>
-			<c:if test="${myAllInfo.userVO.u_no == userInfo.u_no}">
-				<div>
-					<input type="button" class="mod_my_img_open" value="편집" />
-				</div>
-			</c:if>
 			<!-- 프로필 제목 + 회원가입일-->
 			<div>
 				<!-- 프로필 제목 -->
@@ -140,27 +127,14 @@
 			1) 접속한 u_no랑 보려는 사람의 u_no가 같을 때 = 내 거 볼 때
 			2) 접속한 내 u_no랑 보려는 마이페이지의 u_no가 다를 때 = 다른 사람 거 볼 때
 	-->
-	<%@ include file="./showGuestRooms.jsp" %>
-	<%@ include file="../comment/comment_guest.jsp" %>
-		
-
-	
-	
+	<!-- 호스팅 관리용 리스트 -->
+	<%@ include file="./showHostRooms.jsp" %>
+	<!-- 후기들 -->
+	<%@ include file="../comment/comment.jsp" %>
+	<script src="${pageContext.request.contextPath}/resources/js/show_host.js"></script>
 	
 </div>
 <!-- 예약 결과 표시 -->
-<script>
-	var msg = "${msg}";
-	console.log(msg);
-	if(msg != null){
-		if(msg == "P"){
-			alert("예약에 성공하셨습니다!");
-		}else if(msg == "F"){
-			alert("예약에 실패하셨습니다.");
-		}
-	}
-</script>
-
 
 <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/show.js"></script>

@@ -33,9 +33,11 @@
 }
 
 .messageWrap{
-	border : 1px solid black;
 	display : none;
 	position : absolute;
+	color : black;
+	list-style:none;
+   	padding-left:0px;
 }
 
 .messageWrap li{

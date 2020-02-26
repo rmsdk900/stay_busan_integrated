@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import net.koreate.staybusan.room.dao.RoomImgDAO;
 import net.koreate.staybusan.room.vo.RoomVO;
@@ -60,6 +61,23 @@ public class UserShowServiceImpl implements UserShowService{
 		
 		return usd.getUser(dto.getU_no());
 	}
+
+	@Override
+	public String getOriginProfile(int u_no) throws Exception {
+		return usd.getOriginProfile(u_no);
+	}
+
+	@Override
+	public List<String> updateProfile(int u_no, String newProfile) throws Exception {
+		// 수정
+		usd.updateProfile(u_no, newProfile);
+		
+		return usd.getUserProfile(u_no);
+	}
+	
+	
+	
+	
 	
 	
 	

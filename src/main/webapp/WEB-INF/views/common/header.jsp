@@ -81,15 +81,16 @@ crossorigin="anonymous">
 						<c:when test="${!empty userInfo}">
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}">${userInfo.u_name}</a></li>
-							<c:if test="${userInfo.u_type eq 1}">
+							<c:if test="${userInfo.u_type eq 1 || userInfo.u_type eq 2}">
 								<!-- 호스트  -->
 								<!-- 쪽지 추가 -->
 								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/Rooms/resisterRoom1">등록</a>
+								<li class="nav-item"><a class="nav-link" href="${path}/Rooms/resisterRoom1">호스팅</a>
 									<ul class="messageWrap">
 										
 									</ul>
 								</li>
+								<li class="nav-item"><a class="nav-link" href="${path}/user/hosting?u_no=${userInfo.u_no}">호스팅 관리</a></li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
 								<!-- 게스트 -->

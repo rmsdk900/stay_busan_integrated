@@ -377,6 +377,49 @@ public class FileUtils {
 		
 		return "DELETE";
 	}
+	// 프로필 삭제
+	public void removeProfile(String originProfile) {
+		File originFile = new File(uploadPath+(originProfile).replace('/', File.separatorChar));
+		if(originFile.exists()) {
+			originFile.delete();
+		}else {
+			System.out.println("삭제할 파일이 없습니다.");
+		}
+		
+		
+	}
+	// 새 프로필 저장
+
+	public String updateProfile(int u_no, MultipartFile file)throws Exception {
+		String uploadFolder = ""+u_no;
+		
+		
+		String originalName= file.getOriginalFilename();
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString().replace("-", "")+"_"+originalName;
+		
+		File uploadFolderFile = new File(uploadPath, uploadFolder);
+		if(!uploadFolderFile.exists()) {
+			uploadFolderFile.mkdirs();
+			System.out.println("프로필 폴더 다시 생성");
+		}
+		File upload = new File(uploadPath+File.separator+uploadFolder, savedName);
+		
+		System.out.println("upload file absolute path : "+upload.getAbsolutePath());
+		
+		byte[] fileData = file.getBytes();
+		
+		FileCopyUtils.copy(fileData, upload);
+		
+		System.out.println("프로필 변경 업로드 완료");
+		
+		return makeFileUploadName(uploadFolder, savedName);
+	}
+	
+	
+	
+
+	
 
 
 
