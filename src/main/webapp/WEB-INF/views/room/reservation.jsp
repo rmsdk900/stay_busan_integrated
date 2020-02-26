@@ -52,6 +52,21 @@
 			<span><fmt:formatNumber type="currency" value="${AllInfo.yeyag.b_total_price}" /></span>
 			<span>원</span>
 		</div>
+		<!-- 결제 후 잔액 -->
+		<div>
+			<span>결제 후 잔액 : </span>
+			<c:set var="result" value="${userInfo.u_balance - AllInfo.yeyag.b_total_price}" />
+			<c:choose>
+				<c:when test="${result >= 0}">
+					<span><fmt:formatNumber type="currency" value="${balance}" /></span>
+					<span>원</span>
+				</c:when>
+				<c:otherwise>
+					<span>잔액이 부족합니다.</span>
+				</c:otherwise>
+			</c:choose>
+			
+		</div>
 		<hr/>
 		<div>
 			<form id="bookingRoomSubmit" action="bookingRoomSubmit" method="post">
@@ -72,6 +87,13 @@
 	</div>
 </c:if>
 <script>
+	$(function(){
+		// 잔액이 부족하면 버튼 비활성화
+		var result = '${result}';
+		if(result < 0){
+			$("#btnSubmit").attr("disabled", true);
+		}
+	});
 	// 결제 취소
 	$("#btnCancel").on("click", function(){
 		if(confirm("결제를 취소하시겠습니까?")){

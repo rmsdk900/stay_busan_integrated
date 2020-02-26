@@ -52,7 +52,7 @@
 		height: 100px;
 	}
 	
-	.FilledImg{
+	.filledImg{
 		
 		width: 100%;
 		height: 100%;
@@ -715,20 +715,20 @@
 				
 				if(i == 0){
 					var html = "";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
 					$(".room_img_primary").html(html);	
 				} else if(i==1 || i==2) {
 					var html = "<div ";
 					html += "class='room_img_etc' ";
 					html += ">";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
 					html += "</div>";
 					$(".room_img_second").append(html);
 				} else if(i==3 || i==4){
 					var html = "<div ";
 					html += "class='room_img_etc' ";
 					html += ">";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
 					html += "</div>";
 					$(".room_img_third").append(html);
 				}else {
@@ -770,7 +770,7 @@
 			
 			var html = "";
 			html += "<a href='"+contextPath+"/user/show?u_no="+owner+"'>";
-			html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />"
+			html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='filledImg' />"
 			html += "</a>";
 			$(".room_host_img").append(html);
 			

@@ -2,23 +2,61 @@
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
 <style>
-	.pagingWrap {
-		width:100%;
-	}
-	
-	.pagingWrap li {
-		float:left;
-		padding:3px;
-		border:1px solid skyblue;
-		margin:3px;
-		list-style:none;
-	}
-	
-	.pagingWrap li a{
-		margin:3px;
-		text-decoration:none;
-	}
-	.modal {
+#deleteMsg{
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 40px;
+	width: 4%;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px 3px 7px 17px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	margin-left:55%;
+}
+
+.mWrap {
+	margin-left: 9.5%;
+}
+
+.mTable {
+	width: 60%;
+}
+
+.mTable tr {
+	border-bottom: 1px solid #0d0d0d;
+}
+
+.pagingWrap {
+	width: 100%;
+}
+
+.pagingWrap li {
+	float: left;
+	padding: 3px;
+	border: 1px solid skyblue;
+	margin: 3px;
+	list-style: none;
+}
+
+.pagingWrap li a {
+	margin: 3px;
+	text-decoration: none;
+}
+
+.modal {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -28,49 +66,157 @@
 	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.4);
-	}
-	
-	.modal table {
+}
+
+.modal table {
 	margin: auto;
 	border-spacing: 10px;
-	}
+}
 
-	
-	.modal-content {
-		position: relative;
-		background-color: #fefefe;
-		margin: auto;
-		padding: 20px;
-		border: 1px solid #888;
-		border-radius: 10px;
-	}
-	
-	.readMessage{
-		color: gray;
-	}
-	
-	.unReadMessage{
-		color: red;
-	}
+.modal-content {
+	position: relative;
+	width: 400px;
+	height: 550px;
+	background-color: #fefefe;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	border-radius: 10px;
+}
+
+.readMessage {
+	color: gray;
+}
+
+.unReadMessage {
+	color: red;
+}
+
+.mModalTarea { /* 쪽지 모달 안에 textarea */
+	background-color: #f6f6f6;
+	border: none;
+	color: #0d0d0d;
+	padding: 10px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	width: 100%;
+	height: 80px;
+	border: 2px solid #f6f6f6;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	white-space: pre;
+}
+
+#boxMessageModalTable {
+	width : 100%;
+	align : left;
+}
+
+.modalTableDiv {
+	align: left;
+	border: 1px solid red;
+	height: 100%;
+}
+
+.mboxImg {
+	width: 60px;
+	height: 60px;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	border: 1px solid #56baed;
+	border-radius: 50px;
+}
+
+#boxM_content {
+	background-color: #f6f6f6;
+	border: none;
+	color: #0d0d0d;
+	padding: 10px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	width: 100%;
+	height: 100px;
+	border: 2px solid #f6f6f6;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	white-space: pre;
+}
+
+#boxSendBtn, #boxMessageCancelBtn { /* 쪽지 모달 답장 btn */
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 50px;
+	width: 100%;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px 3px 7px 17px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	margin: 0 auto;
+}
 </style>
-<div id="messageWrap">
+<div class="mWrap">
+	<div id="messageWrap">
+	
+	</div>
 
+
+	<div id="pagingWrap" class="pagingWrap" style="margin-top:50px;">
+	
+	</div>
 </div>
-<div id="pagingWrap" class="pagingWrap">
 
-</div>
-
-<div id="boxMessageModal" class="modal">
+	<div id="boxMessageModal" class="modal">
 		<div class="modal-content">
 			<h3>쪽지 내용</h3>
-			<div style="text-align : center; margin:20px">
+			<div style="text-align : left; margin:20px">
 				<table id="boxMessageModalTable">
+				
 				</table>
-				<table>
+				<table id="messageModalTable2">
+					<tr><td colspan=4><hr/></td></tr>	
+					<tr>
+						<td colspan=4>
+							<input type="text" name="m_content" id="boxM_content" placeholder="답장을 입력해주세요"/>
+						</td>
+					</tr>
 					<tr>
 						<td>
-							<input type="text" name="m_content" id="boxM_content"/><input type="button" id="boxSendBtn" value="답장보내기"/>
-							<br/><input type="button" id="boxMessageCancelBtn" class="btn btn-danger" value="닫기" />
+							<div></div>
+						</td>
+					</tr>
+					<tr>
+						<td colspan=4>
+							<br/>
+								<input type="button" id="boxSendBtn" value="답장보내기"/>
+							<br/><br/>
+								<input type="button" id="boxMessageCancelBtn" value="닫기" />
 						</td>
 					</tr>
 				</table>
@@ -127,8 +273,8 @@
 				console.log(data);
 				
 				var html = "";
-					html += "<table>";
-					html += "<tr><td colspan=4><input type='button' id='deleteMsg' value='삭제'/></td></tr>"
+					html += "<input type='button' id='deleteMsg' value='삭제'/>"
+					html += "<table class='mTable'>";
 				if(data.list== null || data.list == ""){
 					html += "<tr><th colspan=4>쪽지가 없습니다.<th><tr>";
 				}else{
@@ -144,9 +290,7 @@
 						html += "<td>";
 						html += "<input type='checkbox' name='m_no' value='"+this.m_no+"'/>";
 						html += "</td>";
-						html += "<td>";
-						html += "<img src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/>";
-						html += "</td>";
+						html += "<td><img class='mboxImg' src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/></td>";
 						if(this.m_read == 1){
 							html += "<td><div class='readMessage'>"+this.m_sender_name+"</div></td>";
 							html += "<td><div class='readMessage'><a class='messageDetail' href="+this.m_no+">"+this.m_content+"</a></div></td>";	
@@ -155,8 +299,8 @@
 							html += "<td><div class='unReadMessage'><a class='messageDetail' href="+this.m_no+">"+this.m_content+"</a></div></td>";
 						}
 						html += "<td>";
-						html += getDate(this.m_regdate);
-						html += "</td>";
+		                html += getDate(this.m_regdate);
+		                html += "</td>";
 						html += "</tr>";
 					});
 				}
@@ -236,7 +380,7 @@
 			var m_no = $(this).attr("href");
 			console.log(m_no);
 			
-			$("#m_content").val("");
+			$("#boxM_content").val("");
 			
 			$.ajax({
 				type : "POST",
@@ -251,26 +395,26 @@
 						html += "<td>";
 						html += "보낸사람 : ";
 						html += "</td>";
-						html += "<td>";
+						html += "<td colspan=3>";
 						html += data.m_sender_name;
 						html += "</td>";
 						html += "</tr>";
 						html += "<tr>";
 						html += "<td>";
-						html += "해당 방 이름 : ";
+						html += "방 이름 : ";
 						html += "</td>";
-						html += "<td>";
+						html += "<td colspan=3>";
 						html += data.r_name;
 						html += "</td>";
 						html += "</tr>";
 						html += "<tr>";
-						html += "<td colspan=2>";
+						html += "<td colspan=4>";
 						html += "내용";
 						html += "</td>";
 						html += "</tr>";
 						html += "<tr>";
-						html += "<td colspan=2>";
-						html += "<textarea>"+data.m_content+"</textarea>";
+						html += "<td colspan=4>";
+						html += "<textarea style='width:100%' class='mModalTarea'>"+data.m_content+"</textarea>";
 						html += "<input type='hidden' id='m_receiver' value='"+data.m_sender+"'/>"
 						html += "<input type='hidden' id='r_no' value='"+data.r_no+"'/>"
 						html += "</td>";
@@ -283,18 +427,18 @@
 			});
 			$("#boxMessageModal").css("display", "flex");
 		});
+		
+		// 날짜 표현 메소드
+		   function getDate(date){
+		      var dateObj = new Date(date);
+		      var year = dateObj.getFullYear();
+		      var month = dateObj.getMonth()+1;
+		      var date = dateObj.getDate();
+		      var hour = dateObj.getHours() > 9 ? dateObj.getHours() : "0"+dateObj.getHours();
+		      var minutes = dateObj.getMinutes() > 9 ? dateObj.getMinutes() : "0"+dateObj.getMinutes();
+		      return year+"-"+month+"-"+date+" "+hour+":"+minutes;
+		   }
 	});
-	
-	// 날짜 표현 메소드
-	function getDate(date){
-		var dateObj = new Date(date);
-		var year = dateObj.getFullYear();
-		var month = dateObj.getMonth()+1;
-		var date = dateObj.getDate();
-		var hour = dateObj.getHours() > 9 ? dateObj.getHours() : "0"+dateObj.getHours();
-		var minutes = dateObj.getMinutes() > 9 ? dateObj.getMinutes() : "0"+dateObj.getMinutes();
-		return year+"-"+month+"-"+date+" "+hour+":"+minutes;
-	}
 </script>
 
 </body>
