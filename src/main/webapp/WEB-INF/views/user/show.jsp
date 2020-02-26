@@ -130,6 +130,7 @@
 	<c:choose>
 		<c:when test="${myAllInfo.userVO.u_type == 0 or myAllInfo.userVO.u_type == 9}">
 			<%@ include file="./showGuestRooms.jsp" %>
+			<%@ include file="../comment/comment_guest.jsp" %>
 		</c:when>
 		<c:otherwise>
 			<%@ include file="./showHostRooms.jsp" %>

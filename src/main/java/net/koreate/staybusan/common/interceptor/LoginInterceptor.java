@@ -70,6 +70,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 				response.addCookie(cookie);
 			}
 		}else {
+			mav.addObject("message", "아이디와 비밀번호를 확인해 주세요.");
 			mav.setViewName("/user/login");
 		}		
 	}

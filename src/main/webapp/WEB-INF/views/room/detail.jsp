@@ -510,7 +510,7 @@
 	<script>
 		// 필요 변수들 설정
 		var r_no = ${roomInfo.roomVO.r_no};	
-		var u_no = ${roomInfo.roomVO.u_no};
+		var owner = ${roomInfo.roomVO.u_no};
 		var login_u_no = ${!empty userInfo ? userInfo.u_no : 0};
 		var login_u_name = "${!empty userInfo ? userInfo.u_name : ''}";
 		// Onload 되었을 때
@@ -532,7 +532,7 @@
 			
 			// 좋아요 버튼 상태 받기
 			$.post(contextPath+"/room/isLike", {
-				u_no: u_no,
+				u_no: owner,
 				r_no: r_no
 			}, function(data){
 				console.log(data);
@@ -769,7 +769,7 @@
 			/* console.log(fileInfo); */
 			
 			var html = "";
-			html += "<a href='"+contextPath+"/user/show?u_no="+u_no+"'>";
+			html += "<a href='"+contextPath+"/user/show?u_no="+owner+"'>";
 			html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />"
 			html += "</a>";
 			$(".room_host_img").append(html);
@@ -942,7 +942,7 @@
 			if($(this).hasClass("on")){
 				
 				$.post(contextPath+"/room/dislike",{
-					u_no: u_no,
+					u_no: login_u_no,
 					r_no: r_no,
 				},function(data){
 					console.log(data);
@@ -952,7 +952,7 @@
 			}else {
 				
 				$.post(contextPath+"/room/like", {
-					u_no: u_no,
+					u_no: login_u_no,
 					r_no: r_no,
 				}, function(data){
 					console.log(data);

@@ -328,5 +328,12 @@ h1{
 
 		</div>
 	</div>
+<script>
+   var message = "${message}";
+
+   if(message != null && message != ""){
+      alert(message);
+   }
+</script>
 </body>
 </html>
