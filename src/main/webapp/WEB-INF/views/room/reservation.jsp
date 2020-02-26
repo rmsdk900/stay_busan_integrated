@@ -49,7 +49,7 @@
 		</div>
 		<div>
 			<span>결제 금액 : </span>
-			<span><fmt:formatNumber type="currency" value="${AllInfo.yeyag.b_total_price}" /></span>
+			<span><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${AllInfo.yeyag.b_total_price}" /></span>
 			<span>원</span>
 		</div>
 		<!-- 결제 후 잔액 -->
