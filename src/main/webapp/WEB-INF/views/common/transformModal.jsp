@@ -81,9 +81,11 @@
 		</div>
 	</div>
 	
+	
 	<script>
 	
 		var u_no = ${userInfo.u_no};
+		console.log("유저 번호 : "+u_no);
 		
 		// 메세지 탭에서 내용 클릭 -> 메세지 모달에 데이터 추가
 		$(".messageWrap").on("click",".messageDetail",function(event){
@@ -258,7 +260,7 @@
 						}
 						console.log(m_content);
 						html += "<li>";
-						html += "<img src='"+this.m_sender_profile+"'></img>";
+						html += "<img src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/>";
 						html += "<a class='messageDetail' href="+this.m_no+">"+m_content+"</a>";
 						html += "</li>";
 					});

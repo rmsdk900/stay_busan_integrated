@@ -78,7 +78,7 @@ public interface UserDAO {
 	@Select("SELECT count(*) FROM message WHERE m_receiver = #{u_no}")
 	int getMessageBoxTotalCount(int u_no);
 
-	@Select("SELECT M.m_no, M.m_content, M.m_read, SU.u_name as m_sender_name, SU.u_profile as m_sender_profile FROM message M INNER JOIN user SU ON M.m_sender=SU.u_no WHERE M.m_receiver = #{u_no} ORDER BY M.m_read ASC, M.m_no DESC limit #{cri.pageStart}, #{cri.perPageNum}")
+	@Select("SELECT M.m_no, M.m_content, M.m_read, SU.u_name as m_sender_name, SU.u_profile as m_sender_profile, M.m_regdate FROM message M INNER JOIN user SU ON M.m_sender=SU.u_no WHERE M.m_receiver = #{u_no} ORDER BY M.m_read ASC, M.m_no DESC limit #{cri.pageStart}, #{cri.perPageNum}")
 	List<MessageVO> getMessageBox(@Param("u_no") int u_no,@Param("cri")  Criteria cri);
 
 

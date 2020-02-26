@@ -137,13 +137,16 @@
 					html += "<th>프로필</th>";
 					html += "<th>보낸사람</th>";
 					html += "<th>쪽지내용</th>";
+					html += "<th>보낸날짜</th>";
 					html += "</tr>";
 					$(data.list).each(function(){
 						html += "<tr>";
 						html += "<td>";
 						html += "<input type='checkbox' name='m_no' value='"+this.m_no+"'/>";
 						html += "</td>";
-						html += "<td><img src='"+contextPath+"/"+this.m_sender_profile+"'/></td>";
+						html += "<td>";
+						html += "<img src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/>";
+						html += "</td>";
 						if(this.m_read == 1){
 							html += "<td><div class='readMessage'>"+this.m_sender_name+"</div></td>";
 							html += "<td><div class='readMessage'><a class='messageDetail' href="+this.m_no+">"+this.m_content+"</a></div></td>";	
@@ -151,6 +154,9 @@
 							html += "<td><div class='unReadMessage'>"+this.m_sender_name+"</div></td>";
 							html += "<td><div class='unReadMessage'><a class='messageDetail' href="+this.m_no+">"+this.m_content+"</a></div></td>";
 						}
+						html += "<td>";
+						html += getDate(this.m_regdate);
+						html += "</td>";
 						html += "</tr>";
 					});
 				}
@@ -278,6 +284,17 @@
 			$("#boxMessageModal").css("display", "flex");
 		});
 	});
+	
+	// 날짜 표현 메소드
+	function getDate(date){
+		var dateObj = new Date(date);
+		var year = dateObj.getFullYear();
+		var month = dateObj.getMonth()+1;
+		var date = dateObj.getDate();
+		var hour = dateObj.getHours() > 9 ? dateObj.getHours() : "0"+dateObj.getHours();
+		var minutes = dateObj.getMinutes() > 9 ? dateObj.getMinutes() : "0"+dateObj.getMinutes();
+		return year+"-"+month+"-"+date+" "+hour+":"+minutes;
+	}
 </script>
 
 </body>

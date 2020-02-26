@@ -13,4 +13,8 @@ public class MessageVO {
 	private int r_no;
 	private Date m_regdate;
 	private int m_read;
+	
+	private String m_sender_name;
+	private String m_sender_profile;
+	private String r_name;
 }
