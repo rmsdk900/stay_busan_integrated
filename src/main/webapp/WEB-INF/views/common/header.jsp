@@ -58,8 +58,8 @@ crossorigin="anonymous">
 
 </head>
 <body style="height: 100%; margin: 0;">
-	<header style="height: 100px;">
-		<nav class="navbar container navbar-expand-lg navbar-light nav-color">
+	<header style="margin:0 auto; width:83%; height: 100px;">
+		<nav class="navbar container-fluid navbar-expand-lg navbar-light nav-color">
 			<a class="navbar-brand" href="/staybusan"> 머무르다 <span> </span>
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"

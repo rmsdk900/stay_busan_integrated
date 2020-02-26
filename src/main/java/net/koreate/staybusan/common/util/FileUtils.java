@@ -292,7 +292,10 @@ public class FileUtils {
 //			e.printStackTrace();
 			System.out.println("File이 없음 : "+e.getMessage());
 		} finally {
-			in.close();
+			try {
+				in.close();
+			} catch (Exception e) {
+			}
 		}
 		return bytes;
 	}

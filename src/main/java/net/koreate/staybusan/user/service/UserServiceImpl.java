@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import net.koreate.mvc.common.util.Criteria;
 import net.koreate.mvc.common.util.PageMaker;
+import net.koreate.staybusan.common.util.EncryptHelper;
+import net.koreate.staybusan.common.util.EncryptHelperImpl;
 import net.koreate.staybusan.common.util.FileUtils;
 import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.dao.UserDAO;
@@ -32,6 +34,14 @@ public class UserServiceImpl implements UserService{
 	@Override
 	@Transactional
 	public void signUp(UserVO vo) throws Exception {
+		// 비밀번호 암호화 추가
+		System.out.println("입력받은 암호 : "+vo.getU_pw());
+		EncryptHelper encrypt = new EncryptHelperImpl();
+		
+		String hashPassword = encrypt.encrypt(vo.getU_pw());
+		vo.setU_pw(hashPassword);
+		
+		System.out.println("암호화한 암호 : "+vo.getU_pw());
 		
 		dao.signUp(vo);
 		

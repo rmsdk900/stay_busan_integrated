@@ -11,6 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 import net.koreate.staybusan.common.session.MySessionEventListener;
+import net.koreate.staybusan.common.util.EncryptHelper;
+import net.koreate.staybusan.common.util.EncryptHelperImpl;
 import net.koreate.staybusan.user.dao.UserDAO;
 import net.koreate.staybusan.user.service.UserService;
 import net.koreate.staybusan.user.vo.LoginDTO;
@@ -45,6 +47,21 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		LoginDTO dto = (LoginDTO)modelObj.get("loginDTO");
 		
 		System.out.println("LoginInterceptor postHAndle : " +dto);
+		// 로그인 시 입력받은 암호를 아이디 기준으로 받아온 UserVO의 암호랑 비교해서 맞을 경우 집어 넣음.
+		String dtoId = dto.getU_id();
+		if(dtoId.indexOf("sb.com") < 0) {
+			String dtoPassword = dto.getU_pw();
+			UserVO storedUser = dao.getUserById(dto.getU_id());
+			String storedPassword = storedUser.getU_pw();
+			
+			EncryptHelper encrypt = new EncryptHelperImpl();
+			boolean checkPassword = encrypt.isMatch(dtoPassword, storedPassword);
+			if(checkPassword) {
+				dto.setU_pw(storedPassword);
+			}
+		}
+		
+		
 		
 		UserVO userInfo = us.signIn(dto);
 		
