@@ -2,7 +2,19 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<!-- url 접근 막기 -->
+<% 
+	String strReferer = request.getHeader("referer");
+	if(strReferer == null){
+%>
+<script>
+	alert("정상적인 경로를 통해 다시 접근해주십시오.");
+	document.location.href=contextPath+"/";
+</script>
+<%
+		return;
+	}
+%>
 <style>
 .starR1{
     background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;

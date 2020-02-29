@@ -3,10 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jsp" %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
+
+
 <title>Insert title here</title>
 <script> var contextPath = '${pageContext.request.contextPath}'; </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -90,6 +88,19 @@
 	
 </style>
 </head>
+<!-- url 접근 막기 -->
+<% 
+	String strReferer = request.getHeader("referer");
+	if(strReferer == null){
+%>
+<script>
+	alert("정상적인 경로를 통해 다시 접근해주십시오.");
+	document.location.href=contextPath+"/";
+</script>
+<%
+		return;
+	}
+%>
 <body>
 	<div class="container">
 		<ul class="tabs">

@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+
+
 <!DOCTYPE html>
 <html style="height: 100%; margin: 0;">
 <head>
@@ -12,6 +15,7 @@
 <script type="text/javascript">
 	var contextPath = '${pageContext.request.contextPath}';
 </script>
+
 <!-- jquery 최신 js -->
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!-- bootstrap css -->

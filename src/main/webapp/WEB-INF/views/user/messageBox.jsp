@@ -1,6 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="../common/header.jsp" %>
+<!-- url 접근 막기 -->
+<% 
+	String strReferer = request.getHeader("referer");
+	if(strReferer == null){
+%>
+<script>
+	alert("정상적인 경로를 통해 다시 접근해주십시오.");
+	document.location.href=contextPath+"/";
+</script>
+<%
+		return;
+	}
+%>
 <style>
 #deleteMsg{
 	background-color: #56baed;

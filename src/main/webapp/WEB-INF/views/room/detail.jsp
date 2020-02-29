@@ -3,7 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="../common/header.jsp" %>
-	
+<!-- url 접근 막기 -->
+<% 
+	String strReferer = request.getHeader("referer");
+	if(strReferer == null){
+%>
+<script>
+	alert("정상적인 경로를 통해 다시 접근해주십시오.");
+	document.location.href=contextPath+"/";
+</script>
+<%
+		return;
+	}
+%>
 <style>
 	.room_imgs {
 		display: grid;
