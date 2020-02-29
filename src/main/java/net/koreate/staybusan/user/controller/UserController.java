@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -30,6 +31,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import net.koreate.staybusan.common.util.FileUtils;
 import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.service.UserService;
+import net.koreate.staybusan.user.vo.FindPassVO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
 
@@ -276,6 +278,115 @@ public class UserController {
 				entity = new ResponseEntity<Map<String,Object>>(HttpStatus.BAD_REQUEST);
 				e.printStackTrace();
 			}
+			return entity;
+		}
+		
+
+		// 20200226 추가
+		@GetMapping("/findUser")
+		public String findUser() {
+			return "/user/findUser";
+		}
+
+		@GetMapping("/findID")
+		public String findID() throws Exception {
+			return "/user/findID";
+		}
+
+		@PostMapping("/findIDPost")
+		@ResponseBody
+		public ResponseEntity<Map<String, Object>> findIDPost(UserVO vo) {
+			ResponseEntity<Map<String, Object>> entity = null;
+
+			System.out.println(vo);
+
+			try {
+				Map<String, Object> map = us.findID(vo);
+				entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+
+		@GetMapping("findPass")
+		public String findPass() throws Exception {
+			return "user/findPass";
+		}
+		
+		@PostMapping("/findPassPost")
+		@ResponseBody
+		public ResponseEntity<Map<String, Object>> findPassPost(UserVO vo) {
+			ResponseEntity<Map<String, Object>> entity = null;
+
+			System.out.println(vo);
+
+			try {
+				Map<String, Object> map = us.findPass(vo); 
+				entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/authCheck")
+		@ResponseBody
+		public ResponseEntity<Map<String, Object>> authCheck(FindPassVO vo) {
+			ResponseEntity<Map<String, Object>> entity = null;
+
+			System.out.println(vo);
+
+			try {
+				Map<String, Object> map = us.authCheck(vo); 
+				entity = new ResponseEntity<Map<String, Object>>(map, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+			}
+			return entity;
+		}
+		
+		@PostMapping("/deleteCode")
+		@ResponseBody
+		public ResponseEntity<String> deleteCode(FindPassVO vo){
+			ResponseEntity<String> entity = null;
+			
+			try {
+				us.deleteCode(vo.getU_id());
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("인증에 성공하셨습니다.",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
+		}
+		
+		@GetMapping("/newPass")
+		public String newPassPage(@ModelAttribute("u_id") String u_id) {
+			System.out.println(u_id);
+			return "/user/newPass";
+		}
+		
+		@PostMapping("updatePass")
+		public ResponseEntity<String> updatePass(UserVO vo){
+			ResponseEntity<String> entity = null;
+			
+			try {
+				us.updatePass(vo);
+				HttpHeaders header = new HttpHeaders();
+				header.add("Content-Type", "text/plain;charset=utf-8");
+				entity = new ResponseEntity<String>("비밀번호가 변경되었습니다. 새 비밀번호로 로그인 해주세요.",header,HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<String>(HttpStatus.BAD_REQUEST);
+			}
+			
 			return entity;
 		}
 }

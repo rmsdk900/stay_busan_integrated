@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import net.koreate.staybusan.room.vo.MessageVO;
+import net.koreate.staybusan.user.vo.FindPassVO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
 
@@ -38,4 +39,15 @@ public interface UserService {
 		MessageVO getMessageDetail(int m_no) throws Exception;
 
 		Map<String, Object> getMessageBox(int u_no, int page) throws Exception;
+		
+		// 20200226 추가
+		Map<String, Object> findID(UserVO vo) throws Exception;
+
+		Map<String, Object> findPass(UserVO vo) throws Exception;
+
+		Map<String, Object> authCheck(FindPassVO vo) throws Exception;
+
+		void deleteCode(String u_id) throws Exception;
+
+		void updatePass(UserVO vo) throws Exception;
 }

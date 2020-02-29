@@ -318,22 +318,27 @@ h1{
 					<input type="checkbox" name="u_cookie" />로그인 정보 저장
 				</label>
 				<br/> 
-				<input type="submit" class="fadeIn fourth" value="로그인">
+				<input type="button" id="findUser" class="fadeIn fourth" value="아이디/비밀번호 찾기"><input type="submit" class="fadeIn fourth" value="로그인">
 			</form>
 
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
 				<a class="underlineHover" href="/staybusan">HOME</a>
 			</div>
-
 		</div>
 	</div>
+<script> var contextPath = '${pageContext.request.contextPath}'; </script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
    var message = "${message}";
 
    if(message != null && message != ""){
       alert(message);
-   }
+   };
+   
+   $("#findUser").click(function(){
+	  location.href=contextPath+"/user/findUser";
+   });
 </script>
 </body>
 </html>

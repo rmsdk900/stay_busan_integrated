@@ -10,6 +10,7 @@ import org.apache.ibatis.annotations.Update;
 
 import net.koreate.mvc.common.util.Criteria;
 import net.koreate.staybusan.room.vo.MessageVO;
+import net.koreate.staybusan.user.vo.FindPassVO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
 import net.koreate.staybusan.user.vo.banCommentVO;
@@ -81,6 +82,29 @@ public interface UserDAO {
 	@Select("SELECT M.m_no, M.m_content, M.m_read, SU.u_name as m_sender_name, SU.u_profile as m_sender_profile, M.m_regdate FROM message M INNER JOIN user SU ON M.m_sender=SU.u_no WHERE M.m_receiver = #{u_no} ORDER BY M.m_read ASC, M.m_no DESC limit #{cri.pageStart}, #{cri.perPageNum}")
 	List<MessageVO> getMessageBox(@Param("u_no") int u_no,@Param("cri")  Criteria cri);
 
+	// 20200226 추가.
+	@Select("SELECT u_id FROM user WHERE u_name=#{u_name} AND u_phone=#{u_phone}")
+	String findID(UserVO vo);
 
+	@Select("SELECT * FROM user WHERE u_name=#{u_name} AND u_phone=#{u_phone} AND u_id=#{u_id}")
+	UserVO findPass(UserVO vo);
+
+	@Insert("INSERT INTO find_pw VALUES(#{u_id},#{fp_code})")
+	void addCode(FindPassVO fpvo);
+
+	@Select("SELECT * FROM find_pw WHERE u_id=#{u_id} AND fp_code=#{fp_code}")
+	FindPassVO authCheck(FindPassVO vo);
+
+	@Delete("DELETE FROM find_pw WhERE u_id=#{u_id}")
+	void deleteCode(String u_id);
+
+	@Update("UPDATE user SET u_pw=#{u_pw} WHERE u_id=#{u_id}")
+	void updatePass(UserVO vo);
+
+	@Update("UPDATE find_pw SET fp_code=#{fp_code} WHERE u_id=#{u_id}")
+	void updateCode(FindPassVO fpvo);
+
+	@Select("SELECT * FROM find_pw WHERE u_id=#{u_id}")
+	FindPassVO codeCheck(String u_id);
 	
 }

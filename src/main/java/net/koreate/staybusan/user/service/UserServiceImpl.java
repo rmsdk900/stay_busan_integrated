@@ -4,10 +4,15 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.inject.Inject;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +23,7 @@ import net.koreate.staybusan.common.util.EncryptHelperImpl;
 import net.koreate.staybusan.common.util.FileUtils;
 import net.koreate.staybusan.room.vo.MessageVO;
 import net.koreate.staybusan.user.dao.UserDAO;
+import net.koreate.staybusan.user.vo.FindPassVO;
 import net.koreate.staybusan.user.vo.LoginDTO;
 import net.koreate.staybusan.user.vo.UserVO;
 import net.koreate.staybusan.user.vo.banCommentVO;
@@ -30,18 +36,24 @@ public class UserServiceImpl implements UserService{
 	
 	@Inject
 	ServletContext context;
+	
+	@Inject
+	JavaMailSender mailSender;
 
 	@Override
 	@Transactional
 	public void signUp(UserVO vo) throws Exception {
-		// 비밀번호 암호화 추가
-		System.out.println("입력받은 암호 : "+vo.getU_pw());
-		EncryptHelper encrypt = new EncryptHelperImpl();
+		// 비밀번호 암호화 추가 / sb.com 제외
+		if(vo.getU_id().indexOf("sb.com")<0) {
+			System.out.println("입력받은 암호 : "+vo.getU_pw());
+			EncryptHelper encrypt = new EncryptHelperImpl();
+			
+			String hashPassword = encrypt.encrypt(vo.getU_pw());
+			vo.setU_pw(hashPassword);
+			
+			System.out.println("암호화한 암호 : "+vo.getU_pw());
+		}
 		
-		String hashPassword = encrypt.encrypt(vo.getU_pw());
-		vo.setU_pw(hashPassword);
-		
-		System.out.println("암호화한 암호 : "+vo.getU_pw());
 		
 		dao.signUp(vo);
 		
@@ -168,6 +180,120 @@ public class UserServiceImpl implements UserService{
 		map.put("pageMaker", pageMaker);
 		
 		return map;
+	}
+	
+	//20200226 추가
+	@Override
+	public Map<String, Object> findID(UserVO vo) throws Exception {
+		
+		boolean IDFindCheck = false;
+		
+		String ID = dao.findID(vo);
+		
+		if(ID != null && ID != "") {
+			IDFindCheck = true;
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("IDFindCheck", IDFindCheck);
+		map.put("ID", ID);
+		
+		return map;
+	}
+
+	@Transactional
+	@Override
+	public Map<String, Object> findPass(UserVO vo) throws Exception {
+		
+		boolean passCheck =  false;
+		
+		UserVO passCheckResult = dao.findPass(vo);
+		
+		if(passCheckResult == null) {
+			passCheck = false;
+		}else {
+			passCheck = true;
+		}
+		
+		if(passCheck) {
+			Random r = new Random();
+			int dice = r.nextInt(4589362) + 49311;
+			
+			FindPassVO fpvo = new FindPassVO();
+			fpvo.setFp_code(dice);
+			fpvo.setU_id(vo.getU_id());;
+			
+			String setFrom = "dkee3@naver.com";
+			String tomail = vo.getU_id();
+			String title = "Stay-Busan 비밀번호 찾기용 인증번호메일입니다.";
+			String content = "인증번호는 "+dice+"입니다.";
+			
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper messageHelper = new MimeMessageHelper(message, true, "UTF-8");
+			
+			messageHelper.setFrom(new InternetAddress(setFrom, "Stay-Busan"));
+			messageHelper.setTo(tomail);
+			messageHelper.setSubject(title);
+			messageHelper.setText(content);
+			
+			mailSender.send(message);
+			
+			FindPassVO codeCheck = dao.codeCheck(fpvo.getU_id());
+			
+			if(codeCheck == null) {
+				dao.addCode(fpvo);
+			}else {
+				fpvo.setFp_code(dice);
+				dao.updateCode(fpvo);
+			}
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("passCheck", passCheck);
+		
+		return map;
+	}
+
+	@Override
+	public Map<String, Object> authCheck(FindPassVO vo) throws Exception {
+		boolean authCheck =  false;
+		
+		FindPassVO authCheckResult = dao.authCheck(vo);
+		
+		if(authCheckResult == null) {
+			authCheck = false;
+		}else {
+			authCheck = true;
+		}
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		
+		map.put("passCheck", authCheck);
+		
+		return map;
+	}
+
+	@Override
+	public void deleteCode(String u_id) throws Exception {
+		dao.deleteCode(u_id);
+	}
+
+	@Override
+	public void updatePass(UserVO vo) throws Exception {
+		// 비밀번호 암호화 추가 / sb.com 제외
+		if(vo.getU_id().indexOf("sb.com")<0) {
+			System.out.println("입력받은 암호 : "+vo.getU_pw());
+			EncryptHelper encrypt = new EncryptHelperImpl();
+			
+			String hashPassword = encrypt.encrypt(vo.getU_pw());
+			vo.setU_pw(hashPassword);
+			
+			System.out.println("암호화한 암호 : "+vo.getU_pw());
+		}
+		
+		dao.updatePass(vo);
 	}
 	
 }
