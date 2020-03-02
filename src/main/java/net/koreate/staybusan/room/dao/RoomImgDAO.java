@@ -6,6 +6,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import net.koreate.staybusan.room.vo.RoomImgVO;
+
 public interface RoomImgDAO {
 	// 첨부파일 등록
 	@Insert("INSERT INTO room_img(r_no, u_no, r_i_fullName) VALUES(#{r_no}, #{u_no}, #{fullName})")
@@ -22,5 +24,9 @@ public interface RoomImgDAO {
 	// 후기 글 쓴 게스트 사진 불러오기
 	@Select("SELECT u_profile FROM user WHERE u_no=#{u_no}")
 	List<String> getGuestImg(int u_no) throws Exception;
+
+	// 등록된 방의 이미지 파일들 전부 가져오기
+	@Select("SELECT * FROM room_img")
+	List<RoomImgVO> uploadedRoomFiles();
 
 }

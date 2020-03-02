@@ -55,7 +55,7 @@
 	
 	<mybatis-spring:scan base-package="net.koreate.staybusan.*.dao"/>
 	
-	<!-- <context:component-scan base-package="net.koreate.staybusan.common.task"></context:component-scan> -->
+	<context:component-scan base-package="net.koreate.staybusan.common.task"/>
 	
 	<task:annotation-driven/>
 	

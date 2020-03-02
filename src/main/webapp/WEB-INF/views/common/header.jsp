@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 
 
@@ -85,6 +86,9 @@ crossorigin="anonymous">
 						<c:when test="${!empty userInfo}">
 							<li class="nav-item"><a class="nav-link"
 								href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}">${userInfo.u_name}</a></li>
+							<!-- 충전 기능 -->
+							<li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/common/charging" data-toggle="modal" data-target="#exampleModal"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${userInfo.u_balance}"/></a></li>
+							<%@include file="./charging.jsp" %>
 							<c:if test="${userInfo.u_type eq 1 || userInfo.u_type eq 2}">
 								<!-- 호스트  -->
 								<!-- 쪽지 추가 -->
