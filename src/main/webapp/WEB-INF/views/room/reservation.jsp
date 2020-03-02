@@ -71,7 +71,7 @@
 			<c:set var="result" value="${userInfo.u_balance - AllInfo.yeyag.b_total_price}" />
 			<c:choose>
 				<c:when test="${result >= 0}">
-					<span><fmt:formatNumber type="currency" value="${balance}" /></span>
+					<span><fmt:formatNumber type="currency" value="${result}" /></span>
 					<span>원</span>
 				</c:when>
 				<c:otherwise>

@@ -99,7 +99,7 @@ $(function(){
 		 
 		// 불가 기간 추가
 		 function disableAllTheseDays(date){
-		    var m = plusZero(date.getMonth()+1), d = date.getDate(), y = date.getFullYear();
+		    var m = plusZero(date.getMonth()+1), d = plusZero(date.getDate()), y = date.getFullYear();
 		    for(i=0; i<banDates.length; i++){
 		       if($.inArray(y+ "-" + m + "-" + d, banDates) != -1){
 		          return [false];
@@ -108,8 +108,8 @@ $(function(){
 		    return [true];
 		 }
 		//10월 아래는 0을 붙여주자.
-		 function plusZero(month){
-			 return month < 10 ? "0"+month : month;
+		 function plusZero(date){
+			 return date < 10 ? "0"+date : date;
 		 }
 		
 	});
