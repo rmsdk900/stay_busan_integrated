@@ -2,7 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-
+<c:set var="path" value="${pageContext.request.contextPath}" />
 
 
 <!DOCTYPE html>
@@ -10,7 +10,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>Insert title here</title>
+<title>Stay Busan</title>
 <!-- path 설정 -->
 <c:set var="path" value="${pageContext.request.contextPath}" scope="session" />
 <script type="text/javascript">
@@ -62,10 +62,18 @@ crossorigin="anonymous">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 </head>
+
+<style>
+.messageWrap{
+	list-style:none;
+	backgroud-color:white;
+}
+</style>
 <body style="height: 100%; margin: 0;">
 	<header style="margin:0 auto; width:83%; height: 100px;">
 		<nav class="navbar container-fluid navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="/staybusan"> 머무르다 <span> </span>
+			<a class="navbar-brand" href="/staybusan"> 
+			<img style="width:120px;height:90px;"src="${path}/resources/img/stay.png" id="icon" alt="User Icon" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
@@ -74,8 +82,7 @@ crossorigin="anonymous">
 				<span class="navbar-toggler-icon"></span>
 			</button>
 
-			<div class="collapse navbar-collapse justify-content-end"
-				id="navbarSupportedContent">
+			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link"
 						href="/staybusan">Home <span class="sr-only">(current)</span></a>
@@ -92,23 +99,23 @@ crossorigin="anonymous">
 							<c:if test="${userInfo.u_type eq 1 || userInfo.u_type eq 2}">
 								<!-- 호스트  -->
 								<!-- 쪽지 추가 -->
-								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a></li>
-								<li class="nav-item"><a class="nav-link" href="${path}/Rooms/resisterRoom1">호스팅</a>
+								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a>
 									<ul class="messageWrap">
 										
 									</ul>
 								</li>
+								<li class="nav-item"><a class="nav-link" href="${path}/Rooms/resisterRoom1">호스팅</a></li>
 								<li class="nav-item"><a class="nav-link" href="${path}/user/hosting?u_no=${userInfo.u_no}">호스팅 관리</a></li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
 								<!-- 게스트 -->
 								<!-- 쪽지 추가 -->
-								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a></li>
-								<li class="nav-item"><a class="nav-link" id="transform"	href="${path}/user/transformUser">전환</a>
+								<li class="nav-item"><a class="nav-link messageNav" href="#">쪽지</a>
 									<ul class="messageWrap">
 										
 									</ul>
 								</li>
+								<li class="nav-item"><a class="nav-link" id="transform"	href="${path}/user/transformUser">전환</a></li>
 							</c:if>
 							<c:if test="${userInfo.u_type eq 3}">
 								<!-- 관리자 -->

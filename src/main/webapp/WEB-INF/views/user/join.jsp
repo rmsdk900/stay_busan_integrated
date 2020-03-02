@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<c:set var="path" value="${pageContext.request.contextPath}" scope="session" />
+<c:set var="path" value="${pageContext.request.contextPath}"/>
 
 <!DOCTYPE html>
 <html>
@@ -121,7 +121,7 @@ h2.active {
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  margin: 5px 3px 7px 17px;
+  margin: 5px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -427,7 +427,7 @@ h1{
 			<!-- Icon -->
 			<div class="fadeIn first">
 				<br/>
-				<img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" />
+				<img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" />
 				<h1>회원가입</h1>
 			</div>
 
@@ -436,38 +436,38 @@ h1{
 				<div>
 					<span class="star">*</span><font>프로필 사진</font><br/>
 					<img id="img" width="200px" height="200px"><br/>
-					<input type="file" id="u_profile" accept=".jpg, .png, .jpeg, .gif" required />
+					<input type="file" id="u_profile" accept=".jpg, .png, .jpeg, .gif" required autocomplete="off"/>
 					<br/>
 				</div>
 				<table>
 					<tr>
 						<td><span class="star">*</span>아이디(email)</td>
-						<td><input style="width:50%;" type="text" class="fadeIn second" name="u_id" id="u_id" placeholder="이메일을 입력해주세요"/>
+						<td><input style="width:50%;" type="text" class="fadeIn second" name="u_id" id="u_id" placeholder="이메일을 입력해주세요" autocomplete="off"/>
 							<input type="button" id="u_idck" value="중복체크"/>
 							<div class="result"></div>
 						</td>
 					</tr>
 					<tr>			
 						<td><span class="star">*</span>비밀번호</td>
-						<td><input type="password" class="fadeIn second" name="u_pw" id="u_pw" placeholder="영문/숫자 조합 6~20자 입력해주세요"/>
+						<td><input type="password" class="fadeIn second" name="u_pw" id="u_pw" placeholder="영문/숫자 조합 6~20자 입력해주세요" autocomplete="off"/>
 							<div class="result"></div>
 						</td>
 					</tr>
 					<tr>
 						<td><span class="star">*</span>비밀번호 확인</td>
-						<td><input type="password" class="fadeIn second" name="u_repw" id="u_repw" placeholder="비밀번호 재입력해주세요"/>
+						<td><input type="password" class="fadeIn second" name="u_repw" id="u_repw" placeholder="비밀번호 재입력해주세요" autocomplete="off"/>
 							<div class="result"></div>
 						</td>
 					</tr>
 					<tr>
 						<td><span class="star">*</span>이름</td>
-						<td><input type="text" class="fadeIn second" name="u_name" id="u_name" placeholder="2~6자 입력해주세요"/>
+						<td><input type="text" class="fadeIn second" name="u_name" id="u_name" placeholder="2~6자 입력해주세요" autocomplete="off"/>
 							<div class="result"></div>
 						</td>
 					</tr>
 					<tr>
 						<td><span class="star">*</span>전화번호</td>
-						<td><input type="text" class="fadeIn second" name="u_phone" id="u_phone" placeholder=" - 없이 입력해주세요"/>
+						<td><input type="text" class="fadeIn second" name="u_phone" id="u_phone" placeholder=" - 없이 입력해주세요" autocomplete="off"/>
 							<div class="result"></div>
 						</td>
 					</tr>
@@ -620,6 +620,10 @@ h1{
 		  $("#u_idck").click(function(){
 			 var elP = $(this).parent().find(".result");
 			 var u_id = $("#u_id").val();
+			 if(u_id==null || u_id=="" || regexEmail.test(u_id) == false){
+				alert("아이디를 입력해주세요.");
+				return;
+			 }
 			 $.ajax({
 				 url : "${path}/user/uidCheck",
 				type : "post",

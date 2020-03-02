@@ -14,28 +14,94 @@
 </style>
 <style>
 /* 리스트의 룸 하나 당 별점관련 */
-	.onestarL1, .onestarL2, .onestarL3, .onestarL4, .onestarL5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarR1, .onestarR2, .onestarR3, .onestarR4, .onestarR5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.onestarL1.on, .onestarL2.on, .onestarL3.on, .onestarL4.on, .onestarL5.on{background-position:0 0;}
-	.onestarR1.on, .onestarR2.on, .onestarR3.on, .onestarR4.on, .onestarR5.on{background-position:-15px 0;}
-	
-	
+.onestarL1, .onestarL2, .onestarL3, .onestarL4, .onestarL5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat -52px 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.onestarR1, .onestarR2, .onestarR3, .onestarR4, .onestarR5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.onestarL1.on, .onestarL2.on, .onestarL3.on, .onestarL4.on, .onestarL5.on
+	{
+	background-position: 0 0;
+}
+
+.onestarR1.on, .onestarR2.on, .onestarR3.on, .onestarR4.on, .onestarR5.on
+	{
+	background-position: -15px 0;
+}
+.show_host_rooms_wrapper,.deleted_host_rooms_wrapper{
+	margin-left: 10%;
+}
+</style>
+
+<style>
+.btnReview, .modalBtnDelRoom{
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 100px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.btncancel, .btndel{
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 100px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
 </style>
 
 <c:if test="${!empty myAllInfo.hosting}">
@@ -173,8 +239,8 @@
 		html += "				<p>"+r_no+"번 방을 정말 삭제하시겠습니까?</p>";
 		html += "			</div>";
 		html += "			<div class='modal-footer'>";
-		html += "			<button type='button' class='btn btn-default' data-dismiss='modal'>Close</button>";
-		html += "			<button type='button' class='btn btn-primary' id='btnDelRoom' data-r_no='"+r_no+"'>방 삭제</button>";
+		html += "			<button type='button' class='btncancel' data-dismiss='modal'>Close</button>";
+		html += "			<button type='button' class='btndel' id='btnDelRoom' data-r_no='"+r_no+"'>방 삭제</button>";
 		html += "			</div>";
 		html += "		</div>";
 		html += "	</div>";

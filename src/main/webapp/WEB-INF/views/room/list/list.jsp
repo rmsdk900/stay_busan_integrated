@@ -2,20 +2,24 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>list</title>
+
+<%@ include file="../../common/header.jsp"%>
 <style>
 a {
 	text-decoration: none;
 	color: black;
 }
+.listWrap {
+	margin-left: 10%;
+}
 
 .list {
 	width: 45%;
 	float: left;
+}
+
+.listBtn {
+	margin-left: 30%;
 }
 
 .roomImgDiv {
@@ -32,32 +36,151 @@ a {
 	width: 80%;
 }
 
-	.wrap {position: absolute;left: 0;bottom: 40px;width: 288px;height: 132px;margin-left: -144px;text-align: left;overflow: hidden;font-size: 12px;font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;line-height: 1.5;}
-    .wrap * {padding: 0;margin: 0;}
-    .wrap .info {width: 286px;height: 120px;border-radius: 5px;border-bottom: 2px solid #ccc;border-right: 1px solid #ccc;overflow: hidden;background: #fff;}
-    .wrap .info:nth-child(1) {border: 0;box-shadow: 0px 1px 2px #888;}
-    .info .title {padding: 5px 0 0 10px;height: 30px;background: #eee;border-bottom: 1px solid #ddd;font-size: 18px;font-weight: bold;}
-    .info .close {position: absolute;top: 10px;right: 10px;color: #888;width: 17px;height: 17px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');}
-    .info .close:hover {cursor: pointer;}
-    .info .body {position: relative;overflow: hidden;}
-    .info .desc {position: relative;margin: 13px 0 0 90px;height: 75px;}
-    .desc .ellipsis {overflow: hidden;text-overflow: ellipsis;white-space: nowrap;}
-    .desc .jibun {font-size: 11px;color: #888;margin-top: -2px;}
-    .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
-    .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
-    .info .link {color: #5085BB;}
-    
-    /* 리스트에서 추가시켰을 경우 */
-    .thisRoom {
-    	transform:scale(1.1);
-    	z-index: 10;
-    	opacity: 1.0;
-    }
-    
-    .wrap-noSelected {
-    	z-index: 5;
-    	opacity: 0.8;
-    }
+.wrap {
+	position: absolute;
+	left: 0;
+	bottom: 40px;
+	width: 288px;
+	height: 132px;
+	margin-left: -144px;
+	text-align: left;
+	overflow: hidden;
+	font-size: 12px;
+	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+	line-height: 1.5;
+}
+
+.wrap * {
+	padding: 0;
+	margin: 0;
+}
+
+.wrap .info {
+	width: 286px;
+	height: 120px;
+	border-radius: 5px;
+	border-bottom: 2px solid #ccc;
+	border-right: 1px solid #ccc;
+	overflow: hidden;
+	background: #fff;
+}
+
+.wrap .info:nth-child(1) {
+	border: 0;
+	box-shadow: 0px 1px 2px #888;
+}
+
+.info .title {
+	padding: 5px 0 0 10px;
+	height: 30px;
+	background: #eee;
+	border-bottom: 1px solid #ddd;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+.info .close {
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	color: #888;
+	width: 17px;
+	height: 17px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+}
+
+.info .close:hover {
+	cursor: pointer;
+}
+
+.info .body {
+	position: relative;
+	overflow: hidden;
+}
+
+.info .desc {
+	position: relative;
+	margin: 13px 0 0 90px;
+	height: 75px;
+}
+
+.desc .ellipsis {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.desc .jibun {
+	font-size: 11px;
+	color: #888;
+	margin-top: -2px;
+}
+
+.info .img {
+	position: absolute;
+	top: 6px;
+	left: 5px;
+	width: 73px;
+	height: 71px;
+	border: 1px solid #ddd;
+	color: #888;
+	overflow: hidden;
+}
+
+.info:after {
+	content: '';
+	position: absolute;
+	margin-left: -12px;
+	left: 50%;
+	bottom: 0;
+	width: 22px;
+	height: 12px;
+	background:
+		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.info .link {
+	color: #5085BB;
+}
+
+/* 리스트에서 추가시켰을 경우 */
+.thisRoom {
+	transform: scale(1.1);
+	z-index: 10;
+	opacity: 1.0;
+}
+
+.wrap-noSelected {
+	z-index: 5;
+	opacity: 0.8;
+}
+</style>
+<style>
+.btnType {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 13px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.btnType:hover{
+	background-color: #39ace7;
+}
 </style>
 
 <script>
@@ -72,75 +195,69 @@ a {
 
 </head>
 <body>
-	<h3>
-		<a href="${pageContext.request.contextPath}">HOME</a>
-		${pm}
-	</h3>
-	<div>
-		<input type="button" value="갓물주" id="godSearch" class="btnType"/> 
-		<input type="button" value="요금순" id="priceSearch" class="btnType"/> 
-		<input type="button" value="인기순" id="popuSearch" class="btnType"/>
-	</div>
-	<br />
-	<!-- 목록 -->
-
-	<div class="list">
-		<form action="/room/list" method="GET" id="roomList">
-		<c:choose>
-			<c:when test="${!empty list}">
-				<c:forEach var="room" items="${list}" begin="0" end="4">
-					<a href="${pageContext.request.contextPath}/room/detail?r_no=${room.r_no}" >
-						<div class="listToChange">
-							<div class="roomImgDiv">
-								<img class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${room.r_i_fullName}" />
-							</div>
-							<div class="roomInfo">
-								<h2 class="scrolling" data-rno="${room.r_no}">${room.r_no}</h2>
-								<h2>${room.r_name}
-									<br />${room.r_addr_main}</h2>
-								<div><f:formatNumber value="${room.c_star}" maxFractionDigits="1"/>(${room.commentNum})</div>
-								<div>인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
-									${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개</div>
-								<div>
-									<c:if test="${room.a_heating == 1}">
-									난방 
-								</c:if>
-									<c:if test="${room.a_heating == 0}">
-									</c:if>
-	
-									<c:if test="${room.a_parking == 1}">
-									주차공간 
-								</c:if>
-									<c:if test="${room.a_parking == 0}">
-	
-									</c:if>
-									<c:if test="${room.a_wifi == 1}">
-									wifi
-								</c:if>
-									<c:if test="${room.a_wifi == 0}">
-									</c:if>
-								</div>
-								<h3>\ ${room.r_price}</h3>
-							</div>
-						</div>
-					</a>
-					<c:set var="addr" value="${room.r_addr_main}" scope="page"></c:set>
-					<c:set var="price" value="${room.r_price}" scope="page"></c:set>
-					<c:set var="name" value="${room.r_name}" scope="page"></c:set>
-					<c:set var="r_no" value="${room.r_no}" scope="page"></c:set>
-					<c:set var="rimg" value="${room.r_i_fullName}" scope="page"></c:set>
-				</c:forEach>
-				<c:forEach var="room" items="${list}" begin="0" end="4">
-				</c:forEach>
-			</c:when>
-			<c:otherwise>
-				<div>등록된 숙소가 없습니다.</div>
-			</c:otherwise>
-		</c:choose>
-		</form>
+	<div class="listWrap">
+		<div class="listBtn" style="margin-right:1%;">
+			<input type="button" value="갓물주" id="godSearch" class="btnType"/> 
+			<input type="button" value="요금순" id="priceSearch" class="btnType"/> 
+			<input type="button" value="인기순" id="popuSearch" class="btnType"/>
 		</div>
-	<div id="map"
-		style="width: 45%; height: 100%; position: fixed; right: 0; bottom: 0"></div>
+		<br />
+		<!-- 목록 -->
+	
+		<div class="list">
+			<form action="/room/list" method="GET" id="roomList">
+			<c:choose>
+				<c:when test="${!empty list}">
+					<c:forEach var="room" items="${list}" begin="0" end="4">
+						<a href="${pageContext.request.contextPath}/room/detail?r_no=${room.r_no}" >
+							<div class="listToChange">
+								<div class="roomImgDiv">
+									<img class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${room.r_i_fullName}" />
+								</div>
+								<div class="roomInfo"
+									style="margin-bottom: 30px; border-bottom: 1px solid #56baed;">
+
+									<h4 data-rno='${room.r_no}'>${room.r_name}<br />${room.r_addr_main}</h4>
+									<div>
+										<f:formatNumber value="${room.c_star}" maxFractionDigits="1" />
+										후기 (${room.commentNum})
+									</div>
+									<div>인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
+										${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개</div>
+									<div>
+										<c:if test="${room.a_heating == 1}">난방</c:if>
+										<c:if test="${room.a_heating == 0}"></c:if>
+
+										<c:if test="${room.a_parking == 1}">주차공간</c:if>
+										<c:if test="${room.a_parking == 0}"></c:if>
+										
+										<c:if test="${room.a_wifi == 1}">wifi</c:if>
+										<c:if test="${room.a_wifi == 0}"></c:if>
+									</div>
+									<div style="margin-top: 10px;">
+										<h4>1박당 ${room.r_price}원</h4>
+									</div>
+								</div>
+							</div>
+						</a>
+						<c:set var="addr" value="${room.r_addr_main}" scope="page"></c:set>
+						<c:set var="price" value="${room.r_price}" scope="page"></c:set>
+						<c:set var="name" value="${room.r_name}" scope="page"></c:set>
+						<c:set var="r_no" value="${room.r_no}" scope="page"></c:set>
+						<c:set var="rimg" value="${room.r_i_fullName}" scope="page"></c:set>
+					</c:forEach>
+					<c:forEach var="room" items="${list}" begin="0" end="4">
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<div>등록된 숙소가 없습니다.</div>
+				</c:otherwise>
+			</c:choose>
+			</form>
+			</div>
+		<div id="map" style="width: 39%; height: 90%; position: fixed; right: 0; bottom: 0; margin-left:5%;margin-right:9%;"></div>
+	</div>
+
 	
 			<!-- 페이징 블럭 -->
 	
@@ -309,7 +426,7 @@ a {
 	// 룸에 마우스 올렸을 때 해당 아이콘 움직이기
 	$(".listToChange").on("mouseover", function(e){
 		/* console.log("마우스 들어왔다!"); */
-		var map_r_no = $(this).find(".roomInfo .scrolling").attr("data-rno");
+		var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
 		console.log(map_r_no);
 		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("thisRoom");
 		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("wrap-noSelected");
@@ -318,7 +435,7 @@ a {
 	// 마우스가 빠져나갔을 때 
 	$(".listToChange").on("mouseout", function(e){
 		/* console.log("마우스 나갔다!"); */
-		var map_r_no = $(this).find(".roomInfo .scrolling").attr("data-rno");
+		var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
 		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("thisRoom");
 		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("wrap-noSelected");
 	});

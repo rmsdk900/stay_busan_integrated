@@ -17,139 +17,402 @@
 	}
 %>
 <style>
-	.room_imgs {
-		display: grid;
-		grid-template-columns: auto auto auto;
-		width:100%;
-		
-	}
-	.room_img_primary{
-		width: 600px;
-		height: 600px;
-		overflow: hidden;
-	}
-	.room_img_etc{
-		overflow: hidden;
-	}
-	.room_img_third{
-		overflow: hidden;
-	}
-	.room_img_primary img {
-		transform:scale(1);
-		transition:.3s;
-	}
-	
-	.room_img_primary:hover img {
-		transform:scale(1.1);
-	}
-	
-	
-	
-	.room_img_etc{
-		width: 300px;
-		height: 300px;
-	}
-	
-	.room_img_etc img {
-		transform:scale(1);
-		transition:.3s;
-	}
-	
-	.room_img_etc:hover img {
-		transform:scale(1.1);
-	}
-	
-	.room_host_img{
-		width: 100px;
-		height: 100px;
-	}
-	
-	.filledImg{
-		
-		width: 100%;
-		height: 100%;
-	}
-	
-	.room_reservation_people_message{
-		display: none;
-	}
-	
-	.text_red{
-		color:red;
-	}
-	
-	.text_green{
-		color:green;
-	}
-	
+.room_imgs {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	width: 100%;
+}
+
+.room_img_primary {
+	width: 600px;
+	height: 600px;
+	overflow: hidden;
+}
+
+.room_img_etc {
+	overflow: hidden;
+}
+
+.room_img_third {
+	overflow: hidden;
+}
+
+.room_img_primary img {
+	transform: scale(1);
+	transition: .3s;
+}
+
+.room_img_primary:hover img {
+	transform: scale(1.1);
+}
+
+.room_img_etc {
+	width: 300px;
+	height: 300px;
+}
+
+.room_img_etc img {
+	transform: scale(1);
+	transition: .3s;
+}
+
+.room_img_etc:hover img {
+	transform: scale(1.1);
+}
+
+.room_host_img {
+	width: 100px;
+	height: 100px;
+}
+
+.FilledImg {
+	width: 100%;
+	height: 100%;
+	margin-top:15%;
+}
+
+.room_reservation_people_message {
+	display: none;
+}
+
+.text_red {
+	color: red;
+}
+
+.text_green {
+	color: green;
+}
 </style>
 <!-- 별점 관련 -->
 <style>
 /* 평균 별점관련 */
-	.avgStarL1, .avgStarL2, .avgStarL3, .avgStarL4, .avgStarL5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.avgStarR1, .avgStarR2, .avgStarR3, .avgStarR4, .avgStarR5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.avgStarL1.on, .avgStarL2.on, .avgStarL3.on, .avgStarL4.on, .avgStarL5.on{background-position:0 0;}
-	.avgStarR1.on, .avgStarR2.on, .avgStarR3.on, .avgStarR4.on, .avgStarR5.on{background-position:-15px 0;}
-	
-	/* 별점 처리 */
-	.starL1, .starL2, .starL3, .starL4, .starL5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat -52px 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.starR1, .starR2, .starR3, .starR4, .starR5{
-	    background: url('http://miuu227.godohosting.com/images/icon/ico_review.png') no-repeat right 0;
-	    background-size: auto 100%;
-	    width: 15px;
-	    height: 30px;
-	    float:left;
-	    text-indent: -9999px;
-	    cursor: pointer;
-	}
-	.starL1.on, .starL2.on, .starL3.on, .starL4.on, .starL5.on{background-position:0 0;}
-	.starR1.on, .starR2.on, .starR3.on, .starR4.on, .starR5.on{background-position:-15px 0;}
+.avgStarL1, .avgStarL2, .avgStarL3, .avgStarL4, .avgStarL5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat -52px 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.avgStarR1, .avgStarR2, .avgStarR3, .avgStarR4, .avgStarR5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.avgStarL1.on, .avgStarL2.on, .avgStarL3.on, .avgStarL4.on, .avgStarL5.on
+	{
+	background-position: 0 0;
+}
+
+.avgStarR1.on, .avgStarR2.on, .avgStarR3.on, .avgStarR4.on, .avgStarR5.on
+	{
+	background-position: -15px 0;
+}
+
+/* 별점 처리 */
+.starL1, .starL2, .starL3, .starL4, .starL5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat -52px 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starR1, .starR2, .starR3, .starR4, .starR5 {
+	background:
+		url('http://miuu227.godohosting.com/images/icon/ico_review.png')
+		no-repeat right 0;
+	background-size: auto 100%;
+	width: 15px;
+	height: 30px;
+	float: left;
+	text-indent: -9999px;
+	cursor: pointer;
+}
+
+.starL1.on, .starL2.on, .starL3.on, .starL4.on, .starL5.on {
+	background-position: 0 0;
+}
+
+.starR1.on, .starR2.on, .starR3.on, .starR4.on, .starR5.on {
+	background-position: -15px 0;
+}
 </style>
 <!-- 좋아요 버튼 -->
 <style>
-	.room_like {
-		width: 50px;
-		height: 50px;
-		background-image: url("/staybusan/resources/img/jjim.png");
-		background-position: center;
-		background-size: 50px 50px;
-	}
-	.room_like.on {
-		width: 50px;
-		height: 50px;
-		background-image: url("/staybusan/resources/img/jjim-on.png");
-		background-position: center;
-		background-size: 50px 50px;
-	}
+.room_like {
+	width: 50px;
+	height: 50px;
+	background-image: url("/staybusan/resources/img/jjim.png");
+	background-position: center;
+	background-size: 50px 50px;
+}
+
+.room_like.on {
+	width: 50px;
+	height: 50px;
+	background-image: url("/staybusan/resources/img/jjim-on.png");
+	background-position: center;
+	background-size: 50px 50px;
+}
 </style>
 <!-- roomInfo -->
+
+<!-- roomDIV -->
+<style>
+.room {
+	width: 83%;
+	margin: 0 auto;
+}
+
+.room_imgs{
+	border: 1px solid skyblue;
+}
+
+.msgBtn {
+	background-color: #fff;
+	border: none;
+	color: #56baed;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 200px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top:15px;
+	margin-left:21%;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.msgBtn:hover{
+	background-color: #39ace7;
+	color:white;
+}
+
+.msgBtn2, .room_primary_modify, .room_amenity_modify_btn {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 200px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+.msgBtn2:hover, .room_primary_modify:hover, .room_amenity_modify_btn:hover{
+	background-color: #39ace7;
+} 
+
+</style>
+
+<style>
+.room_reservation{
+	background-color:#56baed;
+	padding:30px;
+	border-radius: 30px;
+	align:center;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 30px;
+}
+</style>
+
+<style>
+.room_reservation_choose_date {
+	background-color: #fff;
+	border: none;
+	color: #56baed;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 70px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px 20px 40px 20px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.room_reservation_submit {
+	background-color: #fff;
+	border: none;
+	color: #56baed;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 200px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-left: 21%;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.room_reservation_submit:hover {
+	background-color: #39ace7;
+	color:white;
+}
+
+#startDate, #endDate {
+	background-color: #f6f6f6;
+	border: none;
+	color: #0d0d0d;
+	padding: 10px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	width: 45%;
+	height: 30px;
+	border: 2px solid #f6f6f6;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+#b_guest {
+	background-color: #f6f6f6;
+	border: none;
+	color: #0d0d0d;
+	padding: 10px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	width: 93%;
+	height: 30px;
+	border: 2px solid #f6f6f6;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+}
+
+.room_imgs_more {
+	margin-left: 80%;
+}
+
+#roomPicturesModalBtn {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 60px;
+	width: 150px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top: 10px; 
+	-webkit-transition : all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+}
+
+#modPictureBtn {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 60px;
+	width: 150px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top: 10px; 
+	-webkit-transition : all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+	-webkit-transition: all 0.3s ease-in-out;
+}
+
+#roomPicturesModalBtn:hover, #modPictureBtn:hover {
+	background-color: #39ace7;
+}
+</style>
+
 <c:if test="${!empty roomInfo}">
 	<div class="room">
-		<div >
+		<div class="rImgWrap">
 			<div class="room_imgs">
 				<div class='room_img_primary' onclick="openSlide"></div>
 				<div class='room_img_second'></div>
@@ -157,16 +420,11 @@
 			</div>
 			<!-- 모달 연결 버튼 -->
 			<div class="room_imgs_more">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomPicturesModal"
-				id="roomPicturesModalBtn">
-					사진 보기
-				</button>
 				<c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modPicture"
-					id="modPictureBtn">
-						사진 변경
-					</button>
+					<button type="button" data-toggle="modal" data-target="#modPicture" id="modPictureBtn">	사진 변경</button>
 				</c:if>
+				<button type="button" data-toggle="modal" data-target="#roomPicturesModal" id="roomPicturesModalBtn">사진 보기</button>
+				
 			</div>
 			
 			<%@ include file="./pictureModal.jsp" %>
@@ -181,21 +439,21 @@
 					<h2 class="room_primary_title" >${roomInfo.roomVO.r_name}</h2>
 					<!-- 좋아요 버튼 -->
 					<div id="btn_room_like" class="room_like"></div>
-					<input type="text" name="r_name" value="${roomInfo.roomVO.r_name}" 
-					class="room_primary_title_modify" />
+					<input type="text" name="r_name" value="${roomInfo.roomVO.r_name}" class="room_primary_title_modify" />
 				</div>
 				<div>
-					<div class="room_host_img"></div>
+					<div class="room_host_img">
+					</div>
 					<div>
-						${roomInfo.hostVO.u_name}
+						<h4>${roomInfo.hostVO.u_name}</h4>
 						<c:if test="${roomInfo.hostVO.u_type == 2 or roomInfo.hostVO.u_type == 3}" >
-							<img src="${pageContext.request.contextPath}/resources/img/vip.png" style="width:20px;height:20px;" />	
+							<img src="${pageContext.request.contextPath}/resources/img/vip.png" style="width:30px;height:30px;" />	
 						</c:if>
 					</div>
 					
 				</div>
 				<div>
-					<p>주소 : ${roomInfo.roomVO.r_addr_main}</p>
+					<h4>주소 : ${roomInfo.roomVO.r_addr_main}</h4>
 				</div>
 				<div>
 					<ul class="room_primary_facility">
@@ -225,15 +483,17 @@
 			<hr/>
 			<div >
 				<div>
-					<div class="room_description">방 설명 : ${roomInfo.roomVO.r_desc}</div>
+					<div class="room_description">
+					<h4>방 설명 :</h4><br/>
+					<h5>${roomInfo.roomVO.r_desc}</h5>
+					</div>
 					<textarea class="room_description_modify" name="r_desc">${roomInfo.roomVO.r_desc}</textarea>
 				</div>
 				<div>
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomMessageModal" data-whatever="${roomInfo.hostVO.u_name}">
+					<button type="button" class="msgBtn2" data-toggle="modal" data-target="#roomMessageModal" data-whatever="${roomInfo.hostVO.u_name}">
 						호스트에게 쪽지 보내기
 					</button>
 				</div>
-				
 			</div>
 			<c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
 					<div class="room_reservation_per_price_modify">
@@ -420,17 +680,13 @@
 					</h4>
 				</div>
 				<div>
-					<p>회원가입 : <fmt:formatDate value="${roomInfo.hostVO.u_regdate}" pattern="yyyy년 MM월"/></p>
+					<h6>회원가입 : <fmt:formatDate value="${roomInfo.hostVO.u_regdate}" pattern="yyyy년 MM월"/></h6>
 				</div>
 				
 				<div>
 					<p> 호스트 자기 소개 : </p>
-				</div>
-				<hr/>
-				<div>
 					<p>${roomInfo.hostVO.u_introduce}</p>
-				</div>
-				
+				</div>		
 				
 			</div>
 			<hr/>
@@ -438,7 +694,7 @@
 			<!-- deleted된 거 안보이게 -->
 			<c:if test="${roomInfo.roomVO.r_deleted eq 0}">
 				<!-- 예약 폼 -->
-				<div class="room_reservation">
+				<div class="room_reservation" style="position: fixed; right: 0; bottom: 0; margin-right:10%; margin-bottom:5%;">
 					<form id="bookingForm" action="${pageContext.request.contextPath}/book/bookingRoom" method="post">
 						<input type="hidden" name="r_no" value="${roomInfo.roomVO.r_no}" />
 						<!-- 로그인 한 사람의 번호를 임의로 넣어놓음. -->
@@ -461,15 +717,15 @@
 									<span class="avgStarL5"></span>
 									<span class="avgStarR5"></span>
 								</div>
-								<span class="star_float">[평균 별점]</span>
+								<span class="star_float">0</span>
 							</div>
-							<div class="room_reservation_total">(후기 [후기 갯수]개)</div>
+							<div class="room_reservation_total">(후기 0개)</div>
 							<hr/>
 						</div>
 						<div>
 							<div>날짜</div>
-							<div>
-								<input type="text" id="startDate" name="date_from_dummy" readonly>-<input type="text" id="endDate" name="date_to_dummy" readonly>
+							<div style="margin:0 auto;">
+								<input type="text" id="startDate" name="date_from_dummy" readonly>&nbsp;-&nbsp;<input type="text" id="endDate" name="date_to_dummy" readonly>
 								<div class="room_reservation_how_many"> 숙박 중 : 
 									<span class="room_reservation_how_many_people">0</span>
 									 / 
@@ -481,7 +737,7 @@
 						<div>
 							<div>인원</div>
 							<div class="room_reservation_people">
-								<label><input id="b_guest" type="number" name="b_guest" min="0" max="${roomInfo.roomVO.r_guests}" step="1"/> 명</label>
+								<input id="b_guest" type="number" name="b_guest" min="0" max="${roomInfo.roomVO.r_guests}" step="1"/> 명
 								<div class="room_reservation_people_message "></div>	
 							</div>
 						</div>
@@ -492,24 +748,23 @@
 						<input type="hidden" name="b_total_price" id="b_total_price" />
 						
 						<div>
-							<input type="button" class="room_reservation_choose_date"value="날짜선택"/>
 							<input type="button" class="room_reservation_submit"value="예약하기" style="display:none;"/>
 						</div>
 					</form>
+					<div class="room_message">
+						<c:if test="${!empty userInfo}">
+							<button type="button" class="msgBtn" data-toggle="modal"
+								data-target="#roomMessageModal"
+								data-whatever="${roomInfo.hostVO.u_name}">호스트에게 쪽지 보내기
+							</button>
+
+							
+						</c:if>
+					</div>
 				</div>
+				<%@ include file="./messageModal.jsp"%>
 				<br/>
-				<div class="room_message">
-				<c:if test="${!empty userInfo}">
-					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#roomMessageModal" data-whatever="${roomInfo.hostVO.u_name}">
-						호스트에게 쪽지 보내기
-					</button>
-					
-					<%@ include file="./messageModal.jsp" %>
-				</c:if>
-					
-					
-					
-				</div>
+				
 				<hr/>
 			</c:if>
 			
@@ -629,10 +884,7 @@
 				$(".room_description_modify").val(data.r_desc);
 				$(".room_reservation_per_price").html(data.r_price);
 				$(".r_price").val(data.r_price);
-				
-				
-				
-				
+		
 				$(".room_primary_title_modify").hide();
 				$(".room_primary_facility_modify").hide();
 				$(".room_primary_modify_submit").hide();
@@ -727,20 +979,20 @@
 				
 				if(i == 0){
 					var html = "";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
 					$(".room_img_primary").html(html);	
 				} else if(i==1 || i==2) {
 					var html = "<div ";
 					html += "class='room_img_etc' ";
 					html += ">";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
 					html += "</div>";
 					$(".room_img_second").append(html);
 				} else if(i==3 || i==4){
 					var html = "<div ";
 					html += "class='room_img_etc' ";
 					html += ">";
-					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='filledImg' onclick='openSlide("+i+")' />";
+					html += "<img src='"+fileInfo.imgSrc+"' alt='배경 사진"+(i+1)+"' class='FilledImg' onclick='openSlide("+i+")' />";
 					html += "</div>";
 					$(".room_img_third").append(html);
 				}else {
@@ -782,7 +1034,7 @@
 			
 			var html = "";
 			html += "<a href='"+contextPath+"/user/show?u_no="+owner+"'>";
-			html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='filledImg' />"
+			html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />"
 			html += "</a>";
 			$(".room_host_img").append(html);
 			

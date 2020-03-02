@@ -52,13 +52,16 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		if(dtoId.indexOf("sb.com") < 0) {
 			String dtoPassword = dto.getU_pw();
 			UserVO storedUser = dao.getUserById(dto.getU_id());
-			String storedPassword = storedUser.getU_pw();
-			
-			EncryptHelper encrypt = new EncryptHelperImpl();
-			boolean checkPassword = encrypt.isMatch(dtoPassword, storedPassword);
-			if(checkPassword) {
-				dto.setU_pw(storedPassword);
+			if(storedUser != null) {
+				String storedPassword = storedUser.getU_pw();
+				
+				EncryptHelper encrypt = new EncryptHelperImpl();
+				boolean checkPassword = encrypt.isMatch(dtoPassword, storedPassword);
+				if(checkPassword) {
+					dto.setU_pw(storedPassword);
+				}
 			}
+			
 		}
 		
 		

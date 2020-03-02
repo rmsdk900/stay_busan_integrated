@@ -78,6 +78,53 @@
 	.starL1.on, .starL2.on, .starL3.on, .starL4.on, .starL5.on{background-position:0 0;}
 	.starR1.on, .starR2.on, .starR3.on, .starR4.on, .starR5.on{background-position:-15px 0;}
 </style>
+<style>
+.show_wrapper {
+	padding: 2%;
+}
+
+.show_wrapper_in {
+	margin-left: 10%;
+}
+
+.show_my_introduce_mod_open, .show_my_introduce_mod_submit,
+	.show_my_introduce_mod_cancel {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 48px;
+	width: 100px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin-top: 20px;
+	margin-bottom: 20px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
+
+.introducearea, .mod_introducearea {
+	-webkit-border-radius: 10px 10px 10px 10px;
+	border-radius: 10px 10px 10px 10px;
+	background: #fff;
+	padding: 5px;
+	width: 90%;
+	min-height: 200px;
+	max-width: 550px;
+	position: relative;
+	margin-top:20px;
+}
+</style>
 
 <script>
 	var u_no = '${myAllInfo.userVO.u_no}';
@@ -87,7 +134,7 @@
 <!-- 소개 페이지 전체 -->
 <div class="show_wrapper">
 	<!-- 프로필 사진 + 제목 + 회원가입일 + 소개  -->
-	<div>
+	<div class="show_wrapper_in">
 		<!-- 프로필 사진 + 제목 + 회원가입일 -->
 		<div>
 			<!-- 프로필 사진 -->
@@ -102,21 +149,22 @@
 				</div>
 				<!-- 회원 가입일 -->
 				<div>
-					<span>회원 가입: </span>
+					<h5><span>회원 가입: </span>
 					<span>
 						<fmt:formatDate value="${myAllInfo.userVO.u_regdate}" pattern="yyyy"/>
 					</span>
+					</h5>
 				</div>
 			</div>
 		</div>
 		<!-- 소개 -->
 		<div>
 			<div class="show_my_introduce">
-				<textarea  readonly>${myAllInfo.userVO.u_introduce}</textarea>
+				<textarea class="introducearea" readonly>${myAllInfo.userVO.u_introduce}</textarea>
 				
 			</div>
 			<div class="show_my_introduce_mod">
-				<textarea  >${myAllInfo.userVO.u_introduce}</textarea>
+				<textarea class="mod_introducearea" >${myAllInfo.userVO.u_introduce}</textarea>
 				<div>
 					<button class="show_my_introduce_mod_submit">편집 완료</button>
 					<button class="show_my_introduce_mod_cancel">취소</button>

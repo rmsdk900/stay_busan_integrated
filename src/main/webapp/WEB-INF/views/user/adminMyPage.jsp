@@ -11,7 +11,6 @@
 <style>
 	body{
 		margin-top: 100px;
-		font-family: 'Trebuchet MS', serif;
 		line-height: 1.6
 	}
 	.container{

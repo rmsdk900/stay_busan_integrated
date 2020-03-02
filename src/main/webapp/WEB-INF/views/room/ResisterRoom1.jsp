@@ -12,10 +12,11 @@
     margin-top:30px;
 }
 .stepwizard-step p {
-    margin-top: 0px;
-    color:#666;
+    margin-top: 5px;
+    color:black;
 }
 .stepwizard-row {
+align:center;
     display: table-row;
 }
 .stepwizard {
@@ -23,10 +24,7 @@
     width: 100%;
     position: relative;
 }
-.stepwizard-step button[disabled] {
-    /*opacity: 1 !important;
-    filter: alpha(opacity=100) !important;*/
-}
+
 .stepwizard .btn.disabled, .stepwizard .btn[disabled], .stepwizard fieldset[disabled] .btn {
     opacity:1 !important;
     color:#bbb;
@@ -43,7 +41,6 @@
 }
 .stepwizard-step {
     display: table-cell;
-    text-align: center;
     position: relative;
 }
 .btn-circle {
@@ -55,41 +52,111 @@
     line-height: 1.428571429;
     border-radius: 15px;
 }
+
+
 .roomWrap{
+	margin-left: 10%;
+	margin-right: 15%;
+	margin-top:120px;
 	padding:30px;
 }
 
-.submitBtn{
-	
+/* 방 기본 정보 */
+input[type=number],input[type=text] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 12px 30px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 12px;
+  margin: 5px;
+  width: 60%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
 }
+
+/* 주소 찾기 */
+
+.submitBtn{
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 15px 80px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  margin: 5px 20px 40px 80%;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.submitBtn:hover{
+	background-color: #39ace7;
+}
+
+.findBtn{
+  background-color: #56baed;
+  border: none;
+  color: white;
+  padding: 10px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 13px;
+  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.findBtn:hover{
+	background-color: #39ace7;
+}
+
+.ame1, .ame2, .ame3{
+	width:100%;
+	margin-right:10%;
+}
+
 </style>
-<!-- url 접근 막기 -->
-<% 
-	String strReferer = request.getHeader("referer");
-	if(strReferer == null){
-%>
-<script>
-	alert("정상적인 경로를 통해 다시 접근해주십시오.");
-	document.location.href=contextPath+"/";
-</script>
-<%
-		return;
-	}
-%>
 <body>
-<div class="container">
+<div>
     <div class="stepwizard">
-        <div class="stepwizard-row setup-panel">
-            <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom1" type="button" class="btn btn-success btn-circle">1</a>
-                <p class="mr-5"><small>Room Information</small></p>
+        <div class="stepwizard-row">
+            <div class="stepwizard-step">         
+                <div style="margin-left:40%;">1
+                <h3>Room Information</h3>
+                </div>
             </div>
-            <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom2" type="button" class="btn btn-default btn-circle" disabled="disabled">2</a>
+            <div class="stepwizard-step"> 
+                2
                 <p class="mr-5"><small>Check In & Out</small></p>
             </div>
-            <div class="stepwizard-step col-xs-3"> 
-                <a href="resisterRoom3" type="button" class="btn btn-default btn-circle" disabled="disabled">3</a>
+            <div class="stepwizard-step">
+            	3             
                 <p class="mr-5"><small>Room Image</small></p>
             </div>
         </div>
@@ -97,82 +164,102 @@
 </div>
 <div class="roomWrap">
 	<form id="submitForm" action="resisterRoom2" method="post">
-		<div class="tableWrap">
-			<h2>방 기본 정보</h2>
-			<table style="margin-bottom:50px;">
-				<tr>
-					<td>인원</td>
-					<td><input id="r_guests" type="number" name="r_guests" min="0" value="0"/>명</td>
-				</tr>
-				<tr>
-					<td>침실</td>
-					<td><input id="r_bedroom" type="number" name="r_bedroom" min="0" value="0"/>개</td>
-					<td>침대</td>
-					<td><input id="r_bed" type="number" name="r_bed" min="0" value="0"/>개</td>
-				</tr>
-				<tr>
-					<td>욕실 수</td>
-					<td><input id="r_bath" type="number" name="r_bath" min="0" value="0"/>개</td>
-				</tr>
-			</table>
-		</div>
-		<div class="tableWrap">
-			<h2>주소 찾기</h2>
-			<table style="margin-bottom:50px;">
-				<tr>
-					<td><input type="text" name="r_addr_main" id="addr" placeholder="기본주소" required/></td>
-					<td><input type="button" onclick="searchAddr()" value="주소 찾기"/></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="text" id="addr_detail" name="r_addr_detail" placeholder="상세주소"/></td>
-				</tr>
-			</table>
-		</div>
-		<div class="tableWrap">
-			<h2>편의 시설</h2>
-			<table style="margin-bottom:50px;">
-				<tr>
-					<td>
-						<input type="checkbox" name="amenity" value="a_wifi"/> 와이파이
-						<br/>
-						<input type="checkbox" name="amenity" value="a_heating"/> 난방
-						<br/>
-						<input type="checkbox" name="amenity" value="a_TV"/> TV
-						<br/>
-						<input type="checkbox" name="amenity" value="a_kitchen"/> 주방
-						<br/>
-						<input type="checkbox" name="amenity" value="a_hairdryer"/> 헤어드라이기
-						<br/>
-						<input type="checkbox" name="amenity" value="a_iron"/> 다리미
-						<br/>
-					</td>
-					<td>
-						<input type="checkbox" name="amenity" value="a_hanger"/> 옷걸이
-						<br/>
-						<input type="checkbox" name="amenity" value="a_towel"/> 수건
-						<br/>
-						<input type="checkbox" name="amenity" value="a_elevator"/> 엘리베이터
-						<br/>
-						<input type="checkbox" name="amenity" value="a_parking"/> 주차장
-						<br/>
-						<input type="checkbox" name="amenity" value="a_washer"/> 샤워용품
-						<br/>
-						<input type="checkbox" name="amenity" value="a_cookware"/> 조리기구
-					</td>
-					<td>
-						<input type="checkbox" name="amenity" value="a_refri"/> 냉장고
-						<br/>
-						<input type="checkbox" name="amenity" value="a_burner"/> 가열기구
-						<br/>
-						<input type="checkbox" name="amenity" value="a_dish"/> 식기류
-						<br/>
-						<input type="checkbox" name="amenity" value="a_micro"/> 전자레인지
-						<br/>
-						<input type="checkbox" name="amenity" value="a_aircon"/> 에어컨
-					</td>
-				</tr>
-			</table>
-			</div>
+		<table><!-- 전체 크게 감싸는 테이블 한줄 정렬 -->
+			<tr>
+				<td>
+					<div class="tableWrap">
+						<h2>방 기본 정보</h2>
+						<table style="margin-bottom:50px;">
+							<tr>
+								<td>인원</td>
+								<td><input id="r_guests" type="number" name="r_guests" min="0" value="1"/>명</td>
+							</tr>
+							<tr>
+								<td>침실</td>
+								<td><input id="r_bedroom" type="number" name="r_bedroom" min="0" value="1"/>개</td>
+							</tr>
+							<tr>	
+								<td>침대</td>
+								<td><input id="r_bed" type="number" name="r_bed" min="0" value="1"/>개</td>
+							</tr>
+							<tr>
+								<td>욕실 수</td>
+								<td><input id="r_bath" type="number" name="r_bath" min="0" value="1"/>개</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+								
+				<td>
+					<div class="tableWrap" style="margin-left:200px;">
+						<h2>편의 시설</h2>
+						<table style="margin-bottom:50px;">
+							<tr>
+								<td>
+									<div class="ame1">
+										<input type="checkbox" name="amenity" value="a_wifi" style="margin-bottom:20px;"/> 와이파이
+										<br/>
+										<input type="checkbox" name="amenity" value="a_heating" style="margin-bottom:20px;"/> 난방
+										<br/>
+										<input type="checkbox" name="amenity" value="a_TV" style="margin-bottom:20px;"/> TV
+										<br/>
+										<input type="checkbox" name="amenity" value="a_kitchen" style="margin-bottom:20px;"/> 주방
+										<br/>
+										<input type="checkbox" name="amenity" value="a_hairdryer" style="margin-bottom:20px;"/> 헤어드라이기
+										<br/>
+										<input type="checkbox" name="amenity" value="a_iron" style="margin-bottom:20px;"/> 다리미
+									</div>
+								</td>
+								<td>
+									<div class="ame2">								
+										<input type="checkbox" name="amenity" value="a_hanger" style="margin-bottom:20px;"/> 옷걸이
+										<br/>
+										<input type="checkbox" name="amenity" value="a_towel" style="margin-bottom:20px;"/> 수건
+										<br/>
+										<input type="checkbox" name="amenity" value="a_elevator" style="margin-bottom:20px;"/> 엘리베이터
+										<br/>
+										<input type="checkbox" name="amenity" value="a_parking" style="margin-bottom:20px;"/> 주차장
+										<br/>
+										<input type="checkbox" name="amenity" value="a_washer" style="margin-bottom:20px;"/> 샤워용품
+										<br/>
+										<input type="checkbox" name="amenity" value="a_cookware" style="margin-bottom:20px;"/> 조리기구
+									</div>
+								</td>
+								<td>	
+									<div class="ame3">								
+										<input type="checkbox" name="amenity" value="a_refri" style="margin-bottom:20px;"/> 냉장고
+										<br/>
+										<input type="checkbox" name="amenity" value="a_burner" style="margin-bottom:20px;"/> 가열기구
+										<br/>
+										<input type="checkbox" name="amenity" value="a_dish" style="margin-bottom:20px;"/> 식기류
+										<br/>
+										<input type="checkbox" name="amenity" value="a_micro" style="margin-bottom:20px;"/> 전자레인지
+										<br/>
+										<input type="checkbox" name="amenity" value="a_aircon" style="margin-bottom:20px;"/> 에어컨
+									</div>									
+								</td>
+							</tr>
+						</table>
+					</div>
+				</td>
+				
+				<td>
+					<div class="tableWrap" style="margin-left:200px;">
+						<h2>주소 찾기</h2>
+						<table style="margin-bottom:50px;">
+							<tr>
+								<td><input type="text" name="r_addr_main" id="addr" placeholder="기본주소" autocomplete="off" required/></td>
+								<td><input type="button" class="findBtn" onclick="searchAddr()" value="주소 찾기"/></td>
+							</tr>
+							<tr>
+								<td colspan="2"><input type="text" id="addr_detail" name="r_addr_detail" placeholder="상세주소" autocomplete="off"/></td>
+							</tr>
+						</table>
+					</div>
+				</td>
+			
+			</tr>
+		</table>
 			<div class="button">
 					<button type="button" class="submitBtn" id="submitBtn">다음</button>
 			</div>

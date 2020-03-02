@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<c:set var="path" value="${pageContext.request.contextPath}" />
+	
 <!DOCTYPE html>
 <html>
 <head>
@@ -104,7 +107,7 @@ input[type=button], input[type=submit], input[type=reset]  {
   box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
   -webkit-border-radius: 5px 5px 5px 5px;
   border-radius: 5px 5px 5px 5px;
-  margin: 5px 20px 40px 20px;
+  margin: 5px;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
@@ -304,13 +307,12 @@ h1{
 			<!-- Icon -->
 			<div class="fadeIn first">
 				<br/>
-				<a href="/staybusan"><img src="https://www.b-cube.in/wp-content/uploads/2014/05/aditya-300x177.jpg" id="icon" alt="User Icon" /></a>
+				<a href="/staybusan"><img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" /></a>
 				<h1>아이디/비밀번호 찾기</h1>
 			</div>
 
 			<!-- Login Form -->
 				<input type="button" id="findID" class="fadeIn fourth" value="아이디 찾기">
-				<br/>
 				<br/>
 				<input type="button" id="findPass" class="fadeIn fourth" value="비밀번호 찾기">
 
