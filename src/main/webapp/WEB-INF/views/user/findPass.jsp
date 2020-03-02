@@ -426,8 +426,8 @@ h3{
 								  u_id : u_id
 							  },
 							  url : contextPath+"/user/deleteCode",
-							  success : function(data){
-								  alert(data);
+							  success : function(result){
+								  alert(result);
 								  location.href=contextPath+"/user/newPass?u_id="+u_id;
 							  },
 							  error : function(res){
