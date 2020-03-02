@@ -18,7 +18,7 @@
             </tr>
             <tr>
                <td>지역</td>
-               <td colspan=3><input type="text" name="g_area"/></td>
+               <td colspan=3><input type="text" name="g_area" id="area"/></td>
             </tr>
             <tr>
                <td>체크인</td>
@@ -28,7 +28,7 @@
             </tr>
             <tr>
                <td>인원</td>
-               <td colspan=3><input type="number" name="g_guests" class="number" min="0"/></td>
+               <td colspan=3><input type="number" name="g_guests" id="guests" class="number" min="0"/></td>
             </tr>
             <tr>
                <td style="text-align:right;"colspan=4><input type="button" id="searchBtn" value="검색"></td>
@@ -38,9 +38,49 @@
    </div>
    
    <script>
-      $("#searchBtn").click(function(){
-         $("#searchForm").submit();
-      });
+   		$("#searchBtn").click(function(){
+   			var area = $("#area").val();
+   			var startDate = $("#startDate").val();
+      	  	var endDate = $("#endDate").val();
+      	  	var guests = $("#guests").val();
+   			
+      	  	// 전부 입력하지 않은 경우
+      	  	if((area==null || area=="") 
+      	  			&& (startDate == null || startDate == "")
+      	  			&& (endDate == null || endDate == "")
+      	  			&& (guests == null || guests == "")){
+      	  		$("#guests").val("0");
+  				$("#searchForm").submit();
+      	  	}else if(area==null || area==""){
+      	  		alert("지역구를 입력해주세요!");
+      	  		$("#area").focus();
+      	  		return;
+      	  	}else if(startDate == null || startDate==""){
+      	  		alert("체크인 날짜를 입력해 주세요.");
+  				$("#startDate").focus();
+  				return;
+      	  	}else if(endDate == null || endDate == ""){
+ 		  		alert("체크아웃 날짜를 입력해 주세요.");
+ 		  		$("#endDate").focus();
+ 		  		return;
+ 		  	}else if(guests == null || guests == ""){
+	  			alert("인원 수를 입력해 주세요.");
+	  			$("#guests").focus();
+	  			return;
+	  		}else {
+	  			$("#searchForm").submit();
+	  		}
+      	  	
+      	  	
+      	  	
+   			
+   			
+   			
+   			
+   			
+   			
+   		});
+      
       
       
       // 마이너스 숫자 제한

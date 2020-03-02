@@ -25,7 +25,7 @@ public class ImageCheckTask {
 	@Inject
 	ServletContext context;
 	
-	@Scheduled(cron="0/10 * * * * *")
+//	@Scheduled(cron="0/10 * * * * *")
 	public void checkRoomFiles(){
 		System.out.println("없는 방 이미지 삭제 로직 시작");
 		
@@ -39,7 +39,7 @@ public class ImageCheckTask {
 		System.out.println("없는 방 이미지 삭제 로직 종료");
 	}
 	
-	@Scheduled(cron="0/20 * * * * *")
+//	@Scheduled(cron="0/20 * * * * *")
 	public void checkUserImgs() {
 		System.out.println("없는 유저 프로필 삭제 로직 시작");
 		
@@ -53,7 +53,7 @@ public class ImageCheckTask {
 		System.out.println("없는 유저 프로필 삭제 로직 종료");
 	}
 	
-	@Scheduled(cron="0/30 * * * * *")
+//	@Scheduled(cron="0/30 * * * * *")
 	public void removeFakeFolder() {
 		System.out.println("큰 fake 폴더 삭제 시작");
 		

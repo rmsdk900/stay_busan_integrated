@@ -40,6 +40,7 @@ $('#roomMessageModal #btnSendMsg').on("click", function(){
 		dataType: "text",
 		success: function(data){
 			alert(data);
+			var m_content = $("#message-text").val("");
 			$('#roomMessageModal').modal('hide');
 		}
 	});

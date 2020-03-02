@@ -46,6 +46,18 @@ a {
     .info .img {position: absolute;top: 6px;left: 5px;width: 73px;height: 71px;border: 1px solid #ddd;color: #888;overflow: hidden;}
     .info:after {content: '';position: absolute;margin-left: -12px;left: 50%;bottom: 0;width: 22px;height: 12px;background: url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')}
     .info .link {color: #5085BB;}
+    
+    /* 리스트에서 추가시켰을 경우 */
+    .thisRoom {
+    	transform:scale(1.1);
+    	z-index: 10;
+    	opacity: 1.0;
+    }
+    
+    .wrap-noSelected {
+    	z-index: 5;
+    	opacity: 0.8;
+    }
 </style>
 
 <script>
@@ -143,7 +155,7 @@ a {
 	</c:if> --%>
 
 	<script>
-	$(function(){
+	
 		var addr = '${addr}';
 		var price = '${price}';
 		var name = '${name}';
@@ -154,12 +166,16 @@ a {
 		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
 		mapOption = {
 			center : new kakao.maps.LatLng(35.207403, 129.070246), // 지도의 중심좌표
-			level : 3
+			level : 4
 		// 지도의 확대 레벨
 		};
 
 		//지도를 생성합니다    
 		var map = new kakao.maps.Map(mapContainer, mapOption);
+		
+		// 맵 줌 컨트롤 넣기
+		var zoomControl = new kakao.maps.ZoomControl();
+		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
 		//주소-좌표 변환 객체를 생성합니다
 		var geocoder = new kakao.maps.services.Geocoder();
@@ -201,12 +217,15 @@ a {
 				// 마커 이미지
 				});
 				
+				 
+				
 				// 커스텀 오버레이에 표시할 컨텐츠 입니다
 				// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
 				// 별도의 이벤트 메소드를 제공하지 않습니다 
-				var content = '<div class="wrap">' + 
+				var content = '<div class="wrap wrap-noSelected" data-r_no="'+positions[i].r_no+'">' + 
 				            '    <div class="info">' + 
 				            '        <div class="title">' + positions[i].title +
+				            /* '<div class="close closeOverLay" title="닫기"></div>'+ */
 				            '        </div>' + 
 				            '        <div class="body">' + 
 				            '            <div class="img">' +
@@ -232,13 +251,17 @@ a {
 				// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
 				kakao.maps.event.addListener(marker, 'click', function() {
 				    overlay.setMap(map);
-				    console.log('click');
+				    
 				});
-
+				
+				$(".closeOverLay").on("click", closeOverlay);
+				
 				// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
 				function closeOverlay() {
+					console.log("click");
 				    overlay.setMap(null);     
 				}
+				
 				
 				// 이동
 				if(i==0){
@@ -281,10 +304,24 @@ a {
 					});
 			
 		});
+
+	
+	// 룸에 마우스 올렸을 때 해당 아이콘 움직이기
+	$(".listToChange").on("mouseover", function(e){
+		/* console.log("마우스 들어왔다!"); */
+		var map_r_no = $(this).find(".roomInfo .scrolling").attr("data-rno");
+		console.log(map_r_no);
+		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("thisRoom");
+		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("wrap-noSelected");
 	});
 	
-	
-	
+	// 마우스가 빠져나갔을 때 
+	$(".listToChange").on("mouseout", function(e){
+		/* console.log("마우스 나갔다!"); */
+		var map_r_no = $(this).find(".roomInfo .scrolling").attr("data-rno");
+		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("thisRoom");
+		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("wrap-noSelected");
+	});
 	</script>
 
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
