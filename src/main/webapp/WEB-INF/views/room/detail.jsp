@@ -434,7 +434,7 @@
 				
 			</div>
 			<hr/>
-			<%@ include file="../comment/comment.jsp" %>
+			<%@ include file="../comment/comment_detail.jsp" %>
 			<!-- deleted된 거 안보이게 -->
 			<c:if test="${roomInfo.roomVO.r_deleted eq 0}">
 				<!-- 예약 폼 -->
