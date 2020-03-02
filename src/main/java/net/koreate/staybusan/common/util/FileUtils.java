@@ -24,6 +24,8 @@ import org.springframework.http.MediaType;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import net.koreate.staybusan.room.vo.RoomImgVO;
+
 public class FileUtils {
 
 	ServletContext context;
@@ -414,6 +416,141 @@ public class FileUtils {
 		System.out.println("프로필 변경 업로드 완료");
 		
 		return makeFileUploadName(uploadFolder, savedName);
+	}
+	
+	
+	// DB에 없는 이미지 파일들 지우기
+	public void removeRoomImgs(List<RoomImgVO> fileList) {
+		
+		if(!fileList.isEmpty()) {
+//			System.out.println("리스트 존재함.");
+			
+			List<String> names = new ArrayList<>();
+			for (RoomImgVO vo : fileList) {
+				names.add(vo.getR_i_fullName());
+			}
+			
+			// 모든 경로들
+			List<String> paths = new ArrayList<>();
+			
+			for(RoomImgVO vo : fileList) {
+				String path = vo.getR_i_fullName().substring(0, vo.getR_i_fullName().lastIndexOf("/")+1);
+				// fake도 넣자
+				String[] splits = vo.getR_i_fullName().split("/");
+				String fakePath = "/"+splits[1]+"/fake/";
+//				System.out.println(path);
+				if(paths.size() == 0) {
+					paths.add(path);
+					paths.add(fakePath);
+				}else if(paths.size() > 0 && !paths.contains(path) && !paths.contains(fakePath)) {
+					paths.add(path);
+					paths.add(fakePath);
+				}
+			}
+//			System.out.println(paths);
+			
+			for (String path : paths) {
+				System.out.println(path);
+				String realPath = path.replace('/', File.separatorChar);
+				if(!realPath.contains("fake")) {
+					List<String> removeList = new ArrayList<>();
+					File filePath = new File(uploadPath, realPath);
+					
+					List<File> files = Arrays.asList(filePath.listFiles());
+					
+					// 파일 삭제할 리스트들 추가
+					for(File f : files) {
+//						System.out.println(f.getName());
+						String removeFilePath = path+f.getName();
+//						System.out.println(removeFilePath);
+						if(!names.contains(removeFilePath)) {
+							removeList.add(removeFilePath);
+						}
+					}
+					
+					if(!removeList.isEmpty()){
+						System.out.println("removeList : "+removeList);
+						deleteAllFiles(removeList);
+					}
+				}else {
+					// fake 폴더 자체 삭제하기
+					File fakeFolder = new File(uploadPath, realPath);
+					while(fakeFolder.exists()) {
+						List<File> fakeFileList = Arrays.asList(fakeFolder.listFiles());
+						for(int i=0;i<fakeFileList.size();i++) {
+							fakeFileList.get(i).delete();
+						}
+						
+						if(fakeFileList.size()==0 && fakeFolder.isDirectory()) {
+							fakeFolder.delete();
+							System.out.println("유저 번호 내 fake 폴더 삭제");
+						}
+					}
+				}
+				
+			}
+			
+			
+		}
+		
+	}
+
+	public void removeUserProfiles(List<String> userList) {
+		if(!userList.isEmpty()) {
+			// 모든 경로들
+			List<String> paths = new ArrayList<>();
+			
+			// 경로들 리스트 추가
+			for(String fullName : userList) {
+				String path = fullName.substring(0, fullName.lastIndexOf("/")+1);
+				if(paths.size()==0) {
+					paths.add(path);
+				}else if(paths.size() > 0 && !paths.contains(path)) {
+					paths.add(path);
+				}
+			}
+			
+			// 삭제 준비
+			for (String path : paths) {
+				String realPath = path.replace('/', File.separatorChar);
+				
+				List<String> removeList = new ArrayList<>();
+				File filePath = new File(uploadPath, realPath);
+				
+				List<File> files = Arrays.asList(filePath.listFiles());
+				// DB에 없는 경로들은 안에 다 삭제하기
+				
+				// 파일 삭제할 리스트들 추가
+				for(File f : files) {
+					System.out.println(f.getName());
+					String removeFilePath = path+f.getName();
+					if(!userList.contains(removeFilePath)) {
+						removeList.add(removeFilePath);
+					}
+				}
+				
+				if(!removeList.isEmpty()){
+					deleteAllFiles(removeList);
+				}
+			}
+			
+		}
+		
+	}
+
+	public void removeFakeFolder() {
+		File fakeFolder = new File(uploadPath, File.separator+"fake"+File.separator);
+		while(fakeFolder.exists()) {
+			List<File> fakeFileList = Arrays.asList(fakeFolder.listFiles());
+			for(int i=0;i<fakeFileList.size();i++) {
+				fakeFileList.get(i).delete();
+			}
+			
+			if(fakeFileList.size()==0 && fakeFolder.isDirectory()) {
+				fakeFolder.delete();
+				System.out.println("큰 fake 폴더 삭제");
+			}
+		}
 	}
 	
 	

@@ -36,4 +36,8 @@ public interface TaskDAO {
 	@Update("UPDATE user SET u_type=2 WHERE u_no = #{hostUnoi}")
 	void upgradeGrade(int hostUnoi);
 
+	// 유저 프로필 불러오기
+	@Select("SELECT u_profile FROM user")
+	List<String> existedUserProfiles();
+
 }
