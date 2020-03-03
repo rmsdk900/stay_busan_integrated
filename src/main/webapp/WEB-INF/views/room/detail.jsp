@@ -179,6 +179,10 @@
    background-size: 50px 50px;
 }
 
+.room_like:hover {
+	cursor: pointer;
+}
+
 .room_like.on {
    width: 50px;
    height: 50px;
@@ -1135,7 +1139,7 @@
          /* console.log(fileInfo); */
          
          var html = "";
-         html += "<a href='"+contextPath+"/user/show?u_no="+owner+"'>";
+         html += "<a href='"+contextPath+"/user/hosting?u_no="+owner+"'>";
          html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />"
          html += "</a>";
          $(".room_host_img").append(html);
@@ -1304,6 +1308,10 @@
       
       // 좋아요 버튼 클릭
       $("#btn_room_like").on("click",function(){
+    	  if(login_u_no == "0"){
+    		  alert("로그인 후 이용해주세요!");
+    		  return;
+    	  }
          // 이미 클릭!
          if($(this).hasClass("on")){
             
