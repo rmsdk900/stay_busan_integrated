@@ -47,11 +47,22 @@
    transition: all 0.3s ease-in-out;
 }
 
+table tr td{
+   padding-right:20px;
+   text-align:center;
+}
+
+table tr th{
+   padding-right:20px;
+   text-align:center;
+}
+
+
 </style>
 
 
 
-<div style=" margin-left:10%; margin-bottom:10%">
+<div style=" margin-left:10%; margin-bottom:10%; margin-top:2%;">
    <img style="width:500px;height:300px;" src="${pageContext.request.contextPath}/user/displayFile?fileName=${history.r_i_fullName}"/>
    
    <h2><br/>${history.r_name}</h2>
@@ -59,12 +70,11 @@
    <div>
       <h5>체크인 : <f:formatDate value="${history.b_date_from}" pattern="yyyy.MM.dd"/> &nbsp;&nbsp;&nbsp;<f:formatDate value="${history.r_checkin}" pattern="a hh:mm"/><br/></h5>
       <h5>체크아웃 : <f:formatDate value="${history.b_date_to}" pattern="yyyy.MM.dd"/> &nbsp;&nbsp;&nbsp;<f:formatDate value="${history.r_checkout}" pattern="a hh:mm"/> <br/></h5>
-      <hr/>
       <br/>
       <h5>예약 인원 : ${history.b_guest} 명<br/></h5>
-      <h5>결제 금액 : \ ${history.b_total_price} 원<br/></h5>
+      <h5>결제 금액 : ￦ ${history.b_total_price} 원<br/></h5>
    </div>
-   
+   <br/>
    <!-- 다시 예약-> 없어진 방이면 버튼 없애기 -->
    <c:if test="${history.r_deleted == 0}">
       <!-- 삭제된 방이면 버튼 안보이게 -->
@@ -150,7 +160,7 @@
                </tr>
                <tr>
                   <td class="commentWriteTd">
-                     <textarea cols=70 rows=10 name="c_content"></textarea>
+                     <textarea style="-webkit-border-radius: 5px 5px 5px 5px; border-radius: 5px 5px 5px 5px;" cols=70 rows=10 name="c_content"></textarea>
                      <div style="margin-top:3%;" class="starWrite">
                        <span class="starR1 on">별1_왼쪽</span>
                        <span class="starR2 on">별1_오른쪽</span>

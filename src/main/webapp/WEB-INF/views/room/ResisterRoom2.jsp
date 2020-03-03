@@ -58,8 +58,8 @@ align:center;
 }
 
 .roomWrap{/* 전체 감싸는 div */
-   margin-top:8%;
-   margin-left:20%;
+   margin-top:6%;
+   margin-left:13%;
 }
 
 .table1{
@@ -236,13 +236,13 @@ textarea{
                   
                      <tr>
                         <td>숙소 이름</td>
-                        <td colspan=2><input type="text" name="r_name" id="r_name" style="width:93%;"/></td>
+                        <td colspan=2><input type="text" name="r_name" id="r_name" autocomplete="off" style="width:93%;"/></td>
                      </tr>
                      <tr>
                         <td colspan=3>숙소 설명</td>
                      </tr>
                      <tr>
-                        <td colspan=3><textarea rows="20" cols="50" name="r_desc" id="r_desc" style="width:100%;"></textarea></td>
+                        <td colspan=3><textarea rows="20" cols="50" name="r_desc" id="r_desc" autocomplete="off" style="width:100%;"></textarea></td>
                      </tr>
                   </table>
                </div>
@@ -253,14 +253,14 @@ textarea{
                   <table>
                      <tr>
                         <td>숙박 가능 날짜</td>
-                        <td colspan=2><input type="text" id="startDate" name="date_from" readonly>-<input type="text" name="date_to" id="endDate"></td>
+                        <td colspan=2><input type="text" id="startDate" name="date_from" autocomplete="off" readonly>-<input type="text" name="date_to" autocomplete="off" id="endDate"></td>
                      </tr>
                      <tr>
                         <td>숙박 불가 기간</td>
                         <td colspan=2>
                            <div id="banDate">
                               <div>
-                                 <input type="text" class="banStartDate" name="closed_from" readonly>-<input type="text" name="closed_to" class="banEndDate" readonly>
+                                 <input type="text" class="banStartDate" name="closed_from" autocomplete="off" readonly>-<input type="text" name="closed_to" class="banEndDate" autocomplete="off" readonly>
                                  <input type="button" id="banDateAdd" value="추가"/> | <input type="button" id="clearBtn" value="초기화"/>
                               </div>
                            </div>
@@ -436,6 +436,8 @@ textarea{
            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
          onSelect : function(dateText, inst) {
             minDate = new Date(dateText);
+            $(".banStartDate").datepicker("destroy");
+            $(".banEndDate").datepicker("destroy");
             $("#endDate").datepicker("option","minDate",minDate);
             $(".endDate").focus();
          }
@@ -452,8 +454,13 @@ textarea{
            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
            onSelect : function(dateText, inst){
               maxDate = new Date(dateText);
+              console.log(maxDate);
               $(".endDate").focus();
+              $(".banStartDate").datepicker("destroy");
+              $(".banEndDate").datepicker("destroy");
               startDatepicker();
+              endDatepicker();
+              $(".banEndDate").datepicker("option","maxDate",maxDate);
            }
       });
    
@@ -474,7 +481,9 @@ textarea{
          onSelect : function(dateText, inst) {
             endMinDate = new Date(dateText);
             banStartDate = new Date(dateText);
+            $(".banEndDate").datepicker("destroy");
             endDatepicker();
+            $(".banEndDate").datepicker("option","maxDate",maxDate);
             $(".endDate").focus();
          }
       });
@@ -494,7 +503,6 @@ textarea{
            dayNamesMin: ['일', '월', '화', '수', '목', '금', '토'],
            onSelect : function(dateText, inst){
               banEndDate = new Date(dateText);
-              console.log(banEndDate);
               banDateCalc(banStartDate, banEndDate);
               $(".endDate").focus();
            }
@@ -563,7 +571,7 @@ textarea{
    $("#banDateAdd").click(function(){
       var html = "";
       html += "<div>";
-      html += "<input type='text' class='addBanStartDate' name='closed_from' readonly>-<input type='text' class='addBanEndDate' name='closed_to' readonly/>&nbsp;&nbsp;<input type='button' class='banCancel' value='x'/>"
+      html += "<input type='text' class='addBanStartDate' name='closed_from' autocomplete='off' readonly>-<input type='text' class='addBanEndDate' name='closed_to' autocomplete='off' readonly/>&nbsp;&nbsp;<input type='button' class='banCancel' value='x'/>"
       html += "</div>";
       $("#banDate").append(html);
       addStartDatepicker();

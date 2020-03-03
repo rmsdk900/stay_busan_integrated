@@ -66,12 +66,25 @@
 .room_host_img {
    width: 100px;
    height: 100px;
+   margin-top:1%;
+   margin-bottom:1%;
 }
 
 .FilledImg {
    width: 100%;
    height: 100%;
-   margin-top:15%;
+   
+}
+
+.room_primary_facility {
+   padding-left: 0;
+   
+}
+
+.room_primary_facility li {
+   float:left;
+   margin-right: 20px;
+   margin-bottom: 10px;
 }
 
 .room_reservation_people_message {
@@ -183,7 +196,7 @@
    margin: 0 auto;
 }
 
-.room_imgs{
+.room_imgs {
    border: 1px solid skyblue;
 }
 
@@ -203,8 +216,8 @@
    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
    -webkit-border-radius: 5px 5px 5px 5px;
    border-radius: 5px 5px 5px 5px;
-   margin-top:15px;
-   margin-left:21%;
+   margin-top: 15px;
+   margin-left: 21%;
    -webkit-transition: all 0.3s ease-in-out;
    -moz-transition: all 0.3s ease-in-out;
    -ms-transition: all 0.3s ease-in-out;
@@ -212,12 +225,14 @@
    transition: all 0.3s ease-in-out;
 }
 
-.msgBtn:hover{
+.msgBtn:hover {
    background-color: #39ace7;
-   color:white;
+   color: white;
 }
 
-.msgBtn2, .room_primary_modify, .room_amenity_modify_btn {
+.msgBtn2, .room_primary_modify, .room_amenity_modify_btn,
+   .room_primary_modify_submit, .room_primary_modify_cancel,
+   .room_amenity_modify_submit, .room_amenity_modify_cancel {
    background-color: #56baed;
    border: none;
    color: white;
@@ -240,10 +255,11 @@
    -o-transition: all 0.3s ease-in-out;
    transition: all 0.3s ease-in-out;
 }
-.msgBtn2:hover, .room_primary_modify:hover, .room_amenity_modify_btn:hover{
-   background-color: #39ace7;
-} 
 
+.msgBtn2:hover, .room_primary_modify:hover, .room_amenity_modify_btn:hover
+   {
+   background-color: #39ace7;
+}
 </style>
 
 <style>
@@ -309,7 +325,7 @@
 
 .room_reservation_submit:hover {
    background-color: #39ace7;
-   color:white;
+   color: white;
 }
 
 #startDate, #endDate {
@@ -374,8 +390,8 @@
    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
    -webkit-border-radius: 5px 5px 5px 5px;
    border-radius: 5px 5px 5px 5px;
-   margin-top: 10px; 
-   -webkit-transition : all 0.3s ease-in-out;
+   margin-top: 10px;
+   -webkit-transition: all 0.3s ease-in-out;
    -moz-transition: all 0.3s ease-in-out;
    -ms-transition: all 0.3s ease-in-out;
    -o-transition: all 0.3s ease-in-out;
@@ -399,8 +415,8 @@
    box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
    -webkit-border-radius: 5px 5px 5px 5px;
    border-radius: 5px 5px 5px 5px;
-   margin-top: 10px; 
-   -webkit-transition : all 0.3s ease-in-out;
+   margin-top: 10px;
+   -webkit-transition: all 0.3s ease-in-out;
    -moz-transition: all 0.3s ease-in-out;
    -ms-transition: all 0.3s ease-in-out;
    -o-transition: all 0.3s ease-in-out;
@@ -411,7 +427,53 @@
 #roomPicturesModalBtn:hover, #modPictureBtn:hover {
    background-color: #39ace7;
 }
+
+.room_description_modify {
+   background-color: #f6f6f6;
+   border: none;
+   color: #0d0d0d;
+   padding: 10px;
+   text-align: left;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 12px;
+   width: 30%;
+   height: 80px;
+   border: 2px solid #f6f6f6;
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border-radius: 5px 5px 5px 5px;
+}
+
+.room_primary_title_modify {
+   background-color: #f6f6f6;
+   border: none;
+   color: #0d0d0d;
+   padding: 10px;
+   text-align: left;
+   text-decoration: none;
+   display: inline-block;
+   font-size: 12px;
+   width: 20%;
+   height: 40px;
+   border: 2px solid #f6f6f6;
+   -webkit-transition: all 0.5s ease-in-out;
+   -moz-transition: all 0.5s ease-in-out;
+   -ms-transition: all 0.5s ease-in-out;
+   -o-transition: all 0.5s ease-in-out;
+   transition: all 0.5s ease-in-out;
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border-radius: 5px 5px 5px 5px;
+}
+
+
 </style>
+
+
 
 <c:if test="${!empty roomInfo}">
    <div class="room">
@@ -438,10 +500,10 @@
       <hr/>
       <div class="room_wrapper">
          <div class="room_primary">
-            <div>
-               <h2 class="room_primary_title" >${roomInfo.roomVO.r_name}</h2>
+            <div style="display:flex;align-items: center;">
+               <h2 class="room_primary_title" style="display:inline-block;margin-right:1%;" >${roomInfo.roomVO.r_name}</h2>
                <!-- 좋아요 버튼 -->
-               <div id="btn_room_like" class="room_like"></div>
+               <div id="btn_room_like" class="room_like" style="display:inline-block;padding:auto 0;"></div>
                <input type="text" name="r_name" value="${roomInfo.roomVO.r_name}" class="room_primary_title_modify" />
             </div>
             <div>
@@ -460,37 +522,38 @@
             </div>
             <div>
                <ul class="room_primary_facility" style="list-style:none;">
-                  <li class="room_primary_guests"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/human.png">
+                  <li class="room_primary_guests"><img style="width:30px;height:30px; margin:10px 10px 10px 0;" src="${path}/resources/img/icon/human.png">
                   인원 : <span>${roomInfo.roomVO.r_guests}</span></li>
                   
-                  <li class="room_primary_bedroom"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/bedroom.png">
+                  <li class="room_primary_bedroom"><img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bedroom.png">
                   침실 : <span>${roomInfo.roomVO.r_bedroom}</span></li>
                   
-                  <li class="room_primary_bed"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/bed.png">
+                  <li class="room_primary_bed"><img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bed.png">
                   침대 : <span>${roomInfo.roomVO.r_bed}</span></li>
                   
-                  <li class="room_primary_bath"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/bathroom.png">
+                  <li class="room_primary_bath"><img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bathroom.png">
                   욕실 : <span>${roomInfo.roomVO.r_bath}</span></li>
                </ul>
-               <ul class="room_primary_facility_modify">
+               
+               <ul class="room_primary_facility_modify" style="list-style:none;">
                   <li>
-                     인원 : <input class="room_primary_guests_modify" type="number" name="r_guests" min="1" step="1" value="${roomInfo.roomVO.r_guests}" />
+                     인원 : <input style="width: 15%;" class="room_primary_guests_modify" type="number" name="r_guests" min="1" step="1" value="${roomInfo.roomVO.r_guests}" />
                   </li>
                   <li>
-                     침실 : <input class="room_primary_bedroom_modify" type="number" name="r_bedroom" min="0" step="1" value="${roomInfo.roomVO.r_bedroom}" />
+                     침실 : <input style="width: 15%;" class="room_primary_bedroom_modify" type="number" name="r_bedroom" min="0" step="1" value="${roomInfo.roomVO.r_bedroom}" />
                   </li>
                   <li>
-                     침대 : <input class="room_primary_bed_modify" type="number" name="r_bed" min="0" step="1" value="${roomInfo.roomVO.r_bed}" /> 
+                     침대 : <input style="width: 15%;" class="room_primary_bed_modify" type="number" name="r_bed" min="0" step="1" value="${roomInfo.roomVO.r_bed}" /> 
                   </li>
                   <li>
-                     욕실 : <input class="room_primary_bath_modify" type="number" name="r_bath" min="0" step="1" value="${roomInfo.roomVO.r_bath}" />
+                     욕실 : <input style="width: 15%;" class="room_primary_bath_modify" type="number" name="r_bath" min="0" step="1" value="${roomInfo.roomVO.r_bath}" />
                   </li>
                </ul>
             </div>
             
          </div>
          
-         <hr/>
+         <hr style="clear:both;"/>
          <div >
             <div>
                <div class="room_description">
@@ -507,7 +570,7 @@
          </div>
          <c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
                <div class="room_reservation_per_price_modify">
-                  1박당 1인 가격 : <input type= "number" name="r_price" value="${roomInfo.roomVO.r_price}" 
+                  1박당 1인 가격 : <input style="width: 15%;"type= "number" name="r_price" value="${roomInfo.roomVO.r_price}" 
                   class="r_price" step="100" min="0"/> 원
                </div>
                <div class="room_primary_modify_btn">
@@ -524,11 +587,12 @@
             </c:if>
          <hr/>
          <div class="room_amenities">
+            <h4>편의시설</h4>
             <ul style="list-style:none; float:left;">
                <li class="room_amenity wifi"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/wifi.png">
                와이파이 : <span>${roomInfo.amenityVO.a_wifi == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify">
-                  와이파이 : 
+                 <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/wifi.png"> 와이파이 : 
                   <select class="wifi_available" name="a_wifi">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_wifi == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_wifi == 0 ? 'selected' : '' }"/>>없음</option>
@@ -537,7 +601,7 @@
                <li class="room_amenity heating"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/heating.png">
                난방 : <span>${roomInfo.amenityVO.a_heating == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify">
-                  난방 : 
+                 <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/heating.png"> 난방 : 
                   <select class="heating_available" name="a_heating">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_heating == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_heating == 0 ? 'selected' : '' }"/>>없음</option>
@@ -546,7 +610,7 @@
                <li class="room_amenity TV"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/tv.png">
                TV : <span>${roomInfo.amenityVO.a_TV == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  TV : 
+                 <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/tv.png"> TV : 
                   <select class="TV_available" name="a_TV">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_TV == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_TV == 0 ? 'selected' : '' }"/>>없음</option>
@@ -555,7 +619,7 @@
                <li class="room_amenity kitchen"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/kitchen.png">
                주방 : <span>${roomInfo.amenityVO.a_kitchen == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  주방 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/kitchen.png"> 주방 : 
                   <select class="kitchen_available" name="a_kitchen">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_kitchen == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_kitchen == 0 ? 'selected' : '' }"/>>없음</option>
@@ -564,7 +628,7 @@
                <li class="room_amenity hairdryer"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/hairdryer.png">
                헤어 드라이어 : <span>${roomInfo.amenityVO.a_hairdryer == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  헤어 드라이어 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/hairdryer.png"> 헤어 드라이어 : 
                   <select class="hairdryer_available" name="a_hairdryer">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_hairdryer == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_hairdryer == 0 ? 'selected' : '' }"/>>없음</option>
@@ -573,7 +637,7 @@
                <li class="room_amenity iron"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/iron.png">
                다리미 : <span>${roomInfo.amenityVO.a_iron == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  다리미 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/iron.png"> 다리미 : 
                   <select class="iron_available" name="a_iron">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_iron == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_iron == 0 ? 'selected' : '' }"/>>없음</option>
@@ -584,7 +648,7 @@
                <li class="room_amenity hanger"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/hanger.png">
                옷걸이 : <span>${roomInfo.amenityVO.a_hanger == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  옷걸이 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/hanger.png"> 옷걸이 : 
                   <select class="hanger_available" name="a_hanger">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_hanger == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_hanger == 0 ? 'selected' : '' }"/>>없음</option>
@@ -594,7 +658,7 @@
                <li class="room_amenity towel"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/towel.png">
                수건 : <span>${roomInfo.amenityVO.a_towel == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify">
-                  수건 : 
+                  <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/towel.png"> 수건 : 
                   <select class="towel_available" name="a_towel">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_towel == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_towel == 0 ? 'selected' : '' }"/>>없음</option>
@@ -603,7 +667,7 @@
                <li class="room_amenity elevator"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/elevator.png">
                엘리베이터 : <span>${roomInfo.amenityVO.a_elevator == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  엘리베이터 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/elevator.png"> 엘리베이터 : 
                   <select class="elevator_available" name="a_elevator">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_elevator == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_elevator == 0 ? 'selected' : '' }"/>>없음</option>
@@ -612,7 +676,7 @@
                <li class="room_amenity parking"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/parking.png">
                주차가능 : <span>${roomInfo.amenityVO.a_parking == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  주차가능 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/parking.png"> 주차가능 : 
                   <select class="parking_available" name="a_parking">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_parking == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_parking == 0 ? 'selected' : '' }"/>>없음</option>
@@ -621,7 +685,7 @@
                <li class="room_amenity washer"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/washer.png">
                세탁기 : <span>${roomInfo.amenityVO.a_washer == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  세탁기 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/washer.png"> 세탁기 : 
                   <select class="washer_available" name="a_washer">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_washer == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_washer == 0 ? 'selected' : '' }"/>>없음</option>
@@ -630,7 +694,7 @@
                <li class="room_amenity cookware"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/cookware.png">
                조리기구 : <span>${roomInfo.amenityVO.a_cookware == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  조리기구 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/cookware.png"> 조리기구 : 
                   <select class="cookware_available" name="a_cookware">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_cookware == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_cookware == 0 ? 'selected' : '' }"/>>없음</option>
@@ -641,7 +705,7 @@
                <li class="room_amenity refri"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/refri.png">
                냉장고 : <span>${roomInfo.amenityVO.a_refri == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  냉장고 : 
+                  <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/refri.png"> 냉장고 : 
                   <select class="refri_available" name="a_refri">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_refri == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_refri == 0 ? 'selected' : '' }"/>>없음</option>
@@ -650,7 +714,7 @@
                <li class="room_amenity burner"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/burner.png">
                가스레인지 및 버너 : <span>${roomInfo.amenityVO.a_burner == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  가스레인지 및 버너 : 
+                 <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/burner.png"> 가스레인지 및 버너 : 
                   <select class="burner_available" name="a_burner">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_burner == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_burner == 0 ? 'selected' : '' }"/>>없음</option>
@@ -659,7 +723,7 @@
                <li class="room_amenity dish"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/dishes.png">
                식기 : <span>${roomInfo.amenityVO.a_dish == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  식기 : 
+               <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/dishes.png"> 식기 : 
                   <select class="dish_available" name="a_dish">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_dish == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_dish == 0 ? 'selected' : '' }"/>>없음</option>
@@ -668,7 +732,7 @@
                <li class="room_amenity micro"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/microwave.png">
                전자레인지 : <span>${roomInfo.amenityVO.a_micro == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  전자레인지 : 
+                <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/microwave.png"> 전자레인지 : 
                   <select class="micro_available" name="a_micro">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_micro == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_micro == 0 ? 'selected' : '' }"/>>없음</option>
@@ -677,13 +741,14 @@
                <li class="room_amenity aircon"><img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/aircon.png">
                에어컨 : <span>${roomInfo.amenityVO.a_aircon == 1 ? '있음' : '없음' }</span></li>
                <li class="room_amenity_modify" >
-                  에어컨 : 
+                 <img style="width:30px;height:30px; margin:10px;" src="${path}/resources/img/icon/aircon.png"> 에어컨 : 
                   <select class="aircon_available" name="a_aircon">
                      <option value="1" <c:out value="${roomInfo.amenityVO.a_aircon == 1 ? 'selected' : '' }"/>>있음</option>
                      <option value="0" <c:out value="${roomInfo.amenityVO.a_aircon == 0 ? 'selected' : '' }"/>>없음</option>
                   </select>
                </li>
             </ul>
+            <br style="clear:both;"/>
             <c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
                <div>
                   <button type="button" class="room_amenity_modify_btn" >
@@ -699,9 +764,9 @@
             </c:if>
          </div>
          
-         <hr/>
+         <hr />
          
-         <div class="room_host_description" style="clear:both;">
+         <div class="room_host_description" >
             <div>
                <h4>
                   호스트 : ${roomInfo.hostVO.u_name}님
@@ -725,6 +790,7 @@
          <!-- deleted된 거 안보이게 -->
          <c:if test="${roomInfo.roomVO.r_deleted eq 0}">
             <!-- 예약 폼 -->
+           <!-- 예약 폼 -->
             <div class="room_reservation" style="position: fixed; right: 0; bottom: 0; margin-right:10%; margin-bottom:5%;">
                <form id="bookingForm" action="${pageContext.request.contextPath}/book/bookingRoom" method="post">
                   <input type="hidden" name="r_no" value="${roomInfo.roomVO.r_no}" />
@@ -733,7 +799,7 @@
                   <div>
                      <div>
                         <span class="room_reservation_per_price">${roomInfo.roomVO.r_price}</span>
-                        <span class="room_reservation_days">/ [0] 박</span>
+                        <span class="room_reservation_days">/ 0 박</span>
                      </div>
                      <div class="room_reservation_star">
                         <div class="starRev">
@@ -748,9 +814,14 @@
                            <span class="avgStarL5"></span>
                            <span class="avgStarR5"></span>
                         </div>
-                        <span class="star_float">0</span>
                      </div>
-                     <div class="room_reservation_total">(후기 0개)</div>
+                     <br/>
+                     <br/>
+                     <div>
+                        <span class="star_float"> 0</span>
+                        <span>점</span>
+                        <span class="room_reservation_total">(후기 0개)</span>
+                     </div>
                      <hr/>
                   </div>
                   <div>
@@ -1256,6 +1327,15 @@
          }
       });
       
+      // 편의시설 있음 없음 css 표시
+      $(".room_amenity").each(function(){
+        if($(this).find("span").html()=='없음'){
+           $(this).css("opacity", "0.45");
+        }else {
+           $(this).css("font-weight","570");
+        }
+      });
+      
    </script>
    <script src="${pageContext.request.contextPath}/resources/js/comment.js"></script>
    <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
@@ -1264,6 +1344,4 @@
    <script src="${pageContext.request.contextPath}/resources/js/detailDate.js"></script>
    <script src="${pageContext.request.contextPath}/resources/js/modPicture.js"></script>
 </c:if>
-
-<hr/>
 <%@ include file="../common/footer.jsp" %>

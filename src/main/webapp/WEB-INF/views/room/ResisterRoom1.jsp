@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<c:set var="path" value="${pageContext.request.contextPath}" />
 <!DOCTYPE html>
 <html>
 <head>
@@ -208,16 +209,35 @@ input[type=number] {
                   <h2>방 기본 정보</h2>
                   <table style="margin-bottom:50px;">
                      <tr>
-                        <td>인원  <input id="r_guests" type="number" name="r_guests" min="0" value="1"/>명</td>
+                        <td>
+                           <img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/human.png">
+                           </td>
+                           <td> 인원  <input id="r_guests" type="number" name="r_guests" min="0" value="1"/>명
+                        </td>
                      </tr>
                      <tr>
-                        <td>침실  <input id="r_bedroom" type="number" name="r_bedroom" min="0" value="1"/>개</td>
+                        <td>
+                           <img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bedroom.png">
+                           </td>
+                           <td>
+                           침실  <input id="r_bedroom" type="number" name="r_bedroom" min="0" value="1"/>개
+                        </td>
                      </tr>
                      <tr>   
-                        <td>침대  <input id="r_bed" type="number" name="r_bed" min="0" value="1"/>개</td>
+                        <td>
+                           <img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bed.png">
+                           </td>
+                           <td>
+                           침대  <input id="r_bed" type="number" name="r_bed" min="0" value="1"/>개
+                        </td>
                      </tr>
                      <tr>
-                        <td>욕실 수 <input id="r_bath" type="number" name="r_bath" min="0" value="1"/>개</td>
+                        <td>
+                           <img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bathroom.png">
+                           </td>
+                           <td>
+                           욕실 수 <input id="r_bath" type="number" name="r_bath" min="0" value="1"/>개
+                        </td>
                      </tr>
                   </table>
                </div>

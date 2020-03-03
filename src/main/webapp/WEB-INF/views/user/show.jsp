@@ -215,19 +215,10 @@
             </div>
          </c:if>
       </div>
+      <hr/>
    </div>
-   <!-- 숙소들 -->
-   <!-- 
-      조건 
-      1. 보려는 페이지가 게스트일 경우
-         1) 접속한 u_no랑 보려는 사람의 u_no가 같을 때 = 내 거 볼 때
-         2) 접속한 내 u_no랑 보려는 마이페이지의 u_no가 다를 때 = 다른 사람 거 볼 때
-      2. 보려는 페이지가 호스트일 경우
-         1) 접속한 u_no랑 보려는 사람의 u_no가 같을 때 = 내 거 볼 때
-         2) 접속한 내 u_no랑 보려는 마이페이지의 u_no가 다를 때 = 다른 사람 거 볼 때
-   -->
+   
    <%@ include file="./showGuestRooms.jsp" %>
-   <hr/>
    <%@ include file="../comment/comment_guest.jsp" %>
       
 

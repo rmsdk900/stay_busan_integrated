@@ -1,193 +1,204 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%@ include file="../../common/header.jsp"%>
 <style>
 a {
-	text-decoration: none;
-	color: black;
+   text-decoration: none;
+   color: black;
 }
 .listWrap {
-	margin-left: 10%;
+   margin-left: 10%;
 }
 
 .list {
-	width: 45%;
-	float: left;
+   width: 45%;
+   float: left;
 }
 
 .listBtn {
-	margin-left: 30%;
+   margin-left: 28%;
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 17%;
+    display: flex;
+    justify-content: space-around;
 }
 
 .roomImgDiv {
-	width: 300px;
-	float: left;
+   width: 200px;
+   float: left;
 }
 
 .roomInfo {
-	width: 350px;
-	float: left;
+   width: 400px;
+   float: left;
 }
 
 .roomImg {
-	width: 80%;
+   width: 80%;
 }
 
 .wrap {
-	position: absolute;
-	left: 0;
-	bottom: 40px;
-	width: 288px;
-	height: 132px;
-	margin-left: -144px;
-	text-align: left;
-	overflow: hidden;
-	font-size: 12px;
-	font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
-	line-height: 1.5;
+   position: absolute;
+   left: 0;
+   bottom: 40px;
+   width: 288px;
+   height: 132px;
+   margin-left: -144px;
+   text-align: left;
+   overflow: hidden;
+   font-size: 12px;
+   font-family: 'Malgun Gothic', dotum, '돋움', sans-serif;
+   line-height: 1.5;
 }
 
 .wrap * {
-	padding: 0;
-	margin: 0;
+   padding: 0;
+   margin: 0;
 }
 
 .wrap .info {
-	width: 286px;
-	height: 120px;
-	border-radius: 5px;
-	border-bottom: 2px solid #ccc;
-	border-right: 1px solid #ccc;
-	overflow: hidden;
-	background: #fff;
+   width: 286px;
+   height: 120px;
+   border-radius: 5px;
+   border-bottom: 2px solid #ccc;
+   border-right: 1px solid #ccc;
+   overflow: hidden;
+   background: #fff;
 }
 
 .wrap .info:nth-child(1) {
-	border: 0;
-	box-shadow: 0px 1px 2px #888;
+   border: 0;
+   box-shadow: 0px 1px 2px #888;
 }
 
 .info .title {
-	padding: 5px 0 0 10px;
-	height: 30px;
-	background: #eee;
-	border-bottom: 1px solid #ddd;
-	font-size: 18px;
-	font-weight: bold;
+   padding: 5px 0 0 10px;
+   height: 30px;
+   background: #eee;
+   border-bottom: 1px solid #ddd;
+   font-size: 18px;
+   font-weight: bold;
 }
 
 .info .close {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	color: #888;
-	width: 17px;
-	height: 17px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
+   position: absolute;
+   top: 10px;
+   right: 10px;
+   color: #888;
+   width: 17px;
+   height: 17px;
+   background:
+      url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/overlay_close.png');
 }
 
 .info .close:hover {
-	cursor: pointer;
+   cursor: pointer;
 }
 
 .info .body {
-	position: relative;
-	overflow: hidden;
+   position: relative;
+   overflow: hidden;
 }
 
 .info .desc {
-	position: relative;
-	margin: 13px 0 0 90px;
-	height: 75px;
+   position: relative;
+   margin: 13px 0 0 90px;
+   height: 75px;
 }
 
 .desc .ellipsis {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	white-space: nowrap;
+   overflow: hidden;
+   text-overflow: ellipsis;
+   white-space: nowrap;
 }
 
 .desc .jibun {
-	font-size: 11px;
-	color: #888;
-	margin-top: -2px;
+   font-size: 11px;
+   color: #888;
+   margin-top: -2px;
 }
 
 .info .img {
-	position: absolute;
-	top: 6px;
-	left: 5px;
-	width: 73px;
-	height: 71px;
-	border: 1px solid #ddd;
-	color: #888;
-	overflow: hidden;
+   position: absolute;
+   top: 6px;
+   left: 5px;
+   width: 73px;
+   height: 71px;
+   border: 1px solid #ddd;
+   color: #888;
+   overflow: hidden;
 }
 
 .info:after {
-	content: '';
-	position: absolute;
-	margin-left: -12px;
-	left: 50%;
-	bottom: 0;
-	width: 22px;
-	height: 12px;
-	background:
-		url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+   content: '';
+   position: absolute;
+   margin-left: -12px;
+   left: 50%;
+   bottom: 0;
+   width: 22px;
+   height: 12px;
+   background:
+      url('http://t1.daumcdn.net/localimg/localimages/07/mapapidoc/vertex_white.png')
+}
+
+.listToChange:hover{
+   color: gray;
+   cursor: pointer;
 }
 
 .info .link {
-	color: #5085BB;
+   color: #5085BB;
 }
 
 /* 리스트에서 추가시켰을 경우 */
 .thisRoom {
-	transform: scale(1.1);
-	z-index: 10;
-	opacity: 1.0;
+   transform: scale(1.1);
+   z-index: 10;
+   opacity: 1.0;
 }
 
 .wrap-noSelected {
-	z-index: 5;
-	opacity: 0.8;
+   z-index: 5;
+   opacity: 0.9;
 }
 </style>
 <style>
 .btnType {
-	background-color: #56baed;
-	border: none;
-	color: white;
-	padding: 12px;
-	text-align: center;
-	text-decoration: none;
-	display: inline-block;
-	text-transform: uppercase;
-	font-size: 13px;
-	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
-	-webkit-border-radius: 5px 5px 5px 5px;
-	border-radius: 5px 5px 5px 5px;
-	-webkit-transition: all 0.3s ease-in-out;
-	-moz-transition: all 0.3s ease-in-out;
-	-ms-transition: all 0.3s ease-in-out;
-	-o-transition: all 0.3s ease-in-out;
-	transition: all 0.3s ease-in-out;
+   background-color: #56baed;
+   border: none;
+   color: white;
+   padding: 12px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   text-transform: uppercase;
+   font-size: 13px;
+   -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border-radius: 5px 5px 5px 5px;
+   -webkit-transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -ms-transition: all 0.3s ease-in-out;
+   -o-transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
 }
 
 .btnType:hover{
-	background-color: #39ace7;
+   background-color: #39ace7;
 }
 </style>
 
 <script>
-	var contextPath = '${pageContext.request.contextPath}';
+   var contextPath = '${pageContext.request.contextPath}';
 </script>
 <script type="text/javascript"
-	src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f012acd2f49a5cb81161a8efd9617aec&libraries=services"></script>
+   src="//dapi.kakao.com/v2/maps/sdk.js?appkey=f012acd2f49a5cb81161a8efd9617aec&libraries=services"></script>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
@@ -195,373 +206,374 @@ a {
 
 </head>
 <body>
-	<div class="listWrap">
-		<div class="listBtn" style="margin-right:1%;">
-			<input type="button" value="갓물주" id="godSearch" class="btnType"/> 
-			<input type="button" value="요금순" id="priceSearch" class="btnType"/> 
-			<input type="button" value="인기순" id="popuSearch" class="btnType"/>
-		</div>
-		<br />
-		<!-- 목록 -->
-	
-		<div class="list">
-			<form action="/room/list" method="GET" id="roomList">
-			<c:choose>
-				<c:when test="${!empty list}">
-					<c:forEach var="room" items="${list}" begin="0" end="4">
-						<a href="${pageContext.request.contextPath}/room/detail?r_no=${room.r_no}" >
-							<div class="listToChange">
-								<div class="roomImgDiv">
-									<img class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${room.r_i_fullName}" />
-								</div>
-								<div class="roomInfo"
-									style="margin-bottom: 30px; border-bottom: 1px solid #56baed;">
+   <div class="listWrap">
+      <div class="listBtn" style="margin-right:2%;">
+         <input type="button" value="갓물주" id="godSearch" class="btnType"/> 
+         <input type="button" value="요금순" id="priceSearch" class="btnType"/> 
+         <input type="button" value="인기순" id="popuSearch" class="btnType"/>
+      </div>
+      <br />
+      <!-- 목록 -->
+   
+      <div class="list">
+         <form action="/room/list" method="GET" id="roomList">
+         <c:choose>
+            <c:when test="${!empty list}">
+               <c:forEach var="room" items="${list}" begin="0" end="4">
+                     <div class="listToChange" data-no="${room.r_no}" style="height:270px; margin-bottom:50px; border-bottom: 1px solid #56baed;">
+                        <div class="roomImgDiv">
+                           <img class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${room.r_i_fullName}" />
+                        </div>
+                        <div class="roomInfo" >
+                              <h4 data-rno='${room.r_no}'>${room.r_name}<br />${room.r_addr_main}</h4>
+                              <div>
+                                 <f:formatNumber value="${room.c_star}" maxFractionDigits="1" />
+                                    후기 (${room.commentNum})
+                              </div>
+                              <div>인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
+                                 ${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개</div>
+                              <div>
+                                 <c:if test="${room.a_heating == 1}">난방</c:if>
+                                 <c:if test="${room.a_heating == 0}"></c:if>
+   
+                                 <c:if test="${room.a_parking == 1}">주차공간</c:if>
+                                 <c:if test="${room.a_parking == 0}"></c:if>
+                                 
+                                 <c:if test="${room.a_wifi == 1}">wifi</c:if>
+                                 <c:if test="${room.a_wifi == 0}"></c:if>
+                              </div>
+                              <div style="margin-top: 10px;">
+                                 <h4>1박당 ${room.r_price}원</h4>
+                              </div>
+                        </div>
+                     </div>
+                  <c:set var="addr" value="${room.r_addr_main}" scope="page"></c:set>
+                  <c:set var="price" value="${room.r_price}" scope="page"></c:set>
+                  <c:set var="name" value="${room.r_name}" scope="page"></c:set>
+                  <c:set var="r_no" value="${room.r_no}" scope="page"></c:set>
+                  <c:set var="rimg" value="${room.r_i_fullName}" scope="page"></c:set>
+               </c:forEach>
+               <c:forEach var="room" items="${list}" begin="0" end="4">
+               </c:forEach>
+            </c:when>
+            <c:otherwise>
+               <div>등록된 숙소가 없습니다.</div>
+            </c:otherwise>
+         </c:choose>
+         </form>
+         </div>
+      <div id="map" style="width: 39%; height: 90%; position: fixed; right: 0; bottom: 0; margin-left:5%;margin-right:9%;"></div>
+   </div>
 
-									<h4 data-rno='${room.r_no}'>${room.r_name}<br />${room.r_addr_main}</h4>
-									<div>
-										<f:formatNumber value="${room.c_star}" maxFractionDigits="1" />
-										후기 (${room.commentNum})
-									</div>
-									<div>인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
-										${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개</div>
-									<div>
-										<c:if test="${room.a_heating == 1}">난방</c:if>
-										<c:if test="${room.a_heating == 0}"></c:if>
+   
+         <!-- 페이징 블럭 -->
+   
+   <%-- <c:if test="${pageMaker.prev}">
+      <a href="list${pageMaker.roomSearch(pageMaker.startPage-1)}">&laquo;</a>
+   </c:if>
+   <c:forEach var="i" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
+      <a href="list${pageMaker.roomSearch(i)}">${i}</a>
+   </c:forEach>
+   <c:if test="${pageMaker.next}">
+      <a href="list${pageMaker.roomSearch(pageMaker.endPage+1)}">&raquo;</a>
+   </c:if> --%>
 
-										<c:if test="${room.a_parking == 1}">주차공간</c:if>
-										<c:if test="${room.a_parking == 0}"></c:if>
-										
-										<c:if test="${room.a_wifi == 1}">wifi</c:if>
-										<c:if test="${room.a_wifi == 0}"></c:if>
-									</div>
-									<div style="margin-top: 10px;">
-										<h4>1박당 ${room.r_price}원</h4>
-									</div>
-								</div>
-							</div>
-						</a>
-						<c:set var="addr" value="${room.r_addr_main}" scope="page"></c:set>
-						<c:set var="price" value="${room.r_price}" scope="page"></c:set>
-						<c:set var="name" value="${room.r_name}" scope="page"></c:set>
-						<c:set var="r_no" value="${room.r_no}" scope="page"></c:set>
-						<c:set var="rimg" value="${room.r_i_fullName}" scope="page"></c:set>
-					</c:forEach>
-					<c:forEach var="room" items="${list}" begin="0" end="4">
-					</c:forEach>
-				</c:when>
-				<c:otherwise>
-					<div>등록된 숙소가 없습니다.</div>
-				</c:otherwise>
-			</c:choose>
-			</form>
-			</div>
-		<div id="map" style="width: 39%; height: 90%; position: fixed; right: 0; bottom: 0; margin-left:5%;margin-right:9%;"></div>
-	</div>
+   <script>
+   
+      var addr = '${addr}';
+      var price = '${price}';
+      var name = '${name}';
+      var r_no = '${r_no}';
+      var rimg = '${rimg}';
+      console.log(rimg);
+      
+      var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+      mapOption = {
+         center : new kakao.maps.LatLng(35.207403, 129.070246), // 지도의 중심좌표
+         level : 6
+      // 지도의 확대 레벨
+      };
 
-	
-			<!-- 페이징 블럭 -->
-	
-	<%-- <c:if test="${pageMaker.prev}">
-		<a href="list${pageMaker.roomSearch(pageMaker.startPage-1)}">&laquo;</a>
-	</c:if>
-	<c:forEach var="i" begin="${pageMaker.startPage}" end="${pageMaker.endPage}">
-		<a href="list${pageMaker.roomSearch(i)}">${i}</a>
-	</c:forEach>
-	<c:if test="${pageMaker.next}">
-		<a href="list${pageMaker.roomSearch(pageMaker.endPage+1)}">&raquo;</a>
-	</c:if> --%>
+      //지도를 생성합니다    
+      var map = new kakao.maps.Map(mapContainer, mapOption);
+      
+      // 맵 줌 컨트롤 넣기
+      var zoomControl = new kakao.maps.ZoomControl();
+      map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
 
-	<script>
-	
-		var addr = '${addr}';
-		var price = '${price}';
-		var name = '${name}';
-		var r_no = '${r_no}';
-		var rimg = '${rimg}';
-		console.log(rimg);
-		
-		var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-		mapOption = {
-			center : new kakao.maps.LatLng(35.207403, 129.070246), // 지도의 중심좌표
-			level : 4
-		// 지도의 확대 레벨
-		};
+      //주소-좌표 변환 객체를 생성합니다
+      var geocoder = new kakao.maps.services.Geocoder();
+      
+      // array 에 obj(title, 좌표) 넣음 
+      var array = new Array;
 
-		//지도를 생성합니다    
-		var map = new kakao.maps.Map(mapContainer, mapOption);
-		
-		// 맵 줌 컨트롤 넣기
-		var zoomControl = new kakao.maps.ZoomControl();
-		map.addControl(zoomControl, kakao.maps.ControlPosition.RIGHT);
+      function makeObj(obj, len) {
+         array.push(obj);
+         // obj : title, latlng(x,y)
 
-		//주소-좌표 변환 객체를 생성합니다
-		var geocoder = new kakao.maps.services.Geocoder();
-		
-		// array 에 obj(title, 좌표) 넣음 
-		var array = new Array;
+         if (array.length == len) {
+            getpositons(array);
+         }
+      }
+      
+      $(".listToChange").click(function(){
+        var list_r_no = $(this).attr("data-no");
+        location.href="${pageContext.request.contextPath}/room/detail?r_no="+list_r_no;
+      });
 
-		function makeObj(obj, len) {
-			array.push(obj);
-			// obj : title, latlng(x,y)
+      function getpositons(positions) {
+         // 마커 이미지의 이미지 주소입니다
+         var imageSrc = "${pageContext.request.contextPath}/resources/img/pin%20(2).png";
+         
+         
+         for (var i = 0; i < positions.length; i++) {
+            
+            // 마커 이미지의 이미지 크기 입니다
+            var imageSize = new kakao.maps.Size(39, 50);
 
-			if (array.length == len) {
-				getpositons(array);
-			}
-		}
+            // 마커 이미지를 생성합니다    
+            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
 
-		function getpositons(positions) {
-			// 마커 이미지의 이미지 주소입니다
-			var imageSrc = "${pageContext.request.contextPath}/resources/img/pin%20(2).png";
-			
-			
-			for (var i = 0; i < positions.length; i++) {
-				
-				// 마커 이미지의 이미지 크기 입니다
-				var imageSize = new kakao.maps.Size(39, 50);
+            // 마커를 생성합니다
+            var marker = new kakao.maps.Marker({
+               map : map, // 마커를 표시할 지도
+               position : positions[i].latlng, // 마커를 표시할 위치
+               title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+               image : markerImage,
+               rimg : positions[i].rimg,
+               r_no : positions[i].r_no,
+               price : positions[i].price
+            // 마커 이미지
+            });
+            
+             
+            
+            // 커스텀 오버레이에 표시할 컨텐츠 입니다
+            // 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
+            // 별도의 이벤트 메소드를 제공하지 않습니다 
+            var content = '<div class="wrap wrap-noSelected" data-r_no="'+positions[i].r_no+'">' + 
+                        '    <div class="info">' + 
+                        '        <div class="title">' + positions[i].title +
+                        /* '<div class="close closeOverLay" title="닫기"></div>'+ */
+                        '        </div>' + 
+                        '        <div class="body">' + 
+                        '            <div class="img">' +
+                        '                <img src="${pageContext.request.contextPath}/room/displayFile?fileName='+positions[i].rimg+'" width="73" height="70">' +
+                        '           </div>' + 
+                        '            <div class="desc">' + 
+                        '                <div class="ellipsis">\\'+ positions[i].price +'</div>' + 
+                        '                <div><a href="${pageContext.request.contextPath}/room/detail?r_no=' + positions[i].r_no + '" target="_blank" class="link">상세보기</a></div>' + 
+                        '            </div>' + 
+                        '        </div>' + 
+                        '    </div>' +    
+                        '</div>';
 
-				// 마커 이미지를 생성합니다    
-				var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize);
+             
+            // 마커 위에 커스텀오버레이를 표시합니다
+            // 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
+            var overlay = new kakao.maps.CustomOverlay({
+                content: content,
+                map: map,
+                position: marker.getPosition()       
+            });
 
-				// 마커를 생성합니다
-				var marker = new kakao.maps.Marker({
-					map : map, // 마커를 표시할 지도
-					position : positions[i].latlng, // 마커를 표시할 위치
-					title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-					image : markerImage,
-					rimg : positions[i].rimg,
-					r_no : positions[i].r_no,
-					price : positions[i].price
-				// 마커 이미지
-				});
-				
-				 
-				
-				// 커스텀 오버레이에 표시할 컨텐츠 입니다
-				// 커스텀 오버레이는 아래와 같이 사용자가 자유롭게 컨텐츠를 구성하고 이벤트를 제어할 수 있기 때문에
-				// 별도의 이벤트 메소드를 제공하지 않습니다 
-				var content = '<div class="wrap wrap-noSelected" data-r_no="'+positions[i].r_no+'">' + 
-				            '    <div class="info">' + 
-				            '        <div class="title">' + positions[i].title +
-				            /* '<div class="close closeOverLay" title="닫기"></div>'+ */
-				            '        </div>' + 
-				            '        <div class="body">' + 
-				            '            <div class="img">' +
-				            '                <img src="${pageContext.request.contextPath}/room/displayFile?fileName='+positions[i].rimg+'" width="73" height="70">' +
-				            '           </div>' + 
-				            '            <div class="desc">' + 
-				            '                <div class="ellipsis">\\'+ positions[i].price +'</div>' + 
-				            '                <div><a href="${pageContext.request.contextPath}/room/detail?r_no=' + positions[i].r_no + '" target="_blank" class="link">상세보기</a></div>' + 
-				            '            </div>' + 
-				            '        </div>' + 
-				            '    </div>' +    
-				            '</div>';
+            // 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
+            kakao.maps.event.addListener(marker, 'click', function() {
+                overlay.setMap(map);
+                
+            });
+            
+            $(".closeOverLay").on("click", closeOverlay);
+            
+            // 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
+            function closeOverlay() {
+               console.log("click");
+                overlay.setMap(null);     
+            }
+            
+            
+            // 이동
+            if(i==0){
+               function panTo(){
+                  var moveLatLng = new kakao.maps.LatLng(positions[i].latlng.Ha, positions[i].latlng.Ga);   
+                  map.panTo(moveLatLng);
+               }
+               panTo();
+            }
+            
+         }
+      }
 
-				 
-				// 마커 위에 커스텀오버레이를 표시합니다
-				// 마커를 중심으로 커스텀 오버레이를 표시하기위해 CSS를 이용해 위치를 설정했습니다
-				var overlay = new kakao.maps.CustomOverlay({
-				    content: content,
-				    map: map,
-				    position: marker.getPosition()       
-				});
+      $.getJSON(contextPath + "/room/getPositions", function(data){ //주소로 좌표검색, obj에 title, 좌표 넣음
+         $(data).each(
+               function() {
+                  //주소로 좌표를 검색합니다
+                  var title = this.r_name;
+                  var price = this.r_price;
+                  var rimg = this.r_i_fullName;
+                  var r_no = this.r_no;
+                  
+                  geocoder.addressSearch(this.r_addr_main, function(
+                        result, status) {
+                     // 정상적으로 검색이 완료됐으면   
+                     if (status === kakao.maps.services.Status.OK) {
+                        /* console.log(result); */
+                        // result[0].x & result[0].y 가 좌표 값.
+                        var obj = {
+                           title : title,
+                           price : price,
+                           rimg : rimg,
+                           r_no : r_no,
+                           latlng : new kakao.maps.LatLng(result[0].y,
+                                 result[0].x)
+                        };
+                        makeObj(obj, data.length);
+                     }
+                  });
+               });
+         
+      });
 
-				// 마커를 클릭했을 때 커스텀 오버레이를 표시합니다
-				kakao.maps.event.addListener(marker, 'click', function() {
-				    overlay.setMap(map);
-				    
-				});
-				
-				$(".closeOverLay").on("click", closeOverlay);
-				
-				// 커스텀 오버레이를 닫기 위해 호출되는 함수입니다 
-				function closeOverlay() {
-					console.log("click");
-				    overlay.setMap(null);     
-				}
-				
-				
-				// 이동
-				if(i==0){
-					function panTo(){
-						var moveLatLng = new kakao.maps.LatLng(positions[i].latlng.Ha, positions[i].latlng.Ga);   
-						map.panTo(moveLatLng);
-					}
-					panTo();
-				}
-				
-			}
-		}
+   
+   // 룸에 마우스 올렸을 때 해당 아이콘 움직이기
+   $(".listToChange").on("mouseover", function(e){
+      /* console.log("마우스 들어왔다!"); */
+      var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
+      console.log(map_r_no);
+      $("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("thisRoom");
+      $("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("wrap-noSelected");
+   });
+   
+   // 마우스가 빠져나갔을 때 
+   $(".listToChange").on("mouseout", function(e){
+      /* console.log("마우스 나갔다!"); */
+      var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
+      $("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("thisRoom");
+      $("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("wrap-noSelected");
+   });
+   </script>
 
-		$.getJSON(contextPath + "/room/getPositions", function(data){ //주소로 좌표검색, obj에 title, 좌표 넣음
-			$(data).each(
-					function() {
-						//주소로 좌표를 검색합니다
-						var title = this.r_name;
-						var price = this.r_price;
-						var rimg = this.r_i_fullName;
-						var r_no = this.r_no;
-						
-						geocoder.addressSearch(this.r_addr_main, function(
-								result, status) {
-							// 정상적으로 검색이 완료됐으면	
-							if (status === kakao.maps.services.Status.OK) {
-								/* console.log(result); */
-								// result[0].x & result[0].y 가 좌표 값.
-								var obj = {
-									title : title,
-									price : price,
-									rimg : rimg,
-									r_no : r_no,
-									latlng : new kakao.maps.LatLng(result[0].y,
-											result[0].x)
-								};
-								makeObj(obj, data.length);
-							}
-						});
-					});
-			
-		});
+   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+   <script>
+      $(".btnType").click(function(){
+         var searchType = $(this).val();
+         console.log(searchType);
+         location.href="list${pageMaker.roomSearch(1)}"+searchType;
+      })
 
-	
-	// 룸에 마우스 올렸을 때 해당 아이콘 움직이기
-	$(".listToChange").on("mouseover", function(e){
-		/* console.log("마우스 들어왔다!"); */
-		var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
-		console.log(map_r_no);
-		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("thisRoom");
-		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("wrap-noSelected");
-	});
-	
-	// 마우스가 빠져나갔을 때 
-	$(".listToChange").on("mouseout", function(e){
-		/* console.log("마우스 나갔다!"); */
-		var map_r_no = $(this).find(".roomInfo h4").attr("data-rno");
-		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").removeClass("thisRoom");
-		$("#map").find(".wrap[data-r_no='"+map_r_no+"']").addClass("wrap-noSelected");
-	});
-	</script>
-
-	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-		$(".btnType").click(function(){
-			var searchType = $(this).val();
-			console.log(searchType);
-			location.href="list${pageMaker.roomSearch(1)}"+searchType;
-		})
-
-	</script>
-	
-	
+   </script>
+   
+   
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-	<script>
-	var contextPath = "${pageContext.request.contextPath}";
-	
-		$(window).scroll(function(){
-			if($(window).scrollTop() >= $(document).height() - $(window).height()){
-				// 서버에 ajax로 게시물 데이터 요청..?
-				// 
-				
-				
-				// 이전 스크롤 좌표
-				var lastScrollTop = 0;
-				// 스크롤 이벤트 최초 발생
-				$(window).scroll(function(){
-					
-					// 현재스크롤 좌표
-					var currentScrollTop = $(window).scrollTop();
-					// 다운 스크롤
-					if(currentScrollTop - lastScrollTop > 0 ){
-						// 현재 스크롤 좌표를 이전 스크롤 좌표로 할당
-						lastScrllTop = currentScrollTop;
-					}
-					// 업스크롤
-					else{
-						// 현재 스크롤 좌표를 이전 스크롤 좌표를 할당
-						lastScrollTop = currentScrollTop;
-					}
-				});
-				
-				//현재 페이지에 뿌려진 게시글의 마지막 rno 값을 읽어오는것(다음 방 리스트를 가져오기 위해 필요한 데이터)
-				var lastrno = $(".scrolling:last").attr("data-rno");
-				
-				/* $(data).each(function(){
-					this;
-				}); */
-				
-				$.ajax({
-					type:'post',
-					url : 'listScroll',
-					headers : {
-						"Content-Type" : "application/json",
-						"X-HTTP-Method-Override" : "POST"
-					},
-					dataType : 'json',
-					data : JSON.stringify({
-						r_no : lastrno
-					}),
-					success : function(data){
-						var str = "";
-						if(data != ""){
-							$(data).each(
-								function(){
-									console.log(this);
-									str += 	   "<div class='listToChange'>"
-										+ 	   "	<div class='roomImgDiv'>"
-										+	   "	<img class='roomImg' src="+contextPath+"/room/displayFile?fileName="+this.r_i_fullName+" />"
-										+	   "</div>"
-										+	   "<div class='roomInfo'>"
-										+	   "<h2 class='scrolling' data-rno="+this.r_no+">"+this.r_no+"</h2>"
-										+	   "<h2>"+this.r_name
-										+	   "<br/>"+this.r_addr_main+"</h2>"
-										+	   "<div>"+this.c_star.toFixed(2)+"("+this.commentNum+")"+"</div>"
-										+	   "	<div>인원 "+this.r_guests
-									str +="명 ㆍ 침실 "+this.r_bed+"개 ㆍ 침대"+this.r_bedroom+"개 ㆍ 욕실"+this.r_bath+"개</div>"
-										+	   "	<div>";
-										if(this.a_heating == 1){
-									str += 		"난방 ";
-										}else{
-									str += "";
-										}
-										if(this.a_parking == 1){
-									str += 		"주차공간 ";
-										}else{
-									str += "";
-										}
-										if(this.a_wifi == 1){
-									str += 		"wifi ";
-										}else{
-									str += "";
-										}
-										+	   "	</div>"
-										+	   "<h3>\ "+ this.r_price+"</h3>"
-										+	   "</div>"
-										+	   "</div>";
-							});
-							/* $(".listToChange").empty(); */
-							/* $(".scrollLocation").after(str); */
-							$(".list").append(str);
-							
-						}else{
-							alert("리스트의 마지막까지 불러왔습니다.");	
-						}
-					}
-				});
-				
-				var position = $(".listToChange:first").offset();
-				$('html, body').stop().animate({scrollTop : position.top}, 600, 'easeInQuint');
-				
-				
-			}
-			
-		});
-		
-	</script> --%>
+   <script>
+   var contextPath = "${pageContext.request.contextPath}";
+   
+      $(window).scroll(function(){
+         if($(window).scrollTop() >= $(document).height() - $(window).height()){
+            // 서버에 ajax로 게시물 데이터 요청..?
+            // 
+            
+            
+            // 이전 스크롤 좌표
+            var lastScrollTop = 0;
+            // 스크롤 이벤트 최초 발생
+            $(window).scroll(function(){
+               
+               // 현재스크롤 좌표
+               var currentScrollTop = $(window).scrollTop();
+               // 다운 스크롤
+               if(currentScrollTop - lastScrollTop > 0 ){
+                  // 현재 스크롤 좌표를 이전 스크롤 좌표로 할당
+                  lastScrllTop = currentScrollTop;
+               }
+               // 업스크롤
+               else{
+                  // 현재 스크롤 좌표를 이전 스크롤 좌표를 할당
+                  lastScrollTop = currentScrollTop;
+               }
+            });
+            
+            //현재 페이지에 뿌려진 게시글의 마지막 rno 값을 읽어오는것(다음 방 리스트를 가져오기 위해 필요한 데이터)
+            var lastrno = $(".scrolling:last").attr("data-rno");
+            
+            /* $(data).each(function(){
+               this;
+            }); */
+            
+            $.ajax({
+               type:'post',
+               url : 'listScroll',
+               headers : {
+                  "Content-Type" : "application/json",
+                  "X-HTTP-Method-Override" : "POST"
+               },
+               dataType : 'json',
+               data : JSON.stringify({
+                  r_no : lastrno
+               }),
+               success : function(data){
+                  var str = "";
+                  if(data != ""){
+                     $(data).each(
+                        function(){
+                           console.log(this);
+                           str +=       "<div class='listToChange'>"
+                              +       "   <div class='roomImgDiv'>"
+                              +      "   <img class='roomImg' src="+contextPath+"/room/displayFile?fileName="+this.r_i_fullName+" />"
+                              +      "</div>"
+                              +      "<div class='roomInfo'>"
+                              +      "<h2 class='scrolling' data-rno="+this.r_no+">"+this.r_no+"</h2>"
+                              +      "<h2>"+this.r_name
+                              +      "<br/>"+this.r_addr_main+"</h2>"
+                              +      "<div>"+this.c_star.toFixed(2)+"("+this.commentNum+")"+"</div>"
+                              +      "   <div>인원 "+this.r_guests
+                           str +="명 ㆍ 침실 "+this.r_bed+"개 ㆍ 침대"+this.r_bedroom+"개 ㆍ 욕실"+this.r_bath+"개</div>"
+                              +      "   <div>";
+                              if(this.a_heating == 1){
+                           str +=       "난방 ";
+                              }else{
+                           str += "";
+                              }
+                              if(this.a_parking == 1){
+                           str +=       "주차공간 ";
+                              }else{
+                           str += "";
+                              }
+                              if(this.a_wifi == 1){
+                           str +=       "wifi ";
+                              }else{
+                           str += "";
+                              }
+                              +      "   </div>"
+                              +      "<h3>\ "+ this.r_price+"</h3>"
+                              +      "</div>"
+                              +      "</div>";
+                     });
+                     /* $(".listToChange").empty(); */
+                     /* $(".scrollLocation").after(str); */
+                     $(".list").append(str);
+                     
+                  }else{
+                     alert("리스트의 마지막까지 불러왔습니다.");   
+                  }
+               }
+            });
+            
+            var position = $(".listToChange:first").offset();
+            $('html, body').stop().animate({scrollTop : position.top}, 600, 'easeInQuint');
+            
+            
+         }
+         
+      });
+      
+   </script> --%>
 
-	<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
-	
-	<script>
-		
-	</script>
+   <script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
+   
+   <script>
+      
+   </script>
 
 </body>
 </html>

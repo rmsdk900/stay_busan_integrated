@@ -35,10 +35,9 @@
    <div>
       <h5>체크인 : <f:formatDate value="${history.b_date_from}" pattern="yyyy.MM.dd"/> &nbsp;&nbsp;&nbsp;<f:formatDate value="${history.r_checkin}" pattern="a hh:mm"/><br/></h5>
       <h5>체크아웃 : <f:formatDate value="${history.b_date_to}" pattern="yyyy.MM.dd"/> &nbsp;&nbsp;&nbsp;<f:formatDate value="${history.r_checkout}" pattern="a hh:mm"/> <br/></h5>
-      <hr/>
       <br/>
       <h5>예약 인원 : ${history.b_guest} 명<br/></h5>
-      <h5>결제 금액 : \ ${history.b_total_price} 원<br/></h5>
+      <h5>결제 금액 : ￦ ${history.b_total_price} 원<br/></h5>
    </div>
    
    

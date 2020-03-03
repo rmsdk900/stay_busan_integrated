@@ -15,7 +15,7 @@ $("#modPictureBtn").on("click", function(){
 			div += "<a href='"+fileInfo.imgSrc+"' target='_blank'>"
 			div += "<img src='"+fileInfo.imgSrc+"' alt='"+(i+1)+"번째 사진' />";
 			div += "</a>";
-			div += "<a type='button' class='btn btn-warning btn-circle delBtn' href='"+fileInfo.fullName+"'>";
+			div += "<a type='button' class='btn delBtn' href='"+fileInfo.fullName+"'>";
 			div += "<i class='fa fa-times'>X</i>";
 			div += "</a><br/>";
 			div += "</div>";

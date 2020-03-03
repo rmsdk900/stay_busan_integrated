@@ -238,7 +238,7 @@ color:black;
   	  			&& (endDate == null || endDate == "")
   	  			&& (guests == null || guests == "")){
   	  		$("#guests").val("0");
-				$("#searchForm").submit();
+			$("#searchForm").submit();
   	  	}else if(area==null || area==""){
   	  		alert("지역구를 입력해주세요!");
   	  		$("#area").focus();
@@ -278,12 +278,6 @@ color:black;
               } 
          });
    </script>
-
-	<script>
-		$("#searchBtn").click(function() {
-			$("#searchForm").submit();
-		});
-	</script>
 
 	<!-- datePicker script -->
 	<script>
@@ -325,7 +319,7 @@ color:black;
 					onSelect : function(dateText, inst) {
 						maxDate = new Date(dateText);
 						$(".endDate").focus();
-						startDatepicker();
+						
 					}
 				});
 	</script>

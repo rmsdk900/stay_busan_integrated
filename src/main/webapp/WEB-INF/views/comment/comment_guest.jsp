@@ -40,9 +40,12 @@
    margin-left:10%;
 }
 </style>
-<div class="commentList">
+<div class="commentList" style="clear:both;padding-top:3%;">
+<hr/>
+<br/><br/>
 <h3>후기</h3>
-<table style="width:60%;">
+<br/>
+<table style="width:830px;" >
    <tr>
       <th>숙소</th>
       <th>작성자</th>
@@ -54,11 +57,11 @@
       <c:when test="${!empty comment}">
          <c:forEach var = "comment" items="${comment}">
             <tr>
-               <td>${comment.r_name}</td>
-               <td>${comment.u_name}</td>
-               <td>${comment.c_content}</td>
-               <td>
-                  <div class="starRev">
+               <td style="width:150px; ">${comment.r_name}</td>
+               <td style="width:100px; ">${comment.u_name}</td>
+               <td style="width:250px; ">${comment.c_content}</td>
+               <td style="width:150px;">
+                  <div class="starRev" style="width:200px;">
                         <span class="starL1 
                         <c:out value="${comment.c_star > 0 ? 'on' : ''}"/>
                         "></span>
@@ -91,7 +94,7 @@
                         "></span>
                      </div>
                </td>
-               <td><fmt:formatDate value="${comment.c_regdate}" pattern="yyyy.MM.dd"/></td>
+               <td style="width:80px; "><fmt:formatDate value="${comment.c_regdate}" pattern="yyyy.MM.dd"/></td>
                <!-- <td>
                   <input type="button" id="modify" value="수정"/>
                   <input type="button" id="delete" value="삭제"/>

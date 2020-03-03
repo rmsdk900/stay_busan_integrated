@@ -18,6 +18,7 @@
 	
 	.mod_imgs {
 		width: 100%;
+		
 	}
 	.mod_imgs img {
 		width: 100%;
@@ -25,7 +26,8 @@
 	.pictures_preview {
 		display : grid;
 		grid-template-columns: auto auto auto; 
-		
+		grid-gap: 1%;
+		margin: 1% 0;
 	}
 	.btncancel, .btnclose{
 	background-color: #56baed;
@@ -71,6 +73,13 @@
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;	
+  }
+  .delBtn {
+  	background-color: #56baed;
+  }
+  
+  .delBtn i {
+  	color: white;
   }
 </style>
 <div class="modal fade" id="modPicture" tabindex="-1" role="dialog"
