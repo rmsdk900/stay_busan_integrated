@@ -242,7 +242,7 @@ textarea{
                         <td colspan=3>숙소 설명</td>
                      </tr>
                      <tr>
-                        <td colspan=3><textarea rows="20" cols="50" name="r_desc" id="r_desc" autocomplete="off" style="width:100%;"></textarea></td>
+                        <td colspan=3><textarea rows="20" cols="50" name="r_desc" id="r_desc" autocomplete="off" style="width:100%;" style="resize:none;"></textarea></td>
                      </tr>
                   </table>
                </div>

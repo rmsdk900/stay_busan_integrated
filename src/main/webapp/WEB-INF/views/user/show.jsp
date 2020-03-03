@@ -199,11 +199,11 @@
       <!-- 소개 -->
       <div>
          <div class="show_my_introduce">
-            <textarea class="introducearea" readonly>${myAllInfo.userVO.u_introduce}</textarea>
+            <textarea class="introducearea" style="resize:none;"readonly>${myAllInfo.userVO.u_introduce}</textarea>
             
          </div>
          <div class="show_my_introduce_mod">
-            <textarea class="mod_introducearea" >${myAllInfo.userVO.u_introduce}</textarea>
+            <textarea class="mod_introducearea" style="resize:none;" >${myAllInfo.userVO.u_introduce}</textarea>
             <div>
                <button class="show_my_introduce_mod_submit">편집 완료</button>
                <button class="show_my_introduce_mod_cancel">취소</button>

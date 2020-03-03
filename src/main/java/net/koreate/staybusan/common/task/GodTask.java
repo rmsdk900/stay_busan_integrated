@@ -21,8 +21,8 @@ public class GodTask {
 	ServletContext context;
 	// upload 폴더랑 db랑 비교해서 없는거 지우기?(fake폴더 - 다 지우기)?
 	
-		@Scheduled(cron="10 * * * * *")
-		public void gogodFail() throws Exception{
+		@Scheduled(cron="59 59 23 * * *")
+		public void gogod() throws Exception{
 		// u_type = 2 로 
 		// rooms 에서 
 		

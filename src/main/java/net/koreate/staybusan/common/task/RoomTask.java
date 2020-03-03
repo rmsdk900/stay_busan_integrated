@@ -13,7 +13,7 @@ public class RoomTask {
 	@Inject
 	TaskDAO dao;
 	
-	@Scheduled(cron="15 * * * * *")
+	@Scheduled(cron="0 0 9 * * *")
 	public void roomTask() throws Exception{
 		System.out.println("예약->지나간 바꾸는 Task");
 		
