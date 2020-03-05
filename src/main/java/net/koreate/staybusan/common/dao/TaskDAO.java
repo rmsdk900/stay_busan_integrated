@@ -5,7 +5,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import net.koreate.staybusan.room.vo.BuyVO;
+import net.koreate.staybusan.common.dto.MoneyDTO;
+import net.koreate.staybusan.user.vo.UserVO;
 
 public interface TaskDAO {
 
@@ -39,5 +40,29 @@ public interface TaskDAO {
 	// 유저 프로필 불러오기
 	@Select("SELECT u_profile FROM user")
 	List<String> existedUserProfiles();
+	
+	// 예약날짜 넘은 녀석들의 b_no 불러오기
+	@Select("SELECT b_no FROM buy WHERE b_date_from<=now() AND b_status=1")
+	List<Integer> getBuyNos()throws Exception;
+	
+	// money 테이블에서 호스트 번호랑 돈 가져오기
+	@Select("SELECT m_u_h_no, m_price FROM money WHERE b_no=#{i}")
+	MoneyDTO getMoney(int i)throws Exception;
+
+	// 호스트한테 돈 주기
+	@Update("UPDATE user SET u_balance = u_balance + #{m_price} WHERE u_no = #{m_u_h_no}")
+	void transfer(MoneyDTO money)throws Exception;
+	
+//	// 테스트용
+//	@Select("SELECT * FROM user WHERE u_no=#{m_u_h_no}")
+//	UserVO getResult(int m_u_h_no)throws Exception;
+
+
+	
+	
+	
+	
+
+	
 
 }
