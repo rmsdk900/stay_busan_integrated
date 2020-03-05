@@ -17,7 +17,15 @@ public class RoomTask {
 	public void roomTask() throws Exception{
 		System.out.println("예약->지나간 바꾸는 Task");
 		
+		// 돈 넘겨주기... 
+		
+		
+		// 상태 바꾸기.
 		dao.getPastList();	//이름 바꾸기
+		
+		
+		
+		
 		System.out.println("실행 완료?");
 	}
 }

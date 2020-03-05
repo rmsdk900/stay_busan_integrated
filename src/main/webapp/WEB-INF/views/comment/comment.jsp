@@ -55,11 +55,11 @@
 				<span class="avgStarL5"></span>
 				<span class="avgStarR5"></span>
 			</div>
-			<span class="star_float">[평균 별점]</span>
+			<span class="star_float">0</span>
 		</div>
-		<div class="room_comments_total">[총 후기 갯수] 후기</div>
+		<div class="room_comments_total">0 후기</div>
 	</div>
-	<hr/>
+	<br/>
 	<div class="room_comments_list" >
 		
 	</div>
@@ -67,7 +67,7 @@
 	<div class="room_comments_pagination">
 		
 	</div>
-	<hr/>
+	<br/>
 </div>
 <!-- 댓글 신고 모달창 -->
 <div id="reportModal" class="reportModals">

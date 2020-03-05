@@ -48,16 +48,17 @@ function getCommentList(page, r_no){
 				str += "	</div>";
 				str += "	<div>";
 				if(login_u_no!=0){
-					
-					str += "		<button type='button' class='btnOpenReply' data-c_no='"+this.c_no+"'";
-					str += " 		data-c_owner='"+this.u_name+"' ";
-					str += " 		data-c_origin='"+this.c_origin+"' ";
-					str += " 		data-c_dep='"+this.c_dep+"' ";
-					str += " 		data-c_seq='"+this.c_seq+"' ";
-					str += " 		data-r_no='"+this.r_no+"' ";
-					str += "		>";
-					str += "대댓글 쓰기";
-					str += "		</button>";
+					if(login_u_no == owner){
+						str += "		<button type='button' class='btnOpenReply' data-c_no='"+this.c_no+"'";
+						str += " 		data-c_owner='"+this.u_name+"' ";
+						str += " 		data-c_origin='"+this.c_origin+"' ";
+						str += " 		data-c_dep='"+this.c_dep+"' ";
+						str += " 		data-c_seq='"+this.c_seq+"' ";
+						str += " 		data-r_no='"+this.r_no+"' ";
+						str += "		>";
+						str += "대댓글 쓰기";
+						str += "		</button>";
+					}	
 					str += "		<button class='btnOpenReport'";
 					str += "		data-c_no='"+this.c_no+"'";
 					// 여기도 나중에 로그인한 사람 걸로 바꿔줘야 함.
