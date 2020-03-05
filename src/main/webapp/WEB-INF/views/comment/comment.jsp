@@ -40,7 +40,8 @@
 <style>
 	.btnOpenReply, .btnOpenReport, 
 	.btnReplySubmit, .btnReplyClose, 
-	.btnModComment, .btnDelComment {
+	.btnModComment, .btnDelComment,
+	.btnModCommentSubmit, .btnModCommentClose {
 		background-color: #56baed;
 		border: none;
 		color: white;
@@ -91,13 +92,31 @@
 	<div class="room_comments_list" >
 		
 	</div>
-	
+	<br/>
 	<div class="room_comments_pagination">
 		
 	</div>
 	<br/>
 </div>
-<!-- 댓글 신고 모달창 -->
+
+
+<!-- 댓글 신고 모달창 - 수정중 -->
+<%-- 	<div id="reportModal" class="reportModals">
+      <div class="report-modal-content">
+         <h3>회원 서비스 전환</h3>
+         <div style="text-align: center; margin: 20px;">
+            <div>
+               <textarea name="b_c_reason" class="report_content" style="resize: none; height:270px;">
+
+               </textarea>
+            </div>
+            <input type="button" id="transformSubmitBtn" data-no="${userInfo.u_no}" value="전환" /> 
+            <input type="button" id="transformCancelBtn" value="닫기" />
+         </div>
+      </div>
+   </div>
+ --%>
+
 <div id="reportModal" class="reportModals">
 		<div class="report-modal-content">
 			<div class="page-header">

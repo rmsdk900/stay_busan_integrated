@@ -175,7 +175,7 @@ table tr th{
                      </div>
                      <input type="hidden" name="r_no" id="r_no" value="${history.r_no}"/>
                      <input type="hidden" name="u_no" value="${history.u_no}"/>
-                     <input type="hidden" name="u_name" value="${history.u_no}"/><!-- ${userInfo.u_name} 으로 바꿔줘야 함 -->
+                     <input type="hidden" name="u_name" value="${userInfo.u_name}"/><!-- ${userInfo.u_name} 으로 바꿔줘야 함 -->
                      <input type="hidden" name="b_no" value="${history.b_no}"/>
                      <input type="button" style="margin-left:41%; width:30%;"class="btn" id="commentSubmit" value="작성"/>
                   </td>

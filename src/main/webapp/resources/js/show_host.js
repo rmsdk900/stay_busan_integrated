@@ -136,7 +136,7 @@ $(".room_comments_list").on("click", ".btnOpenReply", function(){
 	html += "		<span>"+c_owner+"</span><span>&nbsp;에게</span>";
 	html += "	</div>";
 	html += "	<div class='answer_content'>";
-	html += "		<textarea id='c_content"+c_no+"' ></textarea>";
+	html += "		<textarea id='c_content"+c_no+"' style='resize:none;'></textarea>";
 	html += "	</div>";
 	html += "	<div>";
 	html += "		<button type='button' class='btnReplySubmit'";
@@ -209,7 +209,7 @@ $(".room_comments_list").on("click", ".btnModComment", function(){
 	
 	var html = "";
 	html += "<div>";
-	html += "<h3>댓글 수정</h3>";
+	html += "<h4>댓글 수정</h4>";
 	html += "</div>";
 	html += "<div class='mod_comment'>";
 	html += "	<textarea id='mod_content"+c_no+"' >"+c_comment+"</textarea>";
@@ -336,16 +336,16 @@ function getDate(time){
 // 페이징 처리
 function makePage(pm, r_no){
 	var str="";
-	str += "<ul>";
+	str += "<ul class='pagination'>";
 	if(pm.prev){
-		str += "<li><a href='"+(pm.startPage-1)+"' data-r_no='"+r_no+"'>이전</a></li>";
+		str += "<li class='page-item'><a class='page-link' href='"+(pm.startPage-1)+"' data-r_no='"+r_no+"'>이전</a></li>";
 	}
 	for(var i=pm.startPage;i<=pm.endPage;i++){
 		var strClass = pm.cri.page == i? 'class=active' :'';
-		str += "<li "+strClass+" ><a href='"+i+"' data-r_no='"+r_no+"'>"+i+"</a></li>";
+		str += "<li "+strClass+" class='page-item' ><a class='page-link' href='"+i+"' data-r_no='"+r_no+"'>"+i+"</a></li>";
 	}
 	if(pm.next){
-		str += "<li><a href='"+(pm.endPage+1)+"' data-r_no='"+r_no+"'>다음</a></li>";
+		str += "<li class='page-item' ><a class='page-link' href='"+(pm.endPage+1)+"' data-r_no='"+r_no+"'>다음</a></li>";
 	}
 	str += "</ul>";
 	$(".room_comments_pagination").html(str);

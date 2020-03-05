@@ -88,7 +88,7 @@
 	<div class="room_comments_list" >
 		
 	</div>
-	
+	<br/>
 	<div class="room_comments_pagination">
 		
 	</div>

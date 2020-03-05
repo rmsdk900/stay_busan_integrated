@@ -20,7 +20,7 @@ public class CheckCookieInterceptor extends HandlerInterceptorAdapter{
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		System.out.println("CheckCookie 시작");
+//		System.out.println("CheckCookie 시작");
 
 		HttpSession session = request.getSession();
 		if(session.getAttribute("userInfo") != null) {

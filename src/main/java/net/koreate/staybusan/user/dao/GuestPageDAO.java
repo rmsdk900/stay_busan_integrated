@@ -67,7 +67,7 @@ public interface GuestPageDAO {
 	void writeComment(CommentVO comment);
 
 	@Update("UPDATE comment "
-			+ "SET c_content=#{c_content}, c_star=#{c_star}, c_regdate=now() "
+			+ "SET u_name=#{u_name}, c_content=#{c_content}, c_star=#{c_star}, c_regdate=now() "
 			+ "WHERE c_no = #{c_no}")
 	void commentModify(CommentVO comment);
 
