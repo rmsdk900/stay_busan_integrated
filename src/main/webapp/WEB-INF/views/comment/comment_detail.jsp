@@ -35,6 +35,33 @@
 
 </style>
 
+<style>
+	.btnOpenReply, .btnOpenReport, 
+	.btnReplySubmit, .btnReplyClose {
+		background-color: #56baed;
+		border: none;
+		color: white;
+		padding: 5px;
+		text-align: center;
+		text-decoration: none;
+		display: inline-block;
+		text-transform: uppercase;
+		font-size: 14px;
+		height: 30px;
+		width: 100px;
+		-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+		box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+		-webkit-border-radius: 5px 5px 5px 5px;
+		border-radius: 5px 5px 5px 5px;
+		margin: 5px;
+		-webkit-transition: all 0.3s ease-in-out;
+		-moz-transition: all 0.3s ease-in-out;
+		-ms-transition: all 0.3s ease-in-out;
+		-o-transition: all 0.3s ease-in-out;
+		transition: all 0.3s ease-in-out;
+	}
+</style>
+
 <div class="room_comments">
 	<div>
 		<div>

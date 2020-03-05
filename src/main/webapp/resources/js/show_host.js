@@ -30,7 +30,7 @@ function getCommentList(page, r_no){
 					str += "	<div><b>내가 쓴 대댓글</b></div>";
 				}
 				str += "	<h4 class='room_comment_owner'>"+this.u_name+"</h4>";
-				str += "	<div class='room_comment_profile' >";
+				str += "	<div class='room_comment_profile' data-u_no='"+this.u_no+"'>";
 				str += getGuestImg(this.u_no);
 				str += "	</div>";
 				if(this.c_dep == 0){
@@ -49,7 +49,7 @@ function getCommentList(page, r_no){
 				str += "		</span>";
 				str += "	</div>";
 				str += "	<div>";
-				if(login_u_no!=0){
+				if(login_u_type==1 || login_u_type==2){
 					str += "		<button type='button' class='btnOpenReply' data-c_no='"+this.c_no+"'";
 					str += " 		data-c_owner='"+this.u_name+"' ";
 					str += " 		data-c_origin='"+this.c_origin+"' ";
@@ -155,7 +155,7 @@ $(".room_comments_list").on("click", ".btnOpenReply", function(){
 	html += "		<button type='button' class='btnReplyClose' data-no='"+c_no+"'>닫기</button>";
 	html += "	</div>";
 	
-	$("#room_comment_reply_wrap"+c_no).append(html);
+	$("#room_comment_reply_wrap"+c_no).html(html);
 	
 });
 // 대댓글 창 닫기
@@ -315,12 +315,13 @@ function reportSubmit(){
 // --- 건들 부분 없음 ----
 // 게스트 이미지 불러오기
 function getGuestImg(u_no){
+//	console.log("게스트 번호 : "+u_no);
 	$.getJSON(contextPath+"/getMyImg/"+u_no, function(data){
 //		console.log(data);
 		
 		var fileInfo = getFileInfo(data[0]);
 		var html = "<img src='"+fileInfo.imgSrc+"' alt='게스트 사진' class='FilledImg' />";
-		$(".room_comment_profile").html(html);
+		$(".room_comment_profile[data-u_no='"+u_no+"']").html(html);
 		
 	});
 }

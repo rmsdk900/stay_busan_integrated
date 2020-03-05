@@ -130,6 +130,7 @@
    var u_no = '${myAllInfo.userVO.u_no}';
    var login_u_no = ${!empty userInfo ? userInfo.u_no : 0};
    var login_u_name = "${!empty userInfo ? userInfo.u_name : ''}";
+   var login_u_type = ${!empty userInfo ? userInfo.u_type : 999};
 </script>
 <!-- 소개 페이지 전체 -->
 <div class="show_wrapper">
