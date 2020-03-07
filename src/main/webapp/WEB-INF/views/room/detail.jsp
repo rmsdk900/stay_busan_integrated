@@ -375,7 +375,9 @@
 }
 
 .room_imgs_more {
-   margin-left: 80%;
+   display:flex;
+   justify-content: flex-start;
+   
 }
 
 #roomPicturesModalBtn {
@@ -401,6 +403,7 @@
    -o-transition: all 0.3s ease-in-out;
    transition: all 0.3s ease-in-out;
    -webkit-transition: all 0.3s ease-in-out;
+   margin-right: 10px;
 }
 
 #modPictureBtn {
@@ -426,6 +429,7 @@
    -o-transition: all 0.3s ease-in-out;
    transition: all 0.3s ease-in-out;
    -webkit-transition: all 0.3s ease-in-out;
+   
 }
 
 #roomPicturesModalBtn:hover, #modPictureBtn:hover {
@@ -489,11 +493,11 @@
          </div>
          <!-- 모달 연결 버튼 -->
          <div class="room_imgs_more">
+         	<button type="button" data-toggle="modal" data-target="#roomPicturesModal" id="roomPicturesModalBtn">사진 보기</button>
             <c:if test="${roomInfo.roomVO.u_no == userInfo.u_no}">
                <button type="button" data-toggle="modal" data-target="#modPicture" id="modPictureBtn">   사진 변경</button>
             </c:if>
-            <button type="button" data-toggle="modal" data-target="#roomPicturesModal" id="roomPicturesModalBtn">사진 보기</button>
-            
+              
          </div>
          
          <%@ include file="./pictureModal.jsp" %>
@@ -561,8 +565,8 @@
          <div >
             <div>
                <div class="room_description">
-               <h4>방 설명 :</h4><br/>
-               <h5>${roomInfo.roomVO.r_desc}</h5>
+               	<h4>방 설명 :</h4><br/>
+               	<h5>${roomInfo.roomVO.r_desc}</h5>
                </div>
                <textarea class="room_description_modify" name="r_desc">${roomInfo.roomVO.r_desc}</textarea>
             </div>
