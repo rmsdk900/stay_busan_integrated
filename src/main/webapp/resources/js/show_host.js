@@ -270,7 +270,7 @@ $(".room_comments_list").on("click", ".btnOpenReport", function(){
 	var c_no = $(this).attr("data-c_no");
 	var reporter = $(this).attr("data-reporter");
 	var bad_person = $(this).attr("data-bad_person");
-	var bad_content = $("#room_comment_comment"+c_no).html();
+	var bad_content = $("#room_comment_comment"+c_no).html().trim();
 	// 집어 넣어놓기
 	var str = "";
 	str += "<input type='hidden' name='c_no' id='ban_no' value='"+c_no+"'/>";
@@ -278,16 +278,17 @@ $(".room_comments_list").on("click", ".btnOpenReport", function(){
 	str += "<input type='hidden' name='b_c_bad_person' id='ban_bad_person' value='"+bad_person+"'/>";
 	str += "<input type='hidden' name='c_content' id='ban_content' value='"+bad_content+"'/>";
 	$(".hiddenReport").html(str);
-	$("#reportModal").show();
+	$("#reportModal").css("display", "flex");
 });
 // 신고모달창 감추기
 function closeModal(){
 	$(".hiddenReport").html("");
-	$(".reportModals").hide();
+	$(".report_content").val("");
+	$(".reportModals").css("display", "none");
 }
 // 신고하기
 function reportSubmit(){
-	var b_c_reason = $(".report_content").val();
+	var b_c_reason = $(".report_content").val().trim();
 	if(b_c_reason != null && b_c_reason != ''){
 		$.post(contextPath+"/comments/report", {
 			c_no: $("#ban_no").val(),
