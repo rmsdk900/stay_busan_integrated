@@ -166,8 +166,7 @@ a {
    z-index: 5;
    opacity: 0.9;
 }
-</style>
-<style>
+
 .btnType {
    background-color: #56baed;
    border: none;
@@ -192,6 +191,16 @@ a {
 .btnType:hover{
    background-color: #39ace7;
 }
+
+.listToChange:hover{
+color:black;
+  opacity: 0.6;
+  -webkit-transition: ease-in;
+  transition: ease-in;
+   transfom:scale(1.2);
+   
+}
+
 </style>
 
 <script>
@@ -262,7 +271,7 @@ a {
          </c:choose>
          </form>
          </div>
-      <div id="map" style="width: 39%; height: 90%; position: fixed; right: 0; bottom: 0; margin-left:5%;margin-right:9%;"></div>
+      <div id="map" style="width: 39%; height: 87%; position: fixed; right: 0; bottom: 0; margin-left:5%;margin-right:9%;"></div>
    </div>
 
    
