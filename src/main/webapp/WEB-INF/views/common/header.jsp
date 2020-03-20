@@ -87,7 +87,7 @@ crossorigin="anonymous">
 					<li class="nav-item active"><a class="nav-link"
 						href="/">Home <span class="sr-only">(current)</span></a>
 					</li>
-					<li class="nav-item"><a class="nav-link" href="common/about">About Us</a></li>
+					<li class="nav-item"><a class="nav-link" href="/common/about">About Us</a></li>
 
 					<c:choose>
 						<c:when test="${!empty userInfo}">
