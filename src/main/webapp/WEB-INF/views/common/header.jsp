@@ -72,7 +72,7 @@ crossorigin="anonymous">
 <body style="height: 100%; margin: 0;">
 	<header style="margin:0 auto; width:83%; height: 100px;">
 		<nav class="navbar container-fluid navbar-expand-lg navbar-light nav-color">
-			<a class="navbar-brand" href="/staybusan"> 
+			<a class="navbar-brand" href="/"> 
 			<img style="width:120px;height:90px;"src="${path}/resources/img/stay.png" id="icon" alt="User Icon" />
 			</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -85,7 +85,7 @@ crossorigin="anonymous">
 			<div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
 				<ul class="navbar-nav">
 					<li class="nav-item active"><a class="nav-link"
-						href="/staybusan">Home <span class="sr-only">(current)</span></a>
+						href="/">Home <span class="sr-only">(current)</span></a>
 					</li>
 					<li class="nav-item"><a class="nav-link" href="common/about">About Us</a></li>
 

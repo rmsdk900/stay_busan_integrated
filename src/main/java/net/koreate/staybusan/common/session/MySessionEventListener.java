@@ -98,7 +98,7 @@ public class MySessionEventListener implements HttpSessionListener, HttpSessionA
 		HttpSession session = se.getSession();
 		synchronized (sessionRepository) {
 			System.out.println("session destroy : " +session.getId());
-			
+			sessionRepository.remove(session.getId());
 		}
 	}		
 }

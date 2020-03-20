@@ -547,7 +547,7 @@ h1{
 
          <!-- Remind Passowrd -->
          <div id="formFooter">
-            <a class="underlineHover" href="/staybusan">HOME</a>
+            <a class="underlineHover" href="/">HOME</a>
          </div>
 
       </div>
