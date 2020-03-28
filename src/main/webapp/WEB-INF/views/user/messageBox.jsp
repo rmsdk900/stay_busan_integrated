@@ -69,7 +69,7 @@
 	text-decoration: none;
 }
 
-.modal {
+.messageModal {
 	display: none;
 	position: fixed;
 	z-index: 1;
@@ -81,12 +81,12 @@
 	background-color: rgba(0, 0, 0, 0.4);
 }
 
-.modal table {
+.messageModal table {
 	margin: auto;
 	border-spacing: 10px;
 }
 
-.modal-content {
+.messageModalContent {
 	position: relative;
 	width: 400px;
 	height: 550px;
@@ -205,8 +205,8 @@
 	</div>
 </div>
 
-	<div id="boxMessageModal" class="modal">
-		<div class="modal-content">
+	<div id="boxMessageModal" class="messageModal">
+		<div class="messageModalContent">
 			<h3>쪽지 내용</h3>
 			<div style="text-align : left; margin:20px">
 				<table id="boxMessageModalTable">
@@ -303,7 +303,12 @@
 						html += "<td>";
 						html += "<input type='checkbox' name='m_no' value='"+this.m_no+"'/>";
 						html += "</td>";
-						html += "<td><img class='mboxImg' src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/></td>";
+						if(this.m_sender_profile == null){
+		                	  var profileSrc = contextPath+"/resources/img/person.png"
+		                	  html += "<td><img class='messageImg' src='"+profileSrc+"'/></td>";
+		                  }else{
+		                	  html += "<td><img class='mboxImg' src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/></td>";
+		                  }
 						if(this.m_read == 1){
 							html += "<td><div class='readMessage'>"+this.m_sender_name+"</div></td>";
 							html += "<td><div class='readMessage'><a class='messageDetail' href="+this.m_no+">"+this.m_content+"</a></div></td>";	

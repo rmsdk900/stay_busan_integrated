@@ -334,7 +334,6 @@ color:black;
          // 마커 이미지의 이미지 주소입니다
          var imageSrc = "${pageContext.request.contextPath}/resources/img/pin%20(2).png";
          
-         
          for (var i = 0; i < positions.length; i++) {
             
             // 마커 이미지의 이미지 크기 입니다

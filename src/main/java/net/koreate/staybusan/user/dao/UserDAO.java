@@ -106,5 +106,8 @@ public interface UserDAO {
 
 	@Select("SELECT * FROM find_pw WHERE u_id=#{u_id}")
 	FindPassVO codeCheck(String u_id);
+
+	@Select("SELECT COUNT(*) FROM user WHERE u_phone = #{u_phone}")
+	int phoneCheck(String u_phone);
 	
 }

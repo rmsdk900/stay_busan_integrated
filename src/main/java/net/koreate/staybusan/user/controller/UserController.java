@@ -71,6 +71,20 @@ public class UserController {
 		return entity;
 	}
 	
+	@RequestMapping("/phoneCheck")
+	@ResponseBody
+	public ResponseEntity<Integer> phoneCheck(@RequestBody UserVO vo) throws Exception {
+		ResponseEntity<Integer> entity = null;
+		try {
+			int result = us.phoneCheck(vo.getU_phone());
+			entity = new ResponseEntity<>(result,HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		} 
+		return entity;
+	}
+	
 	@PostMapping("/joinPost")
 	public String joinPost(UserVO vo, RedirectAttributes rttr) throws Exception{
 		System.out.println(vo);

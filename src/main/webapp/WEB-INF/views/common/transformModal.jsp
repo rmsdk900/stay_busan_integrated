@@ -299,6 +299,10 @@
       var u_no = ${u_no};
       console.log("유저 번호 : "+u_no);
       
+      $(document).ready(function(){
+    	  showMessage(u_no);
+      });
+      
       // 메세지 탭에서 내용 클릭 -> 메세지 모달에 데이터 추가
       $(".messageWrap").on("click",".messageDetail",function(event){
          event.preventDefault();
@@ -357,8 +361,6 @@
          
          event.preventDefault();
          
-         showMessage(u_no);
-         
          var display = $(".messageWrap").css("display");
          
          if(display == "none"){
@@ -366,11 +368,6 @@
          }else{
             $(".messageWrap").css("display","none");
          }
-      });
-      
-      $("#transform").click(function(event) {
-         event.preventDefault();
-         $("#transformModal").css("display", "flex");
       });
       
       var boolInfo = false;
@@ -473,11 +470,16 @@
                   }
                   console.log(m_content);
                   html += "<li class='messageLi'>";
-                  html += "<img class='messageImg' src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/>";
+                  if(this.m_sender_profile == null){
+                	  var profileSrc = contextPath+"/resources/img/person.png"
+                	  html += "<img class='messageImg' src='"+profileSrc+"'/>";
+                  }else{
+                	  html += "<img class='messageImg' src='${pageContext.request.contextPath}/displayFile?fileName="+this.m_sender_profile+"'/>";
+                  }
                   html += "<a class='messageDetail' href="+this.m_no+">"+m_content+"</a>";
                   html += "</li>";
                });
-               html += "<div class='messageAtag'><a href='"+contextPath+"/user/messageBox'>쪽지함으로 이동</a></div>"
+               html += "<div class='messageAtag'><a href='"+contextPath+"/user/messageBox'>쪽지함</a></div>"
                $(".messageWrap").html(html);
             },
             error : function(res){
@@ -485,4 +487,9 @@
             }
          });
       }
+      
+      $("#money").on("click", function(event){
+    	  event.preventDefault();
+    	  $("#exampleModal").css("display", "flex"); 
+      });
    </script>

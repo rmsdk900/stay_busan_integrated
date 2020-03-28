@@ -61,22 +61,29 @@ public class UserServiceImpl implements UserService{
 		
 		String fake_u_profile = vo.getU_profile();
 		
-		String profile = fake_u_profile.replace(File.separatorChar, '/');
-		
-		String[] profiles = profile.split("/");
-		
-		String upload_u_profile = profiles[profiles.length-1];
-		
-		FileUtils utils = FileUtils.getInstance(context);
-		
-		String u_profile = utils.uploadProfile(u_no,upload_u_profile);
-		
-		dao.updateProfile(u_no, u_profile);
+		if(fake_u_profile != null) {
+			String profile = fake_u_profile.replace(File.separatorChar, '/');
+			
+			String[] profiles = profile.split("/");
+			
+			String upload_u_profile = profiles[profiles.length-1];
+			
+			FileUtils utils = FileUtils.getInstance(context);
+			
+			String u_profile = utils.uploadProfile(u_no,upload_u_profile);
+			
+			dao.updateProfile(u_no, u_profile);
+		}
 	}
 
 	@Override
 	public int uidCheck(String u_id) throws Exception {
 		return dao.uidCheck(u_id);
+	}
+	
+	@Override
+	public int phoneCheck(String u_phone) throws Exception {
+		return dao.phoneCheck(u_phone);
 	}
 
 	@Override

@@ -50,4 +50,6 @@ public interface UserService {
 		void deleteCode(String u_id) throws Exception;
 
 		void updatePass(UserVO vo) throws Exception;
+
+		int phoneCheck(String u_phone) throws Exception;
 }

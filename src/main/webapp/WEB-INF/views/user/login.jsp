@@ -323,6 +323,7 @@ h1{
 				</label>
 				<br/> 
 				<input type="submit" class="fadeIn fourth" value="로그인">
+				<input type="button" id="joinUser" class="fadeIn fourth" value="회원가입">
 				<input type="button" id="findUser" class="fadeIn fourth" value="아이디/비밀번호 찾기"><br/>
 			</form>
 
@@ -344,6 +345,11 @@ h1{
    $("#findUser").click(function(){
 	  location.href=contextPath+"/user/findUser";
    });
+   
+   $("#joinUser").click(function(){
+	   location.href=contextPath+"/user/join";
+   })
+   
 </script>
 </body>
 </html>

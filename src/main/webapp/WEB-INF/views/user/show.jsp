@@ -150,6 +150,38 @@
    position: relative;
    margin-top:20px;
 }
+
+#transform{
+	background-color: #56baed;
+   border: none;
+   color: white;
+   padding: 5px;
+   text-align: center;
+   text-decoration: none;
+   display: inline-block;
+   text-transform: uppercase;
+   font-size: 15px;
+   height: 48px;
+   width: 250px;
+   -webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+   box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+   -webkit-border-radius: 5px 5px 5px 5px;
+   border-radius: 5px 5px 5px 5px;
+   margin-top: 20px;
+   margin-bottom: 20px;
+   -webkit-transition: all 0.3s ease-in-out;
+   -moz-transition: all 0.3s ease-in-out;
+   -ms-transition: all 0.3s ease-in-out;
+   -o-transition: all 0.3s ease-in-out;
+   transition: all 0.3s ease-in-out;
+}
+.mod_my_img_open:hover, .mod_my_img_submit:hover, .mod_my_img_cancel:hover,
+.show_my_introduce_mod_open:hover, .show_my_introduce_mod_submit:hover,
+   .show_my_introduce_mod_cancel:hover,#transform:hover{
+     background-color: #39ace7;
+}
+   
+
 </style>
 
 <script>
@@ -165,7 +197,6 @@
       <div>
          <!-- 프로필 사진 -->
          <div class="show_my_img" >
-            [프로필 사진]
          </div>
          <!-- 프로필 사진 변경 -->
          <div class="mod_my_img">
@@ -184,7 +215,17 @@
          <div>
             <!-- 프로필 제목 -->
             <div class="show_my_title">
-               <h1>안녕하세요. 저는 ${myAllInfo.userVO.u_name}입니다.</h1>
+               <h3>안녕하세요. 저는 
+                  <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
+                     GUEST 
+                  </c:if>
+                  <c:if test="${userInfo.u_type eq 1}">
+                     HOST
+                  </c:if>
+                 ${myAllInfo.userVO.u_name}입니다.</h3>
+                 <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
+                     <input type="button" id="transform" value="호스트계정으로 전환 신청"/> 
+                  </c:if>
             </div>
             <!-- 회원 가입일 -->
             <div>
@@ -221,10 +262,6 @@
    <%@ include file="./showGuestRooms.jsp" %>
    <%@ include file="../comment/comment_guest.jsp" %>
       
-
-   
-   
-   
 </div>
 <!-- 예약 결과 표시 -->
 <script>
@@ -237,10 +274,21 @@
          alert("예약에 실패하셨습니다.");
       }
    }
+   
+   $("#transform").click(function(event) {
+       var u_type = ${userInfo.u_type};
+       if(u_type == 0){
+      	 $("#transformModal").css("display", "flex"); 
+       }else{
+      	 alert('호스트 전환 신청을 이미 한 계정입니다. 관리자에게 문의하세요.');
+       }
+       
+    });
 </script>
 
 
-<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
 <script src="${pageContext.request.contextPath}/resources/js/show.js"></script>
+<script src="${pageContext.request.contextPath}/resources/js/upload.js"></script>
+
 
 <%@ include file="../common/footer.jsp" %>

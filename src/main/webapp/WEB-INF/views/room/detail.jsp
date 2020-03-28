@@ -174,7 +174,7 @@
 .room_like {
    width: 50px;
    height: 50px;
-   background-image: url("/staybusan/resources/img/jjim.png");
+   background-image: url("/resources/img/jjim.png");
    background-position: center;
    background-size: 50px 50px;
 }
@@ -186,7 +186,7 @@
 .room_like.on {
    width: 50px;
    height: 50px;
-   background-image: url("/staybusan/resources/img/jjim-on.png");
+   background-image: url("/resources/img/jjim-on.png");
    background-position: center;
    background-size: 50px 50px;
 }
@@ -516,6 +516,7 @@
             </div>
             <div>
                <div class="room_host_img">
+               
                </div>
                <div>
                   <h4>호스트 @${roomInfo.hostVO.u_name}</h4>
@@ -1139,15 +1140,23 @@
       // 호스트 이미지 들고 오기
       $.getJSON(contextPath+"/getHostImg/"+r_no, function(data){
          
-         var fileInfo = getFileInfo(data[0]);
-         /* console.log(fileInfo); */
-         
-         var html = "";
-         html += "<a href='"+contextPath+"/user/hosting?u_no="+owner+"'>";
-         html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />"
-         html += "</a>";
-         $(".room_host_img").append(html);
-         
+    	  if(data[0] != null){
+    		  var fileInfo = getFileInfo(data[0]);
+    	         /* console.log(fileInfo); */
+    	         
+    	         var html = "";
+    	         html += "<a href='"+contextPath+"/user/hosting?u_no="+owner+"'>";
+    	         html += "<img src='"+fileInfo.imgSrc+"' alt='호스트 사진' class='FilledImg' />";
+    	         html += "</a>";
+    	         $(".room_host_img").append(html);
+    	  }else{
+    		  var html = "";
+    		  var profileSrc = contextPath+"/resources/img/person.png";
+ 	         html += "<a href='"+contextPath+"/user/hosting?u_no="+owner+"'>";
+ 	         html += "<img src='"+profileSrc+"' alt='호스트 사진' class='FilledImg' />";
+ 	         html += "</a>";
+ 	         $(".room_host_img").append(html);
+    	  }
       });
       // 사진 클릭했을 때 그 때부터 슬라이드 시작
       function openSlide(i){

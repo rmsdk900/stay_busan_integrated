@@ -307,7 +307,7 @@ h1{
 			<!-- Icon -->
 			<div class="fadeIn first">
 				<br/>
-				<a href="/staybusan"><img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" /></a>
+				<a href="/"><img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" /></a>
 				<h1>아이디/비밀번호 찾기</h1>
 			</div>
 
@@ -318,7 +318,7 @@ h1{
 
 			<!-- Remind Passowrd -->
 			<div id="formFooter">
-				<a class="underlineHover" href="/staybusan">HOME</a>
+				<a class="underlineHover" href="/">HOME</a>
 			</div>
 		</div>
 	</div>

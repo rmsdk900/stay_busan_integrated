@@ -12,4 +12,7 @@ public interface CommonDAO {
 	@Select("SELECT u_balance FROM user WHERE u_no=#{u_no}")
 	int getBalance(int u_no)throws Exception;
 
+	@Select("SELECT count(DISTINCT r_gu) FROM rooms")
+	int guListCount() throws Exception;
+
 }

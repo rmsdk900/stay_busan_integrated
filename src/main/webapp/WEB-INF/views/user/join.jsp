@@ -427,7 +427,7 @@ h1{
          <!-- Icon -->
          <div class="fadeIn first">
             <br/>
-            <img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" />
+            <a href="/"><img style="width:110px;height:90px;" src="${path}/resources/img/stay.png" id="icon" alt="User Icon" /></a>
             <h1>회원가입</h1>
          </div>
 
@@ -640,7 +640,6 @@ h1{
                   boolUid = false;
                   $("u_id").focus();
                }else {
-                  console.log
                   showErrorMessage(elP,"사용가능한 아이디입니다",true);
                   boolUidCheck = true;
                   boolUid = true;
@@ -690,8 +689,31 @@ h1{
             var tempVal = $(this).val();
             var elP = $(this).parent().find(".result");
             var message = "- 제외 숫자만 입력해주세요";
-            boolPhone = checkRegex(elP,tempVal,regexMobile,message,null);
+            boolPhone = checkRegex(elP,tempVal,regexMobile,message,checkPhone);
          });
+         
+         function checkPhone(elP){
+        	 $.ajax({
+                 url : "${path}/user/phoneCheck",
+                type : "post",
+                headers : {
+                   "Content-Type" : "application/json",
+                   "X-HTTP-Method-Override" : "POST"
+                },
+                data : JSON.stringify({
+                	u_phone:$("#u_phone").val()
+                }),
+                success : function(data){
+                   if(data > 0){
+                      showErrorMessage(elP,"이미 존재하는 전화번호입니다.",false);
+                      boolPhone = false;
+                   }else {
+                      showErrorMessage(elP,"사용가능한 전화번호입니다",true);
+                      boolPhone = true;
+                   }
+                }
+              });
+         }
          
          $("#u_info").on("change",function(){
             var isChecked = $(this).is(":checked");
@@ -776,8 +798,10 @@ h1{
             }else if(!boolInfo){
                alert("이용약관을 체크해주세요");
             }else{
-               var html = "<input type='hidden' name='u_profile' value='"+u_profile+"'/>";
-               $("#joinForm").append(html);
+            	if(u_profile != ""){
+            		var html = "<input type='hidden' name='u_profile' value='"+u_profile+"'/>";
+            		$("#joinForm").append(html);
+            	}
                $("#joinForm").submit();
             }
          });

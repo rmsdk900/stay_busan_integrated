@@ -1,213 +1,185 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
-<%-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/jquery-ui/jquery-ui.min.js"></script>
-<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> --%>
 
 <%@ include file="common/header.jsp"%>
 
 <style>
 
 /* 검색 테이블 */
-.searchFormDiv{
-   max-width: 1500px;
-   margin: 0 auto;
-   margin-bottom: 50px;
-   padding-top:30px;
-   padding-bottom:30px;
+.searchFormDiv {
+	max-width: 1500px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+	padding-top: 30px;
+	padding-bottom: 30px;
 }
 
-input[type=text],input[type=number] {
-  background-color: white;
-  border: none;
-  color: #0d0d0d;
-  padding: 15px 20px;
-  text-align: left;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 13px;
-  width: 100%;
-  border: 2px solid #f6f6f6;
-  -webkit-transition: all 0.5s ease-in-out;
-  -moz-transition: all 0.5s ease-in-out;
-  -ms-transition: all 0.5s ease-in-out;
-  -o-transition: all 0.5s ease-in-out;
-  transition: all 0.5s ease-in-out;
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
+input[type=text], input[type=number] {
+	background-color: white;
+	border: none;
+	color: #0d0d0d;
+	padding: 15px 20px;
+	text-align: left;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 13px;
+	width: 100%;
+	border: 2px solid #f6f6f6;
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 0.5s ease-in-out;
+	-ms-transition: all 0.5s ease-in-out;
+	-o-transition: all 0.5s ease-in-out;
+	transition: all 0.5s ease-in-out;
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
 }
 
 input[type=text]:placeholder {
-  color: #cccccc;
+	color: #cccccc;
 }
 
-input[type=text]:focus,input[type=number]:focus {
-  background-color: #fff;
-  border-bottom: 2px solid #5fbae9;
+input[type=text]:focus, input[type=number]:focus {
+	background-color: #fff;
+	border-bottom: 2px solid #5fbae9;
 }
 
-input[type=text]:placeholder, input[type=number]{
-  color: #cccccc;
+input[type=text]:placeholder, input[type=number] {
+	color: #cccccc;
 }
 
-input[type=text]:hover, input[type=number]:hover{
-  background-color: #EAEAEA;
+input[type=text]:hover, input[type=number]:hover {
+	background-color: #EAEAEA;
 }
 
-
-input[type=button]{
-  background-color: #56baed;
-  border: none;
-  color: white;
-  padding: 5px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  text-transform: uppercase;
-  font-size: 30px;
-  height: 48px;
-  width: 80px;
-  -webkit-box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  box-shadow: 0 10px 30px 0 rgba(95,186,233,0.4);
-  -webkit-border-radius: 5px 5px 5px 5px;
-  border-radius: 5px 5px 5px 5px;
-  margin: 5px 3px 7px 17px;
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;   
+input[type=button] {
+	background-color: #56baed;
+	border: none;
+	color: white;
+	padding: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 30px;
+	height: 48px;
+	width: 80px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	margin: 5px 3px 7px 17px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
 }
 
-input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover  {
-  background-color: #39ace7;
+input[type=button]:hover, input[type=submit]:hover, input[type=reset]:hover
+	{
+	background-color: #39ace7;
 }
 
-input[type=button]:active, input[type=submit]:active, input[type=reset]:active  {
-  -moz-transform: scale(0.95);
-  -webkit-transform: scale(0.95);
-  -o-transform: scale(0.95);
-  -ms-transform: scale(0.95);
-  transform: scale(0.95);
+input[type=button]:active, input[type=submit]:active, input[type=reset]:active
+	{
+	-moz-transform: scale(0.95);
+	-webkit-transform: scale(0.95);
+	-o-transform: scale(0.95);
+	-ms-transform: scale(0.95);
+	transform: scale(0.95);
 }
 
 /* 검색 테이블 */
 
 /* 구별 room list style /////////*/
-.homeList {
-   max-width: 81%;
-   min-height: 600px;
-   margin: 0 auto;
-   display: -webkit-box;
-   display: -ms-flexbox;
-   display: flex;
-   -webkit-box-orient: horizontal;
-   -webkit-box-direction: normal;
-   -ms-flex-direction: row;
-   flex-direction: row;
-   -ms-flex-wrap: wrap;
-   flex-wrap: wrap;
+.roomList{
+	width:500px;
+	height:300px;
+	color:white;
 }
-
-
-.roomList {
-   background-color: #eaeaea;
-   min-width: 12rem;
-   min-height: 8rem;
-   position: relative;
-   -webkit-box-flex: 1;
-   -ms-flex: 1;
-   flex: 1;
-   -ms-flex-preferred-size: 8rem;
-   flex-basis: 8rem;
-   margin-right: 2px;
-   margin-bottom: 2px;
-   transfom:scale(1.2);
-   color:white;
-}
-
-.roomList:hover, .roomImgDiv:hover{
-color:black;
-  opacity: 0.6;
-  -webkit-transition: .2s ease-in;
-  transition: .2s ease-in;
-   transfom:scale(1.2);
-   
-}
-
-.roomList:nth-child(4n){
-   -ms-flex-preferred-size: 14rem;
-      flex-basis: 14rem;
-}
-
-.roomList:nth-child(3n+1) {
-  -ms-flex-preferred-size: 10rem;
-      flex-basis: 10rem;
-}
-
-.roomList:nth-child(7n+4) {
-  -ms-flex-preferred-size: 20rem;
-      flex-basis: 20rem;
-  min-height: 12rem;
+.roomList:hover{
+	background-color:black;
+	-webkit-transition: .2s ease-in;
+	transition: .2s ease-in;
 }
 
 .roomList-a {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: transform .2s;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
 }
 
-.aContent{
-   position:absolute;
-   font-size:15px;
-   top:80%;
-   left:45%;
-   right:5%;
+.roomList img:hover{
+	background-color:black;
+	opacity: 0.7;
 }
+
+.aContent {
+	position: absolute;
+	top: 80%;
+	left: 45%;
+	right: 5%;
+}
+
 /* 구별 room list style  /////////////*/
 
 /* top3 */
-.bestList{
-   margin-top:3%;
-   margin-left:9.5%;
-   height:10%;
-   overflow:hidden;
+.bestList {
+	margin-top: 3%;
+	margin-left: 9.5%;
+	height: 10%;
+	overflow: hidden;
 }
 
-.roomImgDiv{
-   display:block;
-   float:left;
-   width:26.4%;
-   height:14%;
-   margin-right:5%;
+.roomImgDiv {
+	display: block;
+	float: left;
+	width: 26.4%;
+	height: 14%;
+	margin-right: 5%;
 }
 
-.roomImgDiv:last-child{
-   display:block;
-   float:left;
-   width:26.4%;
-   height:14%;
+.roomImgDiv:last-child {
+	display: block;
+	float: left;
+	width: 26.4%;
+	height: 14%;
 }
 
-.toproomImg{
-   width:100%;
-   height:100%;
+.toproomImg {
+	width: 100%;
+	height: 100%;
 }
 
-.bestList ul{
-   padding-left:0;
-   height:245px;
-   overflow:hidden;
+.bestList ul {
+	padding-left: 0;
+	height: 245px;
+	overflow: hidden;
+}
+</style>
+
+<style>
+.blog .carousel-indicators {
+	left: 0;
+	top: auto;
+    bottom: -40px;
+
 }
 
+/* The colour of the indicators */
+.blog .carousel-indicators li {
+    background: #a3a3a3;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+}
 
-
+.blog .carousel-indicators .active {
+background: #707070;
+}
 </style>
 <div style="min-hight: 100%;">
 
@@ -232,7 +204,7 @@ color:black;
                         </tr>
                         <tr>
                            <td>인원</td>
-                           <td colspan=1><input type="number" name="g_guests" id="guests" autocomplete="off" placeholder="몇 명이서 가시나요?"/></td>
+                           <td colspan=1><input type="number" name="g_guests" id="guests" autocomplete="off" min="1" placeholder="몇 명이서 가시나요?"/></td>
                         </tr>
                      </table>
                   </div>
@@ -286,8 +258,8 @@ color:black;
       
       
       // 마이너스 숫자 제한
-         $(".number").on("keydown", function(e){
-           if($(".number").val()<0){
+         $("#guests").on("keydown", function(e){
+           if($("#guests").val()<0){
               return false;
            }
             if(e.keyCode == 69 
@@ -348,23 +320,124 @@ color:black;
    </script>
    <!-- datePicker script -->
 
-   <div class="homeList">
-      <c:choose>
-         <c:when test="${!empty homeList}">
-            <c:forEach var="guList" items="${homeList}">
-               <div class="roomList">
-                  <a class="roomList-a" href="${pageContext.request.contextPath}/room/list?r_gu=${guList.r_gu}">
-                     <img style="width:99%; height:99%;"class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${guList.g_i_fullName}" />
-                  </a>
-                  <div class="aContent">
-                     <h4>${guList.r_gu}(${guList.r_count}개)<br/>
-                     평균가격 : ${guList.r_avgPrice}원</h4>
-                  </div>               
-               </div>                  
-            </c:forEach>            
-         </c:when>
-      </c:choose>
-   </div>
+
+  <div class="container">
+	<div class="row blog">
+	    <div class="col-md-12" style="width:1300px;">
+	        <div id="blogCarousel" class="carousel slide" data-ride="carousel">
+	        
+	            <ol class="carousel-indicators">
+					<li data-target='#blogCarousel' data-slide-to='0' class='active'></li>
+					<li data-target='#blogCarousel' data-slide-to='1'></li>
+					<li data-target='#blogCarousel' data-slide-to='2'></li>
+					<li data-target='#blogCarousel' data-slide-to='3'></li>
+	            </ol>
+	
+	            <!-- Carousel items -->
+	            <div class="carousel-inner">
+	                <div class="carousel-item active">
+		                 <div class="row" style="height:700px;">
+			                <c:forEach var="guList" items="${homeList}" begin="0" end="3">
+		                        <div class="roomList" style="position:relative; margin:0 auto; margin-bottom:50px;" >
+		                            <a href="${pageContext.request.contextPath}/room/list?r_gu=${guList.r_gu}">
+			                     		<img style="width:100%; height:100%;" alt="Image" src="${pageContext.request.contextPath}/room/displayFile?fileName=${guList.g_i_fullName}" />
+			                  		</a>
+			                  		<div class="aContent">
+				                     <h5>${guList.r_gu}(${guList.r_count}개)<br/>
+				                     평균가격 : ${guList.r_avgPrice}원</h5>
+		                  			</div>
+		                        </div>
+			                </c:forEach>
+			             </div>
+	                </div>
+	                
+	                <div class="carousel-item">
+		                 <div class="row" style="height:700px;">
+			                <c:forEach var="guList" items="${homeList}" begin="4" end="7">
+		                        <div class="roomList" style="color:white;position:relative; margin:0 auto; margin-bottom:50px;" >
+		                            <a href="${pageContext.request.contextPath}/room/list?r_gu=${guList.r_gu}">
+			                     		<img style="width:500px; height:300px;" alt="Image" src="${pageContext.request.contextPath}/room/displayFile?fileName=${guList.g_i_fullName}" />
+			                  		</a>
+			                  		<div class="aContent">
+				                     <h5>${guList.r_gu}(${guList.r_count}개)<br/>
+				                     평균가격 : ${guList.r_avgPrice}원</h5>
+		                  			</div>
+		                        </div>
+			                </c:forEach>
+			             </div>
+	                </div>
+	                
+	                <div class="carousel-item">
+		                 <div class="row" style="height:700px;">
+			                <c:forEach var="guList" items="${homeList}" begin="8" end="11">
+		                        <div class="roomList" style="color:white;position:relative; margin:0 auto; margin-bottom:50px;" >
+		                            <a href="${pageContext.request.contextPath}/room/list?r_gu=${guList.r_gu}">
+			                     		<img style="width:500px; height:300px;" alt="Image" src="${pageContext.request.contextPath}/room/displayFile?fileName=${guList.g_i_fullName}" />
+			                  		</a>
+			                  		<div class="aContent">
+				                     <h5>${guList.r_gu}(${guList.r_count}개)<br/>
+				                     평균가격 : ${guList.r_avgPrice}원</h5>
+		                  			</div>
+		                        </div>
+			                </c:forEach>
+			             </div>
+	                </div>
+	                
+	                <div class="carousel-item">
+		                 <div class="row" style="height:700px;">
+			                <c:forEach var="guList" items="${homeList}" begin="12" end="15">
+		                        <div class="roomList" style="color:white;position:relative; margin:0 auto; margin-bottom:50px;" >
+		                            <a href="${pageContext.request.contextPath}/room/list?r_gu=${guList.r_gu}">
+			                     		<img style="width:500px; height:300px;" alt="Image" src="${pageContext.request.contextPath}/room/displayFile?fileName=${guList.g_i_fullName}" />
+			                  		</a>
+			                  		<div class="aContent">
+				                     <h5>${guList.r_gu}(${guList.r_count}개)<br/>
+				                     평균가격 : ${guList.r_avgPrice}원</h5>
+		                  			</div>
+		                        </div>
+			                </c:forEach>
+			             </div>
+	                </div>
+	                
+	            </div>
+	        </div>
+	    </div>
+	</div>
+</div> 
+<script>
+	/* 
+	$(function(){
+		
+		$.ajax({
+			type: "post",
+			url: contextPath+"/common/guList",
+			dataType: "text",
+			success: function(data){
+				console.log(data);
+				
+				var html = "";
+				
+				if(data != 0 && data < 5){
+					html += "<li data-target='#blogCarousel' data-slide-to='0' class='active'></li>";
+				}else if(data > 4 && data < 9){
+					html += "<li data-target='#blogCarousel' data-slide-to='0' class='active'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='1'></li>";
+				}else if(data > 8 && data < 13){
+					html += "<li data-target='#blogCarousel' data-slide-to='0' class='active'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='1'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='2'></li>";
+				}else{
+					html += "<li data-target='#blogCarousel' data-slide-to='0' class='active'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='1'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='2'></li>";
+					html += "<li data-target='#blogCarousel' data-slide-to='3'></li>";
+				}
+				$(".carousel-indicators").html(html);
+			}
+		});
+	}); */
+</script>   
+   
 
 <!-- ////////////////////////////// -->
    
@@ -384,6 +457,9 @@ color:black;
                </c:forEach>
             </ul>
          </c:when>
+         <c:otherwise>
+         	<h3>아직 등록된 방이 없습니다.</h3>
+         </c:otherwise>
       </c:choose>
    </div>
 

@@ -4,7 +4,7 @@
 	.carousel-item {
 		text-align: center;
 	}
-	.modal-body {
+	.picture-modal {
 		background-color: #dbdbdb;
 	}
 	
@@ -50,7 +50,7 @@ aria-labelledby="myModalLabel" aria-hidden="true">
 				</button>
 				
 			</div>
-			<div class="modal-body">
+			<div class="modal-body picture-modal">
 				<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
 				  <!-- Indicators -->
 				  <ol class="carousel-indicators">

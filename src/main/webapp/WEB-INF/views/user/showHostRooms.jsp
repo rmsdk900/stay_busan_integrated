@@ -5,7 +5,7 @@
 <style>
 	.show_host_rooms_list_room_img{
 		width: 100%;
-		height: 200px;
+		height: 180px;
 	}
 	.show_host_rooms_list_room_img img {
 		width: 100%;
@@ -13,8 +13,7 @@
 	}
 	
 	.show_host_rooms_one_manage {
-		height: 310px;
-		width: 25%;
+		width: 50%;
 		display: flex;
 		justify-content: flex-end;
 		align-items: center;
@@ -80,19 +79,11 @@
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
 	margin-top: 12px;
-	margin-bottom: 12px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
-}
-
-
-
-.btnReview {
-	margin-bottom: 0;
-	margin-top: 1px;
 }
 
 .btncancel, .btndel{
@@ -111,8 +102,6 @@
 	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
 	-webkit-border-radius: 5px 5px 5px 5px;
 	border-radius: 5px 5px 5px 5px;
-	margin-top: 20px;
-	margin-bottom: 20px;
 	-webkit-transition: all 0.3s ease-in-out;
 	-moz-transition: all 0.3s ease-in-out;
 	-ms-transition: all 0.3s ease-in-out;
@@ -124,25 +113,29 @@
 <link rel="stylesheet" href="${path}/resources/css/swiper.min.css">
 <!-- 예제 복사 -->
 <style>
-	.swiper-container {
-		margin-left: 10%;
-		margin-right: 10%;
-		height:500px;
-		border:5px solid silver;
-		border-radius:7px;
-		box-shadow:0 0 20px #ccc inset;
-	}
-	.swiper-slide {
-		text-align:center;
-		display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
-		align-items:center; /* 위아래 기준 중앙정렬 */
-		justify-content:center; /* 좌우 기준 중앙정렬 */
-	}
-	.swiper-slide img {
-		box-shadow:0 0 5px #555;
-		max-width:100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-		/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-	}
+.swiper-container {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 3%;
+	height: 500px;
+	border: 5px solid #56baed;
+	border-radius: 7px;
+	box-shadow: 0 0 15px #ccc inset;
+}
+
+.swiper-slide {
+	text-align: center;
+	display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items: center; /* 위아래 기준 중앙정렬 */
+	justify-content: center; /* 좌우 기준 중앙정렬 */
+	flex-direction: column;
+}
+
+.swiper-slide img {
+	box-shadow: 0 0 3px #555;
+	max-width: 100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+	/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+}
 </style>
 <script src="${path}/resources/js/swiper.min.js"></script>
 <c:if test="${!empty myAllInfo.hosting}">
@@ -156,8 +149,8 @@
 		<div class="show_host_rooms_list swiper-wrapper">
 			<c:forEach var="room" items="${myAllInfo.hosting}">
 					<c:if test="${room.r_deleted == 0}">
-						<div class="show_host_rooms_one swiper-slide">
-							<div style="max-width:290px;">
+						<div class="show_host_rooms_one swiper-slide" > 
+							<div>
 								<div class="show_host_rooms_list_room_img">
 									
 									<a href="${pageContext.request.contextPath}/room/detail?r_no=${room.r_no}">
@@ -208,18 +201,24 @@
 									
 								</div>
 								<div>
-									<span>총 예약 : </span>
-									<span><c:out value="${room.r_bookedcnt}"/></span>
+									<span>총 예약 : <c:out value="${room.r_bookedcnt}"/></span>
 								</div>
 							</div>
 							
 							<c:if test="${myAllInfo.userVO.u_no eq userInfo.u_no}">
-								<div class="show_host_rooms_one_manage">
+								<div class="show_host_rooms_one_manage" style="margin:0 auto;">
 									<!-- 방 삭제 모달 -->
-									<button type="button" data-r_no="${room.r_no}" data-toggle="modal"
-									data-target="#delRoom"  class="modalBtnDelRoom">방 삭제</button>
-									<input type="button" value="댓글 관리" data-r_no="${room.r_no}" class="btnReview" />
-									
+									<table>
+										<tr>
+											<td>
+												<button type="button" data-r_no="${room.r_no}" data-toggle="modal"
+												data-target="#delRoom"  class="modalBtnDelRoom">방 삭제</button>
+											</td>
+											<td>
+												<input type="button" value="댓글 관리" data-r_no="${room.r_no}" class="btnReview" />
+											</td>
+										</tr>
+									</table>
 								</div>
 							</c:if>
 						</div>

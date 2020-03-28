@@ -23,26 +23,29 @@
 <link rel="stylesheet" href="${path}/resources/css/swiper.min.css">
 <!-- 예제 복사 -->
 <style>
-	.swiper-container {
-		margin-left: 10%;
-		margin-right: 10%;
-		height:500px;
-		border:5px solid silver;
-		border-radius:7px;
-		box-shadow:0 0 20px #ccc inset;
-	}
-	.swiper-slide {
-		text-align:center;
-		display:flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
-		align-items:center; /* 위아래 기준 중앙정렬 */
-		justify-content:center; /* 좌우 기준 중앙정렬 */
-		flex-direction: column;
-	}
-	.swiper-slide img {
-		box-shadow:0 0 5px #555;
-		max-width:100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
-		/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
-	}
+.swiper-container {
+	margin-left: 10%;
+	margin-right: 10%;
+	margin-bottom: 3%;
+	height: 500px;
+	border: 5px solid #56baed;
+	border-radius: 7px;
+	box-shadow: 0 0 15px #ccc inset;
+}
+
+.swiper-slide {
+	text-align: center;
+	display: flex; /* 내용을 중앙정렬 하기위해 flex 사용 */
+	align-items: center; /* 위아래 기준 중앙정렬 */
+	justify-content: center; /* 좌우 기준 중앙정렬 */
+	flex-direction: column;
+}
+
+.swiper-slide img {
+	box-shadow: 0 0 3px #555;
+	max-width: 100%; /* 이미지 최대너비를 제한, 슬라이드에 이미지가 여러개가 보여질때 필요 */
+	/* 이 예제에서 필요해서 설정했습니다. 상황에따라 다를 수 있습니다. */
+}
 </style>
 <script src="${path}/resources/js/swiper.min.js"></script>
 <div class="domitoryList">

@@ -12,9 +12,6 @@
 }
 
 
-.room_comments {
-	margin-left: 10%;
-}
 </style>
 
 <style>

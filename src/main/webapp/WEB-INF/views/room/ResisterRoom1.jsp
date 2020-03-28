@@ -179,6 +179,11 @@ input[type=number] {
    margin-right:10%;
 }
 
+.checkbox-size{
+   width:16px;
+   height:16px;
+}
+
 </style>
 <body>
 <div>
@@ -236,7 +241,7 @@ input[type=number] {
                            <img style="width:30px;height:30px; margin:10px 10px 10px 10px;" src="${path}/resources/img/icon/bathroom.png">
                            </td>
                            <td>
-                           욕실 수 <input id="r_bath" type="number" name="r_bath" min="0" value="1"/>개
+                           욕실  <input id="r_bath" type="number" name="r_bath" min="0" value="1"/>개
                         </td>
                      </tr>
                   </table>
@@ -247,67 +252,72 @@ input[type=number] {
                <div class="tableWrap" style="margin-left:10%;">
                   <h2>편의 시설</h2>
                   <table style="margin-bottom:50px; width:120%;">
+                     <!-- 20200326 전체선택 추가 -->
+                     <tr>
+                        <td></td><td></td>
+                        <td><input type="checkbox" id="selectAll" class="checkbox-size"/>전체선택</td>
+                     </tr>
                      <tr>
                         <td>                        
-                           <input type="checkbox" name="amenity" value="a_wifi" style="margin-bottom:20px;"/> 와이파이
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_wifi" style="margin-bottom:20px;"/> 와이파이
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_heating" style="margin-bottom:20px;"/> 난방
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_heating" style="margin-bottom:20px;"/> 난방
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_TV" style="margin-bottom:20px;"/> TV
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_TV" style="margin-bottom:20px;"/> TV
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_kitchen" style="margin-bottom:20px;"/> 주방
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_kitchen" style="margin-bottom:20px;"/> 주방
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_hairdryer" style="margin-bottom:20px;"/> 헤어드라이기
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_hairdryer" style="margin-bottom:20px;"/> 헤어드라이기
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_iron" style="margin-bottom:20px;"/> 다리미
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_iron" style="margin-bottom:20px;"/> 다리미
                         </td>
                      </tr>
                      <tr>
                         <td>                     
-                           <input type="checkbox" name="amenity" value="a_hanger" style="margin-bottom:20px;"/> 옷걸이
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_hanger" style="margin-bottom:20px;"/> 옷걸이
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_towel" style="margin-bottom:20px;"/> 수건
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_towel" style="margin-bottom:20px;"/> 수건
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_elevator" style="margin-bottom:20px;"/> 엘리베이터
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_elevator" style="margin-bottom:20px;"/> 엘리베이터
                         </td>
                      </tr>
                      <tr>
                         <td>   
-                           <input type="checkbox" name="amenity" value="a_parking" style="margin-bottom:20px;"/> 주차장
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_parking" style="margin-bottom:20px;"/> 주차장
                         </td>
                         <td>                        
-                           <input type="checkbox" name="amenity" value="a_washer" style="margin-bottom:20px;"/> 샤워용품
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_washer" style="margin-bottom:20px;"/> 샤워용품
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_cookware" style="margin-bottom:20px;"/> 조리기구
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_cookware" style="margin-bottom:20px;"/> 조리기구
                         </td>
                      </tr>
                      <tr>   
                         <td>
-                           <input type="checkbox" name="amenity" value="a_refri" style="margin-bottom:20px;"/> 냉장고
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_refri" style="margin-bottom:20px;"/> 냉장고
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_burner" style="margin-bottom:20px;"/> 가열기구
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_burner" style="margin-bottom:20px;"/> 가열기구
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_dish" style="margin-bottom:20px;"/> 식기류
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_dish" style="margin-bottom:20px;"/> 식기류
                         </td>
                      </tr>
                      <tr>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_micro" style="margin-bottom:20px;"/> 전자레인지
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_micro" style="margin-bottom:20px;"/> 전자레인지
                         </td>
                         <td>
-                           <input type="checkbox" name="amenity" value="a_aircon" style="margin-bottom:20px;"/> 에어컨                           
+                           <input class="checkbox-size" type="checkbox" name="amenity" value="a_aircon" style="margin-bottom:20px;"/> 에어컨                           
                         </td>
                         <td></td>
                      </tr>
@@ -320,7 +330,7 @@ input[type=number] {
                   <h2>주소 찾기</h2>
                   <table>
                      <tr>
-                        <td><input type="text" name="r_addr_main" id="addr" placeholder="기본주소" autocomplete="off" required/></td>
+                        <td><input type="text" name="r_addr_main" id="addr" placeholder="기본주소" autocomplete="off" onclick="searchAddr()" required readonly/></td>
                         <td><input type="button" class="findBtn" onclick="searchAddr()" value="주소 찾기"/></td>
                      </tr>
                      <tr>
@@ -344,6 +354,14 @@ input[type=number] {
    
    $(document).ready(function(){
       $("#r_guests").focus();
+      $("#selectAll").click(function(){
+         if($("#selectAll").prop("checked")){
+            $("input[name=amenity]").prop("checked", true);
+         }
+         else{
+            $("input[name=amenity]").prop("checked", false);
+         }
+      })
    });
    
    $("#r_guests").keydown(function(e){
@@ -370,6 +388,8 @@ input[type=number] {
             return false;              
         } 
     });
+   
+   
    
    $("#submitBtn").click(function(){
       console.log("버튼 클릭");

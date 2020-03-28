@@ -282,7 +282,7 @@ textarea{
                      </tr>
                      <tr>
                         <td>가격 1박/1인</td>
-                        <td colspan=2><input type= "number" name="r_price" value="0" id="r_price" step="100"/>원</td>
+                        <td colspan=2><input type= "number" name="r_price" value="0" min="0" id="r_price" step="100"/>원</td>
                      </tr>
                   </table>
                </div>

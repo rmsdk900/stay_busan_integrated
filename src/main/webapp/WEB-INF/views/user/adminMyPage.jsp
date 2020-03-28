@@ -9,88 +9,109 @@
 <script> var contextPath = '${pageContext.request.contextPath}'; </script>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-	body{
-		margin-top: 100px;
-		line-height: 1.6
-	}
-	.container{
-		width: 500px;
-		margin: 0 auto;
-	}
-	
-	
-	
-	ul.tabs{
-		margin: 0px;
-		padding: 0px;
-		list-style: none;
-	}
-	ul.tabs li{
-		background: none;
-		color: #222;
-		display: inline-block;
-		padding: 10px 15px;
-		cursor: pointer;
-	}
-	
-	ul.tabs li.current{
-		background: #ededed;
-		color: #222;
-	}
-	
-	.tab-content{
-		display: none;
-		background: #ededed;
-		padding: 15px;
-	}
-	
-	.tab-content.current{
-		display: inherit;
-	}
-	.banData{
-		display : none;
-	}
+body {
+	margin-top: 100px;
+	line-height: 1.6
+}
 
-	.userListPageWrap {
-		width:100%;
-	}
-	
-	.userListPageWrap li {
-		float:left;
-		padding:3px;
-		border:1px solid skyblue;
-		margin:3px;
-		list-style:none;
-	}
-	
-	.userListPageWrap li a{
-		margin:3px;
-		text-decoration:none;
-	}
-	
-	.banCommentsPageWrap {
-		width:100%;
-	}
-	
-	.banCommentsPageWrap li {
-		float:left;
-		padding:3px;
-		border:1px solid skyblue;
-		margin:3px;
-		list-style:none;
-	}
-	
-	.banCommentsPageWrap li a{
-		margin:3px;
-		text-decoration:none;
-	}
-	
+.container {
+	width: 500px;
+	margin: 0 auto;
+}
+
+ul.tabs {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+ul.tabs li {
+	background: none;
+	color: #222;
+	display: inline-block;
+	padding: 10px 15px;
+	cursor: pointer;
+}
+
+ul.tabs li.current {
+	background: #56baed;
+	color: #222;
+}
+
+.tab-content {
+	display: none;
+	background: #56baed;
+	padding: 15px;
+}
+
+.tab-content.current {
+	display: inherit;
+}
+
+.banData {
+	display: none;
+}
+
+.userListPageWrap {
+	width: 100%;
+}
+
+.userListPageWrap li {
+	float: left;
+	padding: 3px;
+	border: 1px solid skyblue;
+	margin: 3px;
+	list-style: none;
+}
+
+.userListPageWrap li a {
+	margin: 3px;
+	text-decoration: none;
+}
+
+.banCommentsPageWrap {
+	width: 100%;
+}
+
+.banCommentsPageWrap li {
+	float: left;
+	padding: 3px;
+	border: 1px solid skyblue;
+	margin: 3px;
+	list-style: none;
+}
+
+.banCommentsPageWrap li a {
+	margin: 3px;
+	text-decoration: none;
+}
+.transformBtn, .banCommentCancel, .banCommentDelete{
+	background-color: #56baed;
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	text-transform: uppercase;
+	font-size: 15px;
+	height: 40px;
+	width: 80px;
+	-webkit-box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	box-shadow: 0 10px 30px 0 rgba(95, 186, 233, 0.4);
+	-webkit-border-radius: 5px 5px 5px 5px;
+	border-radius: 5px 5px 5px 5px;
+	-webkit-transition: all 0.3s ease-in-out;
+	-moz-transition: all 0.3s ease-in-out;
+	-ms-transition: all 0.3s ease-in-out;
+	-o-transition: all 0.3s ease-in-out;
+	transition: all 0.3s ease-in-out;
+}
 </style>
 </head>
 <!-- url 접근 막기 -->
-<% 
+<%
 	String strReferer = request.getHeader("referer");
-	if(strReferer == null){
+	if (strReferer == null) {
 %>
 <script>
 	alert("정상적인 경로를 통해 다시 접근해주십시오.");
@@ -101,29 +122,22 @@
 	}
 %>
 <body>
-	<div class="container">
-		<ul class="tabs">
-			<li class="tab-link current" data-tab="tab-1">호스트 전환 게스트 관리</li>
-			<li class="tab-link" data-tab="tab-2">댓글 신고 관리</li>
-		</ul>
-		<div id="tab-1" class="tab-content current">
-			
-			<div id="transformUserList">
-						
-			</div>			
-			
-			<div id="userListPageWrap" class="userListPageWrap">
-			
-			</div>
+	<div class="container" style="float:left; margin-top:30px; margin-left:150px;">
+		<h4>호스트 전환 게스트 관리</h4>
+		<div id="transformUserList">
+					
+		</div>			
+		
+		<div id="userListPageWrap" class="userListPageWrap">
+		
 		</div>
-		<div id="tab-2" class="tab-content">
-			<div id="banCommetsList">
-						
-			</div>			
-			
-			<div id="banCommentsPageWrap" class="banCommentsPageWrap">
-			
-			</div>
+		<br><br>
+		<h4>댓글 신고 관리</h4>
+		<div id="banCommetsList">
+					
+		</div>			
+		
+		<div id="banCommentsPageWrap" class="banCommentsPageWrap">
 		
 		</div>
 	</div>
@@ -136,17 +150,6 @@
 		
 		getUserList(userListPage);
 		getBanPageList(banPage);
-		
-		
-		$('ul.tabs li').click(function(){
-			var tab_id = $(this).attr('data-tab');
-	
-			$('ul.tabs li').removeClass('current');
-			$('.tab-content').removeClass('current');
-	
-			$(this).addClass('current');
-			$("#"+tab_id).addClass('current');
-		});
 		
 		$("#banCommetsList").on("click",".banCommentDetail",function(){
 			$(this).parent().parent().next().find(".banData").toggle("slow");
@@ -193,7 +196,7 @@
 			
 		});
 		
-		$("#tab-1").on("click",".transformBtn",function(){
+		$("#transformUserList").on("click",".transformBtn",function(){
 			var u_no = $(this).attr("data-no");
 			
 			$.ajax({
@@ -226,16 +229,16 @@
 				html += "<tr><th>전환을 신청한 게스트가 없습니다.<th><tr>";
 			}else{
 				html += "<tr>";
-				html += "<th>이름</th>";
-				html += "<th>등록일</th>";
-				html += "<th></th>";
+				html += "<th style='width:100px;'>이름</th>";
+				html += "<th style='width:100px;'>등록일</th>";
+				html += "<th style='width:100px;'></th>";
 				html += "</tr>";
 				$(data.list).each(function(){
 					
 					var date = new Date(this.u_regdate).yyyymmdd();
 					
 					html += "<tr>";
-					html += "<td><a href='"+contextPath+"/user/show?"+this.u_no+"'>"+this.u_name+"</a></td>";
+					html += "<td><a href='"+contextPath+"/user/show?u_no="+this.u_no+"'>"+this.u_name+"</a></td>";
 					html += "<td>"+date.toString()+"</td>";
 					html += "<td>";
 					html += "<input type='button' class='transformBtn' data-no='"+this.u_no+"' value='전환'/>";
@@ -277,7 +280,7 @@
 					
 					html += "<div class='banData'>";
 					
-					html += "<div style='border:1px solid red;'>";
+					html += "<div style='border:1px solid #56baed;'>";
 					
 					html += "<div>";
 					

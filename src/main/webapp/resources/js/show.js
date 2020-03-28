@@ -10,9 +10,15 @@ $(function(){
 	//호스트 이미지 가져오기
 	$.getJSON(contextPath+"/getMyImg/"+u_no, function(data){
 		console.log(data);
-		var fileInfo = getFileInfo(data[0]);
-		var html = "<img src='"+fileInfo.imgSrc+"' alt='프로필 사진' class='FilledImg roundingProfileImg' />";
-		$(".show_my_img").html(html);
+		if(data[0] == null){
+			var profileSrc = contextPath+"/resources/img/person.png"
+			var html = "<img src='"+profileSrc+"' alt='프로필 사진' class='FilledImg roundingProfileImg' />";
+			$(".show_my_img").html(html);
+		}else{
+			var fileInfo = getFileInfo(data[0]);
+			var html = "<img src='"+fileInfo.imgSrc+"' alt='프로필 사진' class='FilledImg roundingProfileImg' />";
+			$(".show_my_img").html(html);
+		}
 	});
 	// 파일 들어갔을 때 미리보기 띄우기
 	$("#updateMyProfile").on("change", previewImg);

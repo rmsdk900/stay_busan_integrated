@@ -18,5 +18,10 @@ public class CommonServiceImpl implements CommonService{
 		
 		return dao.getBalance(u_no);
 	}
+	
+	@Override
+	public int guListCount() throws Exception {
+		return dao.guListCount();
+	}
 
 }

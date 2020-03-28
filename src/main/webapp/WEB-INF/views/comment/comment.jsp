@@ -10,10 +10,8 @@
 	width: 100%;
 	height: 100%;
 }
-
-
-.room_comments {
-	margin-left: 10%;
+.room_comments{
+   margin-left:10%;
 }
 </style>
 

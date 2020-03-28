@@ -30,7 +30,7 @@
    margin-left:10%;
 }
 
-button[type=button] {
+.btnSubmitRes, .btnCancelRes {
   background-color: #56baed;
   border: none;
   color: white;
@@ -53,7 +53,7 @@ button[type=button] {
   transition: all 0.3s ease-in-out;
 }
 
-button[type=button]:hover{
+.btnSubmitRes:hover, .btnCancelRes:hover{
   background-color: #39ace7;
 }
 </style>
@@ -120,8 +120,8 @@ button[type=button]:hover{
                
             </div>
             <div style="margin-top:3%;">
-               <button type="button" id="btnSubmit">결제</button>
-               <button type="button" id="btnCancel">취소</button>
+               <button type="button" id="btnSubmit" class="btnSubmitRes">결제</button>
+               <button type="button" id="btnCancel" class="btnCancelRes">취소</button>
             </div>         
          </form>
       </div>
