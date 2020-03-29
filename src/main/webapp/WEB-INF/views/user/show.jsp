@@ -222,10 +222,9 @@
             <!-- 프로필 제목 -->
             <div class="show_my_title">
                <h3>
-               		<span >안녕하세요. 저는 ${myAllInfo.userVO.u_name}입니다.</span>
+               		<span >안녕하세요. 저는 <c:out value="${myAllInfo.userVO.u_name}" escapeXml="true"/>입니다.</span>
                </h3>
-                 
-                 	
+               
                  <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
                      <input type="button" id="transform" value="호스트계정으로 전환 신청"/> 
                   </c:if>
@@ -255,8 +254,7 @@
       <!-- 소개 -->
       <div>
          <div class="show_my_introduce">
-            <textarea class="introducearea" style="resize:none;"readonly>${myAllInfo.userVO.u_introduce}</textarea>
-            
+            <textarea class="introducearea" style="resize:none;"readonly><c:out value="${myAllInfo.userVO.u_introduce}" escapeXml="true"/></textarea>
          </div>
          <div class="show_my_introduce_mod">
             <textarea class="mod_introducearea" style="resize:none;" >${myAllInfo.userVO.u_introduce}</textarea>

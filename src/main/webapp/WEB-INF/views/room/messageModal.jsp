@@ -94,7 +94,7 @@
             <textarea id="message-text" name="m_content" placeholder="내용을 입력해주세요" style="resize:none;"></textarea>
           </div>
           <input type="hidden" name="r_no" id="message_r_no" value="${roomInfo.roomVO.r_no}" />
-          <input type="hidden" name="m_receiver" id="m_receiver" value="${roomInfo.hostVO.u_no}" />
+          <input type="hidden" name="m_receiver" id="m_receiver" value="${roomInfo.hostVO.u_no}"/>
           <!-- 여긴 일단 임시로 들어온 사람이 호스트 번호랑 같게 강제로 잡아두자 -->
           <input type="hidden" name="m_sender" id="m_sender" value="${userInfo.u_no}" />
         </form>

@@ -57,9 +57,9 @@
       <c:when test="${!empty comment}">
          <c:forEach var = "comment" items="${comment}">
             <tr>
-               <td style="width:150px; ">${comment.r_name}</td>
-               <td style="width:100px; ">${comment.u_name}</td>
-               <td style="width:250px; ">${comment.c_content}</td>
+               <td style="width:150px; "><c:out value="${comment.r_name}" escapeXml="true"/></td>
+               <td style="width:100px; "><c:out value="${comment.u_name}" escapeXml="true"/></td>
+               <td style="width:250px; "><c:out value="${comment.c_content}" escapeXml="true"/></td>
                <td style="width:150px;">
                   <div class="starRev" style="width:200px;">
                         <span class="starL1 

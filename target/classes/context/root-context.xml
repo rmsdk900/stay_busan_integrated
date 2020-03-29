@@ -25,9 +25,9 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="jdbcUrl" 
-		value="jdbc:mysql://localhost/sb9593?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
-		<property name="username" value="sb9593"/>
-		<property name="password" value="staybusan9593!"/>
+		value="jdbc:mysql://localhost:3306/stay_busan?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
+		<property name="username" value="stay"/>
+		<property name="password" value="stay"/>
 		<property name="maximumPoolSize" value="200"/>
 		<property name="minimumIdle" value="20"/>
 		<property name="connectionTimeout" value="30000"/>
@@ -48,10 +48,10 @@
 	
 	<bean id="mailSender"
 		class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.naver.com" />
+		<property name="host" value="smtp.gmail.com" />
 		<property name="port" value="587" />
-		<property name="username" value= "dkee3@naver.com" />
-		<property name="password" value="1q2w3e4r~~" />
+		<property name="username" value= "rlawldb0815@gmail.com" />
+		<property name="password" value="rlawldb0815123" />
 		<property name="javaMailProperties">
 			<props>
 				<prop key="mail.smtp.auth">true</prop>

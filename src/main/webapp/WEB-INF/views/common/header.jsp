@@ -30,7 +30,7 @@
 
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
 
   
 <!-- datepicker -->
@@ -75,7 +75,7 @@
                <c:choose>
                   <c:when test="${!empty userInfo}">
                      <li class="nav-item"><a class="nav-link"
-                        href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}">${userInfo.u_name}</a></li>
+                        href="${pageContext.request.contextPath}/user/show?u_no=${userInfo.u_no}"><c:out value="${userInfo.u_name}" escapeXml="true"/></a></li>
                      <!-- 충전 기능 -->
                      <li class="nav-item"><a id="money" class="nav-link" href="${pageContext.request.contextPath}/common/charging" data-toggle="modal" data-target="#exampleModal"><fmt:setLocale value="ko_KR"/><fmt:formatNumber type="currency" value="${userInfo.u_balance}"/></a></li>
                      <%@include file="./charging.jsp" %>

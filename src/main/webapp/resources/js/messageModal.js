@@ -1,16 +1,15 @@
-/**
- * 
- */
 
-$('#roomMessageModal').on('show.bs.modal', function (event) {
-  var button = $(event.relatedTarget) // Button that triggered the modal
-  var recipient = button.data('whatever') // Extract info from data-* attributes
+$('#roomMessageModal').on('show.bs.modal', function(event) {
+	console.log("click");
+  var button = $(event.relatedTarget); // Button that triggered the modal
+  var recipient = button.data('whatever'); // Extract info from data-* attributes
+  console.log(recipient);
   // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
   // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
-  var modal = $(this)
- modal.find('.modal-title').text('호스트 @' + recipient + '님에게')
- modal.find('.modal-body #recipient-name').val(recipient)
-})
+  var modal = $(this);
+ modal.find('.modal-title').text('호스트 @' + recipient + '님에게');
+ modal.find('.modal-body #recipient-name').val(recipient);
+});
 
 $('#roomMessageModal #btnSendMsg').on("click", function(){
 	var m_receiver = $("#m_receiver").val();

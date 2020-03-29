@@ -567,7 +567,7 @@
             <div>
                <div class="room_description">
                	<h4>방 설명 :</h4><br/>
-               	<h5>${roomInfo.roomVO.r_desc}</h5>
+               	<h5><c:out value="${roomInfo.roomVO.r_desc}" escapeXml="true"/></h5>
                </div>
                <textarea class="room_description_modify" name="r_desc">${roomInfo.roomVO.r_desc}</textarea>
             </div>
@@ -790,7 +790,7 @@
             
             <div>
                <p> 호스트 자기 소개 : </p>
-               <p>${roomInfo.hostVO.u_introduce}</p>
+               <p><c:out value="${roomInfo.hostVO.u_introduce}" escapeXml="true"/></p>
             </div>      
             
          </div>

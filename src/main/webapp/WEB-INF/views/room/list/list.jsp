@@ -234,13 +234,16 @@ color:black;
                            <img class="roomImg" src="${pageContext.request.contextPath}/room/displayFile?fileName=${room.r_i_fullName}" />
                         </div>
                         <div class="roomInfo" >
-                              <h4 data-rno='${room.r_no}'>${room.r_name}<br />${room.r_addr_main}</h4>
+                              <h4 data-rno='${room.r_no}'><c:out value="${room.r_name}" escapeXml="true"/><br /> <c:out value="${room.r_addr_main}" escapeXml="true"/></h4>
                               <div>
                                  <f:formatNumber value="${room.c_star}" maxFractionDigits="1" />
                                     후기 (${room.commentNum})
                               </div>
-                              <div>인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
-                                 ${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개</div>
+                              <div>
+                              		<c:out value="
+                              		인원 ${room.r_guests}명 ㆍ 침실 ${room.r_bed}개 ㆍ 침대
+                                 ${room.r_bedroom}개 ㆍ 욕실 ${room.r_bath}개
+                                 " escapeXml="true"/></div>
                               <div>
                                  <c:if test="${room.a_heating == 1}">난방</c:if>
                                  <c:if test="${room.a_heating == 0}"></c:if>

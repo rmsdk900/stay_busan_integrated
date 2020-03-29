@@ -42,7 +42,6 @@
 .modal-contentGs {
    position: relative;
    width: 500px;
-   height: 550px;
    background-color: #fefefe;
    margin: auto;
    padding: 20px;
@@ -398,6 +397,7 @@
             success: function(data){
                alert(data);
                $('#messageModal').css("display",'none');
+               $("#m_content").val('');
                showMessage(u_no);
             }
          });
