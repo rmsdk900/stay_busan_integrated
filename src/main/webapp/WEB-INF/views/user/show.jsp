@@ -31,6 +31,7 @@
    .roundingProfileImg{
       border-radius: 100px;
    }
+   
 </style>
 <!-- 별점 관련 -->
 <style>
@@ -180,7 +181,10 @@
    .show_my_introduce_mod_cancel:hover,#transform:hover{
      background-color: #39ace7;
 }
-   
+
+.show_my_date_type {
+	display: flex;
+}
 
 </style>
 
@@ -198,8 +202,10 @@
          <!-- 프로필 사진 -->
          <div class="show_my_img" >
          </div>
+    	
          <!-- 프로필 사진 변경 -->
          <div class="mod_my_img">
+         	
             <input type='file' name="updateMyProfile" id="updateMyProfile" />
             <div>
                <button class="mod_my_img_submit">편집 완료</button>
@@ -215,25 +221,34 @@
          <div>
             <!-- 프로필 제목 -->
             <div class="show_my_title">
-               <h3>안녕하세요. 저는 
-                  <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
-                     GUEST 
-                  </c:if>
-                  <c:if test="${userInfo.u_type eq 1}">
-                     HOST
-                  </c:if>
-                 ${myAllInfo.userVO.u_name}입니다.</h3>
+               <h3>
+               		<span >안녕하세요. 저는 ${myAllInfo.userVO.u_name}입니다.</span>
+               </h3>
+                 
+                 	
                  <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
                      <input type="button" id="transform" value="호스트계정으로 전환 신청"/> 
                   </c:if>
             </div>
             <!-- 회원 가입일 -->
             <div>
-               <h5><span>회원 가입: </span>
-               <span>
-                  <fmt:formatDate value="${myAllInfo.userVO.u_regdate}" pattern="yyyy-MM"/>
-               </span>
-               </h5>
+            	<div class="show_my_date_type">
+            		<h5 style="margin:0 8px 0 0; line-height:40px;"><span>회원 가입: </span>
+	               <span>
+	                  <fmt:formatDate value="${myAllInfo.userVO.u_regdate}" pattern="yyyy-MM"/>
+	               </span>
+	               </h5>
+	                <c:if test="${userInfo.u_type eq 0 || userInfo.u_type eq 9}">
+			           	<span>
+			           	<img style="width:40px;" src="${path}/resources/img/guest.png" alt="게스트"/>
+			           </span> 
+			        </c:if>
+			        <c:if test="${userInfo.u_type eq 1}">
+			           <span>
+			           	<img style="width:40px;" src="${path}/resources/img/host.png" alt="호스트"/>
+			           </span>
+			        </c:if>
+            	</div>
             </div>
          </div>
       </div>

@@ -21,9 +21,9 @@
 	<bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
 		<property name="jdbcUrl" 
-		value="jdbc:mysql://localhost/sb9593?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
-		<property name="username" value="sb9593"/>
-		<property name="password" value="staybusan9593!"/>
+		value="jdbc:mysql://localhost:3306/stay_busan?useSSL=false&amp;serverTimezone=Asia/Seoul"/>
+		<property name="username" value="stay"/>
+		<property name="password" value="stay"/>
 		<property name="maximumPoolSize" value="200"/>
 		<property name="minimumIdle" value="20"/>
 		<property name="connectionTimeout" value="30000"/>

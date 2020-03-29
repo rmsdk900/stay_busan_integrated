@@ -84,6 +84,7 @@
 	-ms-transition: all 0.3s ease-in-out;
 	-o-transition: all 0.3s ease-in-out;
 	transition: all 0.3s ease-in-out;
+	margin: 0 4px;
 }
 
 .btncancel, .btndel{
